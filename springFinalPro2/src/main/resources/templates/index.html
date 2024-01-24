@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>메인 페이지!!!!</title>
+<link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+	<div class="title_login_search">
+		<img class="logo" src="img/logo/logo.png">
+		<span class="teamTitle" onclick="location.href='index'">문제
+			뿌셔뿌셔!!</span>
+		<div class="login_search_section">
+			<div th:if="${pwMatch == null}" class="signin">
+				<span style="margin-right: 50px" onclick="location.href='signin'">회원가입</span>
+				<span style="margin-right: 30px" onclick="location.href='login'">로그인</span>
+			</div>
+			<div th:if ="${pwMatch == true}">
+				<span th:text = "${user} + ' 님 환영합니다.'"></span>
+			</div>
+			<form class="searchForm" method="get" action="searchPage">
+				<input type="text" id="search" name="search"
+					placeholder="검색어를 입력하세요">
+				<button>
+					<i class="fa-solid fa-magnifying-glass fa-2xl"></i>
+				</button>
+			</form>
+		</div>
+	</div>
+	<div class="classList">
+		<span onclick="location.href='korBook'">국어</span>
+		<span onclick="location.href='engBook'">영어</span>
+		<span onclick="location.href='mathBook'">수학</span>
+	</div>
+	<hr class="pageLine">
+	<div class="mainItem">
+		<h1 class="mainLogo">여기다 어떤걸 집어너야 될까나~!~!~!~!~!~!</h1>
+		<div class="mainItem">
+		<div class="slider">
+			<input type="radio" name="slide" id="slide1" checked /> <input
+				type="radio" name="slide" id="slide2" /> <input type="radio"
+				name="slide" id="slide3" /> <input type="radio" name="slide"
+				id="slide4" />
+			<ul id="imgholder" class="imgs">
+				<li><img src="img/mainImg/item1.jpg" style="width: 420px"
+					height="480px" /></li>
+				<li><img src="img/mainImg/item2.jpg" style="width: 420px"
+					height="480px" /></li>
+				<li><img src="img/mainImg/item3.jpg"
+					style="width: 420px; height: 480px" /></li>
+				<li><img src="img/mainImg/item4.jpg" style="width: 420px"
+					height="480px" /></li>
+			</ul>
+			<div class="bullets">
+				<label for="slide1">&nbsp;</label> <label for="slide2">&nbsp;</label>
+				<label for="slide3">&nbsp;</label> <label for="slide4">&nbsp;</label>
+			</div>
+		</div>
+	</div>
+	</div>
+	<script src="https://kit.fontawesome.com/86bc6866a5.js"
+		crossorigin="anonymous"></script>
+</body>
+</html>
