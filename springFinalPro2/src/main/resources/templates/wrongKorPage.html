@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>국어 문제 틀린 문제</title>
+<link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+	<div class="title_login_search">
+		<img class="logo" src="img/logo/logo.png"> <span
+			class="teamTitle indexTitle" onclick="location.href='index'">문제
+			뿌셔뿌셔!!</span>
+	</div>
+	<h1 class="bookTitle etcTitle">국어 틀린 문제</h1>
+	<hr class="pageLine">
+	<form method="get" class="BookForm">
+		<div class="problemWrap" th:each="list : ${korList}">
+			<span class="listNo" th:text="${list.kor_no} + '. 글을 읽고, 빈칸에 알맞은 낱말을 쓰시오.'"></span>
+			<br>
+			<img class="listImg" th:src="${list.kor_img}">
+			<br>
+			<div class="problemSection">
+			<span class="listTitle"
+				  th:text="${list.kor_title}">
+			</span>
+			<span class="answerSection hiddenAnswer"></span>
+			<br>
+			
+			<label
+				th:for="${list.kor_inputname}">
+				<span class="no">1.</span>
+				<input type="radio"
+					   th:name="${list.kor_inputname}"
+					   th:value="${list.kor_items1}">
+				<span th:text="${list.kor_items1}"></span>
+			</label>
+			<br>
+			<label th:for="${list.kor_inputname}">
+				<span class="no">2.</span>
+				<input
+					type="radio" 
+					th:name="${list.kor_inputname}"
+					th:value="${list.kor_items2}">
+				<span th:text="${list.kor_items2}"></span>
+			</label>
+			<br>
+			<label th:for="${list.kor_inputname}">
+				<span class="no">3.</span>
+				<input
+					type="radio" 
+					th:name="${list.kor_inputname}"
+					th:value="${list.kor_items3}">
+				<span th:text="${list.kor_items3}"></span>
+			</label>
+			<br>
+			<label th:for="${list.kor_inputname}">
+				<span class="no">4.</span>
+				<input
+					type="radio" 
+					th:name="${list.kor_inputname}"
+					th:value="${list.kor_items4}">
+				<span th:text="${list.kor_items4}"></span>
+			</label>
+			<br>
+			<label th:for="${list.kor_inputname}">
+				<span class="no">5.</span>
+				<input
+					type="radio" 
+					th:name="${list.kor_inputname}"
+					th:value="${list.kor_items5}">
+				<span th:text="${list.kor_items5}"></span>
+			</label>
+			<br>
+			</div>
+		</div>
+		<div class="bookFormBtn">
+			<input class = "showAnswerBtn" type="button" value="정답보기"> 
+				<input type="button" value="메인으로 돌아가기" onclick="location.href='index'">
+		</div>
+	</form>
+	<script th:inline="javascript">
+		const answerSection = document.querySelectorAll('.answerSection');
+		const showAnswerBtn = document.querySelector('.showAnswerBtn');
+		console.log(answerSection);
+		let answerArr = [];
+		answerArr = [[${session.wrongKorAnswer}]];
+		
+		//console.log(wrongKorAnswer);
+		//querySelectorAll으로 접근할 시 배열로 접근해야한다.
+		const showAnswerFunc = () => {
+			for(let i = 0; i< answerSection.length; i++){
+				answerSection[i].classList.toggle('hiddenAnswer');
+				answerSection[i].innerText = "정답 : " +answerArr[i];
+			}
+			if(showAnswerBtn.value === '정답보기'){
+				showAnswerBtn.value = '정답숨겨';
+			}
+			else{
+				showAnswerBtn.value = '정답보기';
+			}
+			
+		}
+		showAnswerBtn.addEventListener("click", showAnswerFunc);
+	</script>
+</body>
+</html>
