@@ -1,4 +1,10 @@
 @charset "UTF-8";
+@import url(fontawesome-all.min.css);
+@import "./slider.css";
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600,400italic,600italic|Roboto+Slab:400,700");
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Do+Hyeon&display=swap');
+
 
 body {
 	
@@ -13,8 +19,8 @@ body {
 	width: 670px;
 	height: 900px;
 	background: #FFFFFF;
-	border: 1px solid #AACDFF;
-	box-shadow: 7px 7px 39px rgba(0, 104, 255, 0.25);
+	border: 1px solid #f56a6a;
+	box-shadow: 7px 7px 39px #f56a6a(0, 104, 255, 0.25);
 	border-radius: 20px;
 	margin: 0px;
 	padding: 100px;
@@ -34,27 +40,30 @@ body {
 	height: 94px;
 	left: 725px;
 	top: 132px;
+    font-family: 'Bagel Fat One', system-ui;
 	font-style: normal;
 	font-weight: 700;
 	font-size: 32px;
 	line-height: 47px;
 	z-index: 5;
-	color: #0068FF;
+	color: #f56a6a;
 	justify-content: space-evenly;
 }
 
 .sign_login_Button {
-	font-family: 'Sunflower', sans-serif;
+	font-family: 'Bagel Fat One', system-ui;
 	font-size: medium;
+    font: inherit;
 	width: 400px;
 	height: 50px;
 	left: 725px;
 	top: 875px;
 	background-color: #FFFFFF;
-	color: royalblue;
+	color: #f56a6a;
 	border-radius: 8px;
-	border: #0068FF solid 1px;
+	border: #f56a6a solid 1px;
 	padding: 10px;
+    align-content: center;
 }
 .sign_login_form input,
 .sign_login_wrap input
@@ -114,9 +123,9 @@ th, td, tr {
 	vertical-align: top;
 	vertical-align: bottom;
 	vertical-align: middle;
-	color: royalblue;
+	color: #f56a6a;
 	border-radius: 8px;
-	border: #0068FF solid 1px;
+	border: #f56a6a solid 1px;
 }
 th{
 	font-weight: bold;
