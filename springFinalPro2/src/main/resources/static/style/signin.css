@@ -1,0 +1,203 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css?family=Rubik:700&display=swap');
+/* 버튼 * <- 여기까지 */
+:root {
+    --bg: #fff;
+    --text: #382b22;
+    --light-pink: #fff0f0;
+    --pink: #ffe9e9;
+    --dark-pink: #f9c4d2;
+    --pink-border: #f56a6a;
+    --pink-shadow: #ffe3e2;
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+
+
+body {
+
+	font-weight: 200;
+}
+
+.sign_login_wrap {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 800px;
+    height: 1200px;
+    background: #FFFFFF;
+    border: 1px solid #f56a6a;
+    box-shadow: 7px 7px 39px color: #f56a6a;
+    border-radius: 20px;
+    margin : 0px;
+    padding: 100px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+.signForm {
+	
+	position: relative;
+	bottom: 20px;
+}
+
+.sign_login_Header {
+	width: 466px;
+	height: 94px;
+	left: 725px;
+	top: 132px;
+	font-style: normal;
+	font-weight: 700;
+	font-size: 32px;
+	line-height: 47px;
+	z-index: 5;
+	color:  #f56a6a;
+	justify-content: space-evenly;
+}
+
+.sign_login_Button {
+	font-family: 'Sunflower', sans-serif;
+	font-size: medium;
+	width: 400px;
+	height: 45px;
+	left: 70px;
+	top: 30px;
+	background-color: #FFFFFF;
+	color: #f56a6a;
+	border-radius: 8px;
+	border: #f56a6a; solid 1px;
+	padding: 10px;
+}
+.sign_login_form input,
+.sign_login_wrap input
+{
+	padding: 7px;
+	border: none;
+	border-bottom: 1px solid #CFCFCF;
+	width: 466px;
+	height: 50px;
+}
+
+.sign_login_form input::placeholder,
+.sign_login_wrap input::placeholder
+ {
+	color: lightgrey;
+	font-size: 15px;
+	font-family: 'Sunflower', sans-serif;
+}
+
+.sign_login_wrap label {
+	
+	color: lightgrey;
+	height: 60px;
+	
+}
+
+.sign_login_form .radio {
+	align-items: center;
+	font-size: 20pt;
+	width: 15px;
+	height: 15px;
+}
+
+/* div.container {
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+} */
+.sign_login_form .agree {
+	align-items: center;
+	font-size: 30pt;
+	width: 15px;
+	height: 20px;
+	padding: 10px;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+th, td, tr {
+	width: 200px;
+	height: 50px;
+	align-items: center;
+	text-align: center;
+	border: 1px solid #000;
+	vertical-align: top;
+	vertical-align: bottom;
+	vertical-align: middle;
+	color: #f56a6a;
+	border-radius: 8px;
+	border: #f56a6a; solid 1px;
+}
+th{
+	font-weight: bold;
+	
+}
+.admin{
+	
+	align-items: center;
+}
+/* 버튼 */
+button.commonbtn {
+    padding:  0.60em 0.8em;
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    outline: none;
+    border: 0;
+    vertical-align: middle;
+    text-decoration: none;
+    font-size: inherit;
+    font-family: inherit;
+  }
+  
+  button.commonbtn {
+    font-weight: 600;
+    color: var(--text);
+    text-transform: uppercase;
+    background: var(--light-pink);
+    border: 2px solid var(--pink-border);
+    border-radius: 0.75em;
+    transform-style: preserve-3d;
+    transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), background 150ms cubic-bezier(0, 0, 0.58, 1);
+  }
+  
+  button.commonbtn::before {
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 90%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--dark-pink);
+    border-radius: inherit;
+    box-shadow: 0 0 0 2px var(--pink-border), 0 0.625em 0 0 var(--pink-shadow);
+    transform: translate3d(0, 0.75em, -1em);
+    transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), box-shadow 150ms cubic-bezier(0, 0, 0.58, 1);
+  }
+  
+  button.commonbtn:hover {
+    background: var(--pink);
+    transform: translate(0, 0.25em);
+  }
+  
+  button.commonbtn:hover::before {
+    box-shadow: 0 0 0 2px var(--pink-border), 0 0.5em 0 0 var(--pink-shadow);
+    transform: translate3d(0, 0.5em, -1em);
+  }
+  
+  button.commonbtn:active {
+    background: var(--pink);
+    transform: translate(0em, 0.75em);
+  }
+  
+  button.commonbtn:active::before {
+    box-shadow: 0 0 0 2px var(--pink-border), 0 0 var(--pink-shadow);
+    transform: translate3d(0, 0, -1em);
+  }
