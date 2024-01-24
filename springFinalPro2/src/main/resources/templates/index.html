@@ -1,73 +1,418 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
 <html>
-<head>
-<meta charset="UTF-8">
-<title>메인 페이지!!!!</title>
-<link rel="stylesheet" href="style/style.css">
-</head>
-<body>
-	<div class="title_login_search">
-		<img class="logo" src="img/logo/logo.png">
-		<span class="teamTitle" onclick="location.href='index'">문제
-			뿌셔뿌셔!!</span>
-		<div class="login_search_section">
-			<div th:if="${session.login_number == null}" class="signin">
-				<span style="margin-right: 50px" onclick="location.href='signin'">회원가입</span>
-				<span style="margin-right: 30px" onclick="location.href='login'">로그인</span>
-			</div>
-			<div th:if ="${session.login_number != null}">
-				<span th:text = "${session.login_number.id} + ' 님 환영합니다.'"></span>
-				<span class="myPage" onclick="location.href='myPage'">마이페이지</span>
-				<a th:href="@{logoutControl}"
-				th:text=" '로그아웃' "></a>
-				<a th:if="${session.login_member != null}"></a>
-				
-				
-			</div>
-			<form class="searchForm" method="get" action="searchPage">
-				<input type="text" id="search" name="search"
-					placeholder="검색어를 입력하세요">
-				<button>
-					<i class="fa-solid fa-magnifying-glass fa-2xl"></i>
-				</button>
-			</form>
+	<head>
+		<title>뿌셔뿌셔 css적용</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper/swiper-bundle.min.css"
+    />
+	<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
-		</div>
-	</div>
-	<div class="classList">
-		<span onclick="location.href='korBook'">국어</span> <span
-			onclick="location.href='engBook'">영어</span> <span
-			onclick="location.href='mathBook'">수학</span>
-	</div>
-	<hr class="pageLine">
-	<div class="mainItem">
-		<h1 class="mainLogo">여기다 어떤걸 집어너야 될까나~!~!~!~!~!~!</h1>
-		<div class="mainItem">
-		<div class="slider">
-			<input type="radio" name="slide" id="slide1" checked /> <input
-				type="radio" name="slide" id="slide2" /> <input type="radio"
-				name="slide" id="slide3" /> <input type="radio" name="slide"
-				id="slide4" />
-			<ul id="imgholder" class="imgs">
-				<li><img src="img/mainImg/item1.jpg" style="width: 420px"
-					height="480px" /></li>
-				<li><img src="img/mainImg/item2.jpg" style="width: 420px"
-					height="480px" /></li>
-				<li><img src="img/mainImg/item3.jpg"
-					style="width: 420px; height: 480px" /></li>
-				<li><img src="img/mainImg/item4.jpg" style="width: 420px"
-					height="480px" /></li>
-			</ul>
-			<div class="bullets">
-				<label for="slide1">&nbsp;</label> <label for="slide2">&nbsp;</label>
-				<label for="slide3">&nbsp;</label> <label for="slide4">&nbsp;</label>
+	</head>
+	<body class="is-preload">
+		
+		<!-- Wrapper -->
+					<div id="wrapper">
+						<div class="login_search_section">
+							<div th:if="${session.login_number == null}" class="signin">
+								<span class = "signinBtn" style="margin-right: 50px" onclick="location.href='signin'">회원가입</span>
+								<span class = "signinBtn" style="margin-right: 30px" onclick="location.href='login'">로그인</span>
+								</div>
+						<div th:if ="${session.login_number != null}">
+							<span th:text = "${session.login_number.id} + ' 님 환영합니다.'"></span>
+							<span class="myPage" onclick="location.href='myPage'">마이페이지</span>
+							<a th:href="@{logoutControl}"
+							th:text=" '로그아웃' "></a>
+							<a th:if="${session.login_member != null}"></a>
+							
+						</div>
+					</div>
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a href="index.html" class="logo"><strong>뿌셔뿌셔</strong> by 김미정 성현 현기원</a>
+								</header>
+
+							<!-- Banner -->
+								<section id="banner">
+									<div class="content">
+										<header>
+											<h1 th:if ="${session.login_number != null}" th:text = "'반갑습니다 '+ ${session.login_number.id} + 님."></h1>
+											<h1 th:if ="${session.login_number == null}" th:text = "'반갑습니다.'"></h1>
+											
+										</header>
+										<p>오른쪽 사진은 임의로 해둔 사진입니다. 그리고 저는 힘들었고요. 도쿄바나나를 일본 여행을 갔을 적에 사왔는데 학교에 들고와서 노나먹었습니다. 나는 안에 앙금이 그닥 맛있지는 않았습니다. 하지만 기원오빠와 정냐가 참으로 좋아합니다. 뿌듯합니다. 항상 나누고 배풀고 살자는 성영식씨의 말을 새겨듣겠습니다.</p>
+										<ul class="actions">
+											<li><a href="#" class="button big">MORE</a></li>
+										</ul>
+									</div>
+									<span class="image object">
+										<img src="images/pic10.jpg" alt="" />
+									</span>
+								</section>
+								<div class="slider__wrapper">
+									<div class="swiper best-txt-slider">
+									  <div class="swiper-wrapper">
+										<div class="swiper-slide">
+										  <div class="info">
+											<div class="desc">
+											  <p>피부에 전하는 청귤 세럼의 빛<br />2주 잡티 이별 세럼</p>
+											</div>
+											<div class="tl">
+											  <div class="name">
+												<h3>청귤 비타C 잡티 케어 세럼</h3>
+												<span class="eng"
+												  >Green tangerine vitaC dark spot care serum</span
+												>
+											  </div>
+											  <a href="#" class="shop"><span>shop now</span></a>
+											</div>
+										  </div>
+										</div>
+										<div class="swiper-slide">
+										  <div class="info">
+											<div class="desc">
+											  <p>
+												하지만 해야할 것들이 너무 많다<br />
+												화이팅이다...
+											  </p>
+											</div>
+											<div class="tl">
+											  <div class="name">
+												<h3>성현은 지금 신난다</h3>
+												<span class="eng">광고 배너의 오류를 잡았다 놓쳤다 잡았다</span>
+											  </div>
+											  <a href="#" class="shop"><span>shop now</span></a>
+											</div>
+										  </div>
+										</div>
+										<div class="swiper-slide">
+										  <div class="info">
+											<div class="desc">
+											  <p>
+												각질은 케어하고 생기는 더해주는 토너대신 패드<br />청귤 비타C
+												라인의 첫 단계
+											  </p>
+											</div>
+											<div class="tl">
+											  <div class="name">
+												<h3>맑은 어성초 진정 토너패드</h3>
+												<span class="eng">Houttuynia cordata calming toner pad</span>
+											  </div>
+											  <a href="#" class="shop"><span>shop now</span></a>
+											</div>
+										  </div>
+										</div>
+										<div class="swiper-slide">
+										  <div class="info">
+											<div class="desc">
+											  <p>
+												데일리로 사용이 가능한 순한 저자극<br />청귤 비타C 잡티케어
+												세럼 마스크
+											  </p>
+											</div>
+											<div class="tl">
+											  <div class="name">
+												<h3>청귤 비타C 잡티케어 세럼 마스크</h3>
+												<span class="eng"
+												  >Green tangerine vitaC dark spot care serum mask</span
+												>
+											  </div>
+											  <a href="#" class="shop"><span>shop now</span></a>
+											</div>
+										  </div>
+										</div>
+										<div class="swiper-slide">
+										  <div class="info">
+											<div class="desc">
+											  <p>피부에 전하는 청귤 세럼의 빛<br />맑은 어성초 진정 마스크</p>
+											</div>
+											<div class="tl">
+											  <div class="name">
+												<h3>맑은 어성초 진정 마스크</h3>
+												<span class="eng"
+												  >Houttuynia cordata calming moisture care sheet mask</span
+												>
+											  </div>
+											  <a href="#" class="shop"><span>shop now</span></a>
+											</div>
+										  </div>
+										</div>
+										<div class="swiper-slide">
+										  <div class="info">
+											<div class="desc">
+											  <p>목욕을 하며 와인 한 잔을 즐길 날도 온다<br />!!광고 문구 생각 중!!</p>
+											</div>
+											<div class="tl">
+											  <div class="name">
+												<h3>빤쥬토끼는 행복한 날도 있다</h3>
+												<span class="eng"
+												  >---광고 중---</span
+												>
+											  </div>
+											  <a href="#" class="shop"><span>shop now</span></a>
+											</div>
+										  </div>
+										</div>
+										<div class="swiper-slide">
+										  <div class="info">
+											<div class="desc">
+											  <p>피부에 전하는 청귤 세럼의 빛<br />2주 잡티 이별 세럼</p>
+											</div>
+											<div class="tl">
+											  <div class="name">
+												<h3>맑은 어성초 진정 쿨링 선스틱</h3>
+												<span class="eng"
+												  >Houttuynia cordata calming cooling sun stick</span
+												>
+											  </div>
+											  <a href="#" class="shop"><span>shop now</span></a>
+											</div>
+										  </div>
+										</div>
+									  </div>
+									</div>
+									<div class="swiper best-slider">
+									  <div class="swiper-wrapper">
+										<div class="swiper-slide product01">
+										  <a href="#"><span class="hidden">청귤 세럼</span></a>
+										</div>
+										<div class="swiper-slide product02">
+										  <a href="#"><span class="hidden">청귤 토너패드</span></a>
+										</div>
+										<div class="swiper-slide product03">
+										  <a href="#"><span class="hidden">어성초 토너패드</span></a>
+										</div>
+										<div class="swiper-slide product04">
+										  <a href="#"><span class="hidden">청귤 마스크팩</span></a>
+										</div>
+										<div class="swiper-slide product05">
+										  <a href="#"><span class="hidden">어성초 마스크팩</span></a>
+										</div>
+										<div class="swiper-slide product06">
+										  <a href="#"><span class="hidden">빤쮸 토끼 목욕 키트</span></a>
+										</div>
+										<div class="swiper-slide product07">
+										  <a href="#"><span class="hidden">어성초 쿨링 선스틱</span></a>
+										</div>
+									  </div>
+									  <!-- <div class="swiper-pagination"></div> -->
+									  <div class="swiper-button-prev"></div>
+									  <div class="swiper-button-next"></div>
+									</div>
+								  </div>
+							<!-- Section -->
+							<section>
+									<header class="major">
+										<h2>HOME</h2>
+									</header>
+									<div class="posts">
+										<article>
+											<a href="#" class="image"><img src="images/pic01.jpg" alt="" /></a>
+											<h3>가볍게 워밍업!</h3>
+											<p>국어</p>
+											<ul class="actions">
+												<li><a href="korBook" class="button">문제 풀기</a></li>
+											</ul>
+										</article>
+										<article>
+											<a href="#" class="image"><img src="images/pic02.jpg" alt="" /></a>
+											<h3>가볍게 워밍업!</h3>
+											<p>수학</p>
+											<ul class="actions">
+												<li><a href="mathBook" class="button">문제 풀기</a></li>
+											</ul>
+										</article>									
+										<article>
+											<a href="#" class="image"><img src="images/pic03.jpg" alt="" /></a>
+											<h3>가볍게 워밍업!</h3>
+											<p>영어</p>
+											<ul class="actions">
+												<li><a href="engBook" class="button">문제 풀기</a></li>
+											</ul>
+										</article>
+										<article>
+											<a href="#" class="image"><img src="images/pic04.jpg" alt="" /></a>
+											<h3>문의/리뷰</h3>
+											<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
+											<ul class="actions">
+												<li><a href="#" class="button">More</a></li>
+											</ul>
+										</article>
+									
+									</div>
+								</section>
+
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+
+							<!-- Search -->
+								<section id="search" class="alt">
+									<form method="get" action="searchPage">
+										<input type="text" id="search" name="search"
+										placeholder="검색어를 입력하세요">
+										<button class="searchBtn"></button>
+									</form>
+								</section>
+
+							<!-- Menu -->
+								<nav id="menu">
+									<header class="major">
+										<h2>메뉴</h2>
+									</header>
+									<ul>
+										<li>
+											<span class="opener">내정보</span>
+											<ul>
+												<li><a href="#">정보 수정</a></li>
+												<li><a href="#">등업 신청</a></li>
+												<li><a href="#">내가 푼 문제</a></li>
+												<li><a href="#">회원 탈퇴</a></li>
+											
+											</ul>
+										</li>
+										<li>
+											<span class="opener">커뮤니티</span>
+											<ul>
+												<li><a href="#">게시판</a></li>
+												<li><a href="#">공지사항</a></li>
+                                               
+											
+											</ul>
+										</li>
+										<li>
+											<span class="opener">쉬우면 통계</span>
+											<ul>
+												<li><a href="#">성적 오름 현황</a></li>
+												<li><a href="#">출석 현황</a></li>
+											</ul>
+										</li>
+										<li>
+											<span class="opener">고객 지원</span>
+											<ul>
+												<li><a href="#">고객 문의</a></li>
+											</ul>
+										</li>
+								</nav>
+
+							<!-- Section -->
+								<section>
+									<header class="major">
+										<h2>해주세요</h2>
+									</header>
+									<div class="mini-posts">
+										<article>
+											<a href="#" class="image"><img src="images/pic07.jpg" alt="" /></a>
+											<strong>문제를 풀어주세요</strong><br>
+											<p>국어/영어/수학</p>
+										</article>
+										<article>
+											<a href="#" class="image"><img src="images/pic08.jpg" alt="" /></a>
+											<strong>소통왕이 되어주세요</strong><br>
+											<p>게시판으로 순간이동</p>
+										</article>
+										<article>
+											<a href="#" class="image"><img src="images/pic09.jpg" alt="" /></a>
+											<strong>문제가 생겼어요</strong><br>
+											<p>문의 하러 가기</p>
+										</article>
+									</div>
+									<ul class="actions">
+										<li><a href="#" class="button">More</a></li>
+									</ul>
+								</section>
+
+							<!-- Section -->
+								<section>
+									<header class="major">
+										<h2>회사 소개</h2>
+									</header>
+									<p>안녕하세요. 이 사이트는 현기원 성현 김미정의 <strong>피, 땀, 눈물</strong>로 이루어진 학생 문제 제공 사이트입니다. 저희 생각보다 많이 힘들었습니다.....   귀엽게. 예쁘게 봐주세요. 아잉뿌잉뀨잉</p>
+									<ul class="contact">
+										<li class="icon solid fa-envelope"><a href="#">2303110239@office.kopo.ac.kr</a></li>
+										<li class="icon solid fa-envelope"><a href="#">2303110248@office.kopo.ac.kr</a></li>
+										<li class="icon solid fa-envelope"><a href="#">2303110266@office.kopo.ac.kr</a></li>
+										<li class="icon solid fa-phone">(031) 739-4000</li>
+										<li class="icon solid fa-home">경기도 성남시 수정구 수정로 398 드림관 2층 데이터 분석 실습실<br />
+										</li>
+									</ul>
+								</section>
+
+							<!-- Footer -->
+								<footer id="footer">
+									<p class="copyright">&copy; (주) 뿌셔뿌셔 Corp. All rights reserved. <br>Design: <a href="https://html5up.net">성현 & HTML5UP</a>.</p>
+								</footer>
+
+						</div>
+					</div>
+
 			</div>
-		</div>
-	</div>
-	</div>
-	
-	
-	<script src="https://kit.fontawesome.com/86bc6866a5.js"
-		crossorigin="anonymous"></script>
-</body>
+
+		<!-- Scripts -->
+			<script src="https://kit.fontawesome.com/86bc6866a5.js"
+			crossorigin="anonymous"></script>
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			<script>
+				const bestTxtSwiper = new Swiper(".best-txt-slider", {
+				  autoplay: {
+					delay: 4000,
+					disableOnInteraction: false,
+				  },
+				  effect: "fade",
+				  loop: true,
+				  allowTouchMove: false,
+				});
+			
+				const bestSwiper = new Swiper(".best-slider", {
+				  autoplay: {
+					delay: 4000, // bestTxtSwiper와 동일하게 설정
+					disableOnInteraction: false,
+				  },
+				  slidesPerView: 1.4,
+				  loop: true,
+				  navigation: {
+					nextEl: ".best-slider .swiper-button-next",
+					prevEl: ".best-slider .swiper-button-prev",
+				  },
+				  on: {
+					slideChangeTransitionStart: function () {
+					  const realIndex = bestSwiper.realIndex;
+					  let targetIndex = realIndex;
+			
+					  bestTxtSwiper.slideTo(targetIndex);
+					  bestTxtSwiper.update(); // swiper 업데이트
+					},
+					slideNextTransitionStart: function () {
+					  bestTxtSwiper.autoplay.stop();
+					},
+					slidePrevTransitionStart: function () {
+					  bestTxtSwiper.autoplay.stop();
+					},
+					slideChangeTransitionEnd: function () {
+					  bestTxtSwiper.autoplay.start();
+					},
+				  },
+				});
+			  </script>
+
+	</body>
 </html>
