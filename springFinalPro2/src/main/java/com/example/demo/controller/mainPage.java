@@ -83,26 +83,6 @@ public class mainPage {
 		mav.setViewName("mathBook");
 		return mav;
 	}
-	@RequestMapping(value="/signin")
-	public ModelAndView signin() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("signin");
-		return mav;
-	}
-	@RequestMapping(value="/login")
-	   public ModelAndView login() {
-	      ModelAndView mav = new ModelAndView();
-	      mav.setViewName("login");
-	      return mav;
-	   }
-
-	@RequestMapping(value="/memberFind")
-	public ModelAndView memberFind() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("memberFind");
-		return mav;
-		
-	}
 	@RequestMapping(value="/myPage")
 	public ModelAndView myPage() {
 		ModelAndView mav = new ModelAndView();
