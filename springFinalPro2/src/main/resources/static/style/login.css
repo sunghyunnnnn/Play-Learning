@@ -1,0 +1,128 @@
+@charset "UTF-8";
+
+body {
+	
+	font-weight: 200;
+}
+
+.sign_login_wrap {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	width: 670px;
+	height: 900px;
+	background: #FFFFFF;
+	border: 1px solid #AACDFF;
+	box-shadow: 7px 7px 39px rgba(0, 104, 255, 0.25);
+	border-radius: 20px;
+	margin: 0px;
+	padding: 100px;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+}
+
+.signForm {
+	
+	position: relative;
+	bottom: 20px;
+}
+
+.sign_login_Header {
+	width: 466px;
+	height: 94px;
+	left: 725px;
+	top: 132px;
+	font-style: normal;
+	font-weight: 700;
+	font-size: 32px;
+	line-height: 47px;
+	z-index: 5;
+	color: #0068FF;
+	justify-content: space-evenly;
+}
+
+.sign_login_Button {
+	font-family: 'Sunflower', sans-serif;
+	font-size: medium;
+	width: 400px;
+	height: 50px;
+	left: 725px;
+	top: 875px;
+	background-color: #FFFFFF;
+	color: royalblue;
+	border-radius: 8px;
+	border: #0068FF solid 1px;
+	padding: 10px;
+}
+.sign_login_form input,
+.sign_login_wrap input
+{
+	padding: 7px;
+	border: none;
+	border-bottom: 1px solid #CFCFCF;
+	width: 466px;
+	height: 50px;
+}
+
+.sign_login_form input::placeholder,
+.sign_login_wrap input::placeholder
+ {
+	color: lightgrey;
+	font-size: 15px;
+	font-family: 'Sunflower', sans-serif;
+}
+
+.sign_login_wrap label {
+	
+	color: lightgrey;
+	height: 60px;
+	
+}
+
+.sign_login_form .radio {
+	align-items: center;
+	font-size: 20pt;
+	width: 15px;
+	height: 15px;
+}
+
+/* div.container {
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+} */
+.sign_login_form .agree {
+	align-items: center;
+	font-size: 30pt;
+	width: 15px;
+	height: 20px;
+	padding: 10px;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+th, td, tr {
+	width: 200px;
+	height: 50px;
+	align-items: center;
+	text-align: center;
+	border: 1px solid #000;
+	vertical-align: top;
+	vertical-align: bottom;
+	vertical-align: middle;
+	color: royalblue;
+	border-radius: 8px;
+	border: #0068FF solid 1px;
+}
+th{
+	font-weight: bold;
+	
+}
+.admin{
+	
+	align-items: center;
+}

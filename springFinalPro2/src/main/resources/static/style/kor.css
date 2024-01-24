@@ -1,0 +1,52 @@
+@charset "UTF-8";
+
+.bookTitle{
+	position: relative;
+	text-align: center;
+	font-size: 80px;
+}
+.BookForm{
+	width: 700px;
+	height: 800px;
+	border: 2px solid black;
+	margin-left: 550px;
+	margin-top: 20px;
+	padding: 10px;
+	box-shadow: 5px 5px 10px black;
+	border-radius: 10px;
+	overflow-y:auto;
+}
+
+.bookFormBtn{
+	margin-top: 45px;
+
+	text-align: center;
+}
+.listNo{
+	
+	font-weight: bold;
+	font-size: 20px;
+	display:inline-block;
+	margin: 18px;
+	
+}
+.listImg{
+	width: 500px;
+	height: 200px;
+}
+.listTitle{
+
+	position: relative;
+	font-size: 25px;
+	display:flex;
+	margin: 15px 0px 15px 0px;
+	
+}
+.problemWrap{
+	height: 700px;
+}
+.problemSection{
+	
+	display: flex;
+	flex-direction: column;
+}

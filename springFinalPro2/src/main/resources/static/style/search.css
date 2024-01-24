@@ -1,0 +1,16 @@
+@charset "UTF-8";
+
+.teamTitle{
+	position: relative;
+}
+
+table,th,td{
+	border: 1px solid black;
+}
+th,td{
+	padding: 10px;
+}
+.searchResult{
+	justify-content: center;
+	display:flex;
+}
