@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<form class="sign_login_form" action="findphoneControl" method="post">
+<p>
+	<input type="text" oninput="oninputPhone(this)" name="phonenum" placeholder="전화번호를 입력하세요."></p>
+
+	<br>
+	<button class = "sign_login_Button" type="submit">계정찾기</button>
+	<br>
+	<br>
+
+</form>
+<script>
+function oninputPhone(target) {
+    target.value = target.value
+        .replace(/[^0-9]/g, '')
+        .replace(/(^02.{0}|^01.{1}|[0-9]{3,4})([0-9]{3,4})([0-9]{4})/g, "$1-$2-$3");
+}
+
+</script>
+</body>
+</html>
