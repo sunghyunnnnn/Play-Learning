@@ -29,7 +29,9 @@
 	            <p>
 	            <input type="text" name="birth" placeholder="yyyy-mm-dd"></p>
 	            <p>
-	            <input class="userId" type="text" name="id" placeholder="ID"><button class="idch" type="button">아이디 중복</button></p>
+	            <input class="userId" type="text" name="id" placeholder="ID">
+	            <button class="idch" type="button">아이디 중복</button>
+	            </p>
 	            <p> 
 	            <input class="pw" name="pw" type="password" placeholder="Password" required="required"></p>
 	            <p>
@@ -65,53 +67,51 @@
 		</div>
 	</div>
 <script th:inline="javascript">
-const pw = document.querySelector(".pw");
-
-const pw2 = document.querySelector(".pw2");
-
-const check = document.querySelector(".check");
-
-const idch = document.querySelector(".idch");
-const userId = document.querySelector(".userId");
-let idArr = [];
-let ck = true;
-idArr = [[${memberIdArr}]];
-
-function oninputPhone(target) {
-    target.value = target.value
-        .replace(/[^0-9]/g, '')
-        .replace(/(^02.{0}|^01.{1}|[0-9]{3,4})([0-9]{3,4})([0-9]{4})/g, "$1-$2-$3");
-}
-const funcChange = () => {
-	if(pw.value===pw2.value) {
-		check.innerHTML = "비밀번호가 같습니다.";
-	}else if(pw.value!==pw2.value) {
-		check.innerHTML = "비밀번호가 다릅니다.";
-		pw.value = "";
-		pw2.value = "";
+	const pw = document.querySelector(".pw");
+	
+	const pw2 = document.querySelector(".pw2");
+	
+	const check = document.querySelector(".check");
+	
+	const idch = document.querySelector(".idch");
+	const userId = document.querySelector(".userId");
+	let idArr = [];
+	let ck = true;
+	idArr = [[${memberIdArr}]];
+	
+	function oninputPhone(target) {
+	    target.value = target.value
+	        .replace(/[^0-9]/g, '')
+	        .replace(/(^02.{0}|^01.{1}|[0-9]{3,4})([0-9]{3,4})([0-9]{4})/g, "$1-$2-$3");
 	}
-}
-
-const funcClick = () => {
-	ck = true;
-    idArr.forEach((item) => {
-       if(item === userId.value){
-          console.log(item);
-          ck = false;
-       }
-    })
-    if(ck){
-       alert('사용가능한 ID입니다.');
-    }
-    else{
-       alert('중복된 ID입니다.');
-    }
-}
-pw2.addEventListener("change", funcChange);
-idch.addEventListener("click", funcClick);
-
-
-
+	const funcChange = () => {
+		if(pw.value===pw2.value) {
+			check.innerHTML = "비밀번호가 같습니다.";
+		}else if(pw.value!==pw2.value) {
+			check.innerHTML = "비밀번호가 다릅니다.";
+			pw.value = "";
+			pw2.value = "";
+		}
+	}
+	
+	const funcClick = () => {
+		ck = true;
+	    idArr.forEach((item) => {
+	       if(item === userId.value){
+	          console.log(item);
+	          ck = false;
+	       }
+	    })
+	    if(ck){
+	       alert('사용가능한 ID입니다.');
+	    }
+	    else{
+	       userId.value = "";
+	       alert('중복된 ID입니다.');
+	    }
+	}
+	pw2.addEventListener("change", funcChange);
+	idch.addEventListener("click", funcClick);
 </script>
 </body>
 
