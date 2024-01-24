@@ -12,6 +12,8 @@
 
 <body>
 	<div>
+	<span class="teamTitle" onclick="location.href='index'">문제
+			뿌셔뿌셔!!</span>
 		<div class="sign_login_wrap">
 			<h2 class="sign_login_Header">로그인 해주세요.</h2>
 
@@ -38,12 +40,22 @@
 	    </form>
         </div>
     </div>
-	<script>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script>
 function oninputPhone(target) {
     target.value = target.value
         .replace(/[^0-9]/g, '')
         .replace(/(^02.{0}|^01.{1}|[0-9]{3,4})([0-9]{3,4})([0-9]{4})/g, "$1-$2-$3");
 }
+
+	$(document).ready(function() {
+		let message = "[[${msg}]]";
+		if (message != "") {
+			alert(message);
+		}else {
+			
+		}
+	})
 </script>
 </body>
 
