@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+
+<div>
+<span class="teamTitle" onclick="location.href='index'">문제
+			뿌셔뿌셔!!</span>
+	<div class="sign_login_wrap">
+		<div class="signForm">
+			<h2 class="sign_login_Header">회원 탈퇴를 위해<br>비밀번호를 입력해 주세요.</h2>
+			
+			<form class="sign_login_form" action="/deletememberControl" method="post"> 
+			<p>
+			<input type="hidden" th:value="${session.login_number.id}" name="id">
+			<input type="password" class="pw" name="pw" placeholder="Password">
+			</p>
+			<p>
+			<input type="password" class="pw" name="pw1" placeholder="Check Password">
+			</p>
+			<br>
+			<br>
+			<button class="sign_login_Button" type="submit">회원 탈퇴 완료</button>
+			
+			</form>
+		</div>
+	</div>
+</div>
+</body>
+</html>
