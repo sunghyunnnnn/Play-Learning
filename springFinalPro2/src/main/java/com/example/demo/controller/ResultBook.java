@@ -60,7 +60,7 @@ public class ResultBook {
 //		System.out.println(wrongAnswer[0]);
 		session.setAttribute("wrongKorAnswer", wrongAnswer);
 		mav.addObject("korList", korList);
-		mav.setViewName("wrongKorPage");
+		mav.setViewName("book/wrongKorPage");
 		return mav;
 	}	
 	@RequestMapping(value = "/resultKorBook")
@@ -107,7 +107,7 @@ public class ResultBook {
 		mav.addObject("list", result);
 		mav.addObject("success", success);
 		mav.addObject("fail", fail);
-		mav.setViewName("resultKor");
+		mav.setViewName("book/resultKor");
 		return mav;
 	}
 	@RequestMapping(value = "/wrongMathPage")
@@ -136,7 +136,7 @@ public class ResultBook {
 //		System.out.println(wrongAnswer[0]);
 		session.setAttribute("wrongMathAnswer", wrongAnswer);
 		mav.addObject("mathList", mathList);
-		mav.setViewName("wrongMathPage");
+		mav.setViewName("book/wrongMathPage");
 		return mav;
 	}
 	@RequestMapping(value = "resultMathBook")
@@ -183,7 +183,7 @@ public class ResultBook {
 		mav.addObject("list", result);
 		mav.addObject("success", success);
 		mav.addObject("fail", fail);
-		mav.setViewName("resultMath");
+		mav.setViewName("book/resultMath");
 		return mav;
 	}
 	@RequestMapping(value = "/wrongEngPage")
@@ -212,7 +212,7 @@ public class ResultBook {
 //		System.out.println(wrongAnswer[0]);
 		session.setAttribute("wrongEngAnswer", wrongAnswer);
 		mav.addObject("engList", engList);
-		mav.setViewName("wrongEngPage");
+		mav.setViewName("book/wrongEngPage");
 		return mav;
 	}
 	@RequestMapping(value = "resultEngBook")
@@ -259,7 +259,7 @@ public class ResultBook {
 		mav.addObject("list", result);
 		mav.addObject("success", success);
 		mav.addObject("fail", fail);
-		mav.setViewName("resultEng");
+		mav.setViewName("book/resultEng");
 		return mav;
 	}
 }
