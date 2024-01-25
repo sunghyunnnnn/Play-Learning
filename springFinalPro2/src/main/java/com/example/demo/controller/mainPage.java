@@ -56,7 +56,7 @@ public class mainPage {
 			mav.addObject("list", courseList);
 			}
 		}
-		mav.setViewName("searchPage");			
+		mav.setViewName("search/searchPage");			
 		return mav;
 	}
 	@RequestMapping(value="/korBook")
@@ -64,7 +64,7 @@ public class mainPage {
 		ModelAndView mav = new ModelAndView();
 		List<KorBookVo> korList = jpaKor.findAll();
 		mav.addObject("korList", korList);
-		mav.setViewName("korBook");
+		mav.setViewName("book/korBook");
 		return mav;
 	}
 	@RequestMapping(value="/engBook")
@@ -72,7 +72,7 @@ public class mainPage {
 		ModelAndView mav = new ModelAndView();
 		List<EngBookVo> engList = jpaEng.findAll();
 		mav.addObject("engList", engList);
-		mav.setViewName("engBook");
+		mav.setViewName("book/engBook");
 		return mav;
 	}
 	@RequestMapping(value="/mathBook")
@@ -80,19 +80,19 @@ public class mainPage {
 		ModelAndView mav = new ModelAndView();
 		List<MathBookVo> mathList = jpaMath.findAll();
 		mav.addObject("mathList", mathList);
-		mav.setViewName("mathBook");
+		mav.setViewName("book/mathBook");
 		return mav;
 	}
 	@RequestMapping(value="/myPage")
 	public ModelAndView myPage() {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("myPage");
+		mav.setViewName("member/myPage");
 		return mav;
 	}
 	@RequestMapping(value="/adminPage")
 	public ModelAndView adminPage() {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("adminPage");
+		mav.setViewName("member/adminPage");
 		return mav;
 	}
 
@@ -102,7 +102,7 @@ public class mainPage {
 		ModelAndView mav = new ModelAndView();
 		CourseVo course = jpaCourse.getById(title);
 		mav.addObject("item", course);
-		mav.setViewName("detailCourse");
+		mav.setViewName("search/detailCourse");
 
 		return mav;
 	}

@@ -64,7 +64,7 @@ public class MemberController {
 	            mav.addObject("loginError", "아이디 혹은 비밀번호가 일치 하지 않습니다.");
 	            mav.addObject("pwMatch", pwMatch);
 	            System.out.println(pwMatch);
-	            mav.setViewName("deletemember");
+	            mav.setViewName("member/deletemember");
 	         }
 	         return mav;
 	   
@@ -75,7 +75,7 @@ public class MemberController {
 	   
 	   ModelAndView mav = new ModelAndView();
 	   
-	   mav.setViewName("deletemember");
+	   mav.setViewName("member/deletemember");
 	   return mav;
    }
    
@@ -88,7 +88,7 @@ public class MemberController {
 	   
 	   ModelAndView mav = new ModelAndView();
 	   mav.addObject(member);
-	   mav.setViewName("memberchange");
+	   mav.setViewName("member/memberchange");
 	   return mav;
    }
    
@@ -133,22 +133,13 @@ public class MemberController {
 		memberIdArr = jpaMember.selectMemberId();
 		System.out.println(memberIdArr);
 		mav.addObject("memberIdArr", memberIdArr);
-		mav.setViewName("signin");
+		mav.setViewName("member/signin");
 		return mav;
-	}
-   
-   @RequestMapping(value="/signincheck")
-   public ModelAndView signincheck() {
-	   ModelAndView mav = new ModelAndView();
-	   mav.setViewName("signinControl");
-	   return mav;
-			   
-   }
-   
+	}   
    @RequestMapping(value="/login")
 	public ModelAndView login() {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("login");
+		mav.setViewName("member/login");
 		return mav;
 	}
    
@@ -186,18 +177,10 @@ public class MemberController {
          }else {
             System.out.println("아이디틀림");
             mav.addObject("msg", "로그인에 실패 했습니다. 다시 로그인 해 주세요.");
-            mav.setViewName("login");
+            mav.setViewName("member/login");
          }
          return mav;
-      }
-   
-    @RequestMapping(value="/logout")
-    public ModelAndView logout() {
-    	ModelAndView mav = new ModelAndView();
-    	mav.setViewName("logout");
-    	return mav;
-    }
-    
+      }  
     @RequestMapping(value="/logoutControl")
     public ModelAndView logoutControl(HttpSession session) {
     	session.removeAttribute("login_number");
@@ -210,14 +193,14 @@ public class MemberController {
 	@RequestMapping(value="/memberFind")
 	public ModelAndView memberFind() {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("memberFind");
+		mav.setViewName("member/memberFind");
 		return mav;
 		
 	}
 	@RequestMapping(value="/findname")
 	public ModelAndView findnameControl() {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("findname");
+		mav.setViewName("member/findname");
 		return mav;
 	}
 	
@@ -229,7 +212,7 @@ public class MemberController {
 		System.out.println(id);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("id", id);
-		mav.setViewName("nameresult");
+		mav.setViewName("member/nameresult");
 		
 		return mav;
 	}
@@ -237,7 +220,7 @@ public class MemberController {
 	@RequestMapping(value="/findemail")
 	public ModelAndView findmailControl() {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("findemail");
+		mav.setViewName("member/findemail");
 		return mav;
 	}
 	@RequestMapping(value="/findemailControl")
@@ -248,7 +231,7 @@ public class MemberController {
 		System.out.println(id);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("id", id);
-		mav.setViewName("emailresult");
+		mav.setViewName("member/emailresult");
 		
 		return mav;
 	}
@@ -258,7 +241,7 @@ public class MemberController {
 		
 		ModelAndView mav = new ModelAndView();
 		
-		mav.setViewName("findphone");
+		mav.setViewName("member/findphone");
 		
 		return mav;
 	}
@@ -270,7 +253,7 @@ public class MemberController {
 		System.out.println(id);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("id", id);
-		mav.setViewName("phoneresult");
+		mav.setViewName("member/phoneresult");
 		
 		return mav;
 	}
