@@ -6,10 +6,22 @@
 <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
-<div class="title_login_search">
-		<img class="logo" src="img/logo/logo.png"> <span
-			class="teamTitle indexTitle" onclick="location.href='index'">문제
-			뿌셔뿌셔!!</span>
+<div class="commonHederBar">
+		<span class="teamTitle indexTitle commonLogo" onclick="location.href='index'">문제 뿌셔뿌셔!!</span>
+		<div class="commonHederBar__info">
+				<div th:if="${session.login_number == null}" class="signin">
+					<span class = "signinBtn" style="margin-right: 50px" onclick="location.href='signin'">회원가입</span>
+					<span class = "signinBtn" style="margin-right: 30px" onclick="location.href='login'">로그인</span>
+					</div>
+			<div th:if ="${session.login_number != null}">
+				<span th:text = "${session.login_number.id} + ' 님 환영합니다.'"></span>
+				<span class="myPage" onclick="location.href='myPage'">마이페이지</span>
+				<a th:href="@{logoutControl}"
+				th:text=" '로그아웃' "></a>
+				<a th:if="${session.login_member != null}"></a>
+			</div>
+		</div>
+			
 	</div>
 	<h1 class="bookTitle etcTitle">수학 문제집</h1>
 	<hr class="pageLine">
@@ -70,8 +82,8 @@
 			</div>
 		</div>
 		<div class="bookFormBtn">
-			<input type="submit" value="정답제출"> 
-				<input type="reset" value="reset">
+			<button class="sign_login_Button commonbtn book_commonBtn" type="submit">정답제출</button>
+			<button class="sign_login_Button commonbtn book_commonBtn" type="reset">RESET</button>
 		</div>
 	</form>
 </body>
