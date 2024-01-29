@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.antlr.v4.runtime.misc.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -20,8 +21,10 @@ import jakarta.persistence.EntityNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
+
 @Controller
 public class MemberController {
+
 
    @Autowired
    JpaMemberRepository jpaMember;
@@ -108,7 +111,8 @@ public class MemberController {
    }
    
    @RequestMapping(value="signinControl")
-   public ModelAndView signin(Member member) {
+   public ModelAndView signin(Member member, HttpServletRequest request) {
+	
 	  String input_pw = member.getPw();
       System.out.println("사용자 입력 비번="+input_pw);
 	  
@@ -116,6 +120,10 @@ public class MemberController {
       String encode_pw = encoder.encode(input_pw);
       System.out.println("암호화 비번="+encode_pw);
       member.setPw(encode_pw);
+      
+      String sex = request.getParameter("gender");
+      member.setSex(sex);
+      System.out.println("성별: " + sex);
       //세이브 하기 전에 중복 여부 검사
       
       
@@ -176,7 +184,7 @@ public class MemberController {
             
          }else {
             System.out.println("아이디틀림");
-            mav.addObject("msg", "로그인에 실패 했습니다. 다시 로그인 해 주세요.");
+            mav.addObject("msg", "아이디 또는 비밀번호가 일치 하지 않습니다. 다시 로그인 해 주세요.");
             mav.setViewName("member/login");
          }
          return mav;
