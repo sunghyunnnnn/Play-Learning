@@ -89,12 +89,7 @@ public class mainPage {
 		mav.setViewName("member/myPage");
 		return mav;
 	}
-	@RequestMapping(value="/adminPage")
-	public ModelAndView adminPage() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("member/adminPage");
-		return mav;
-	}
+	
 
 	@RequestMapping(value = "/detailcourse")
 	public ModelAndView detail(HttpServletRequest request) {
@@ -103,6 +98,23 @@ public class mainPage {
 		CourseVo course = jpaCourse.getById(title);
 		mav.addObject("item", course);
 		mav.setViewName("search/detailCourse");
+
+		return mav;
+	}
+
+	@RequestMapping(value = "/adminlogin")
+	public ModelAndView adminlogin() {
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("admin/adminlogin");
+
+		return mav;
+	}
+	@RequestMapping(value = "/admin")
+	public ModelAndView admin() {
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("admin/admin");
 
 		return mav;
 	}
