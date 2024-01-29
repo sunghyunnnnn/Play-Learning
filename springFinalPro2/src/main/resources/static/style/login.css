@@ -20,7 +20,7 @@ body {
 	height: 900px;
 	background: #FFFFFF;
 	border: 1px solid #f56a6a;
-	box-shadow: 7px 7px 39px #f56a6a;
+	
 	border-radius: 20px;
 	margin: 0px;
 	padding: 100px;
@@ -59,7 +59,7 @@ body {
 	left: 725px;
 	top: 875px;
 	background-color: #FFFFFF;
-	color: #f56a6a;
+	color: lightgray;
 	border-radius: 8px;
 	border: #f56a6a solid 1px;
 	padding: 10px;
