@@ -7,8 +7,17 @@
 @import "slider.css";
 @import "login.css";
 @import "result.css";
-
-
+@import "common.css";
+:root {
+    --bg: #fff;
+    --text: #382b22;
+    --light-pink: #fff0f0;
+    --pink: #ffe9e9;
+    --dark-pink: #f9c4d2;
+    --pink-border: #f56a6a;
+    --pink-shadow: #ffe3e2;
+  }
+  
 body{
 	height: 100vh;
 }
