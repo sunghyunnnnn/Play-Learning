@@ -28,7 +28,7 @@
 								</div>
 						<div th:if ="${session.login_number != null}">
 							<span th:text = "${session.login_number.id} + ' 님 환영합니다.'"></span>
-							<span class="myPage" onclick="location.href='myPage'">마이페이지</span>
+							<span class="myPage">마이페이지</span>
 							<a th:href="@{logoutControl}"
 							th:text=" '로그아웃' "></a>
 							<a th:if="${session.login_member != null}"></a>
@@ -371,7 +371,12 @@
 			<script src="js/breakpoints.min.js"></script>
 			<script src="js/util.js"></script>
 			<script src="js/main.js"></script>
-			<script>
+			
+			<script th:inline="javascript">
+				let indexCk = false;
+				indexCk = [[${session.indexCk}]];
+			
+				const mypage = document.querySelector(".myPage");
 				const bestTxtSwiper = new Swiper(".best-txt-slider", {
 				  autoplay: {
 					delay: 4000,
@@ -412,6 +417,15 @@
 					},
 				  },
 				});
+				
+				const clickFunc = () => {
+					console.log(indexCk);
+					if(indexCk){
+						let id = [[${session.loginId}]];
+						location.href = `/myPage?id=${id}`
+					}
+				}
+				mypage.addEventListener("click", clickFunc);
 			  </script>
 
 	</body>

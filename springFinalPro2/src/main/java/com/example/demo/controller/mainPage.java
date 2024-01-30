@@ -14,12 +14,16 @@ import com.example.demo.jpa.EngRepo;
 import com.example.demo.jpa.JpaMemberRepository;
 import com.example.demo.jpa.KorRepo;
 import com.example.demo.jpa.MathRepo;
+import com.example.demo.jpa.MypageInfoRepo;
 import com.example.demo.vo.CourseVo;
 import com.example.demo.vo.EngBookVo;
 import com.example.demo.vo.KorBookVo;
 import com.example.demo.vo.MathBookVo;
+import com.example.demo.vo.Member;
+import com.example.demo.vo.MypageInfo;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 //변경테스트!!!
 @Controller
@@ -32,13 +36,17 @@ public class mainPage {
 	EngRepo jpaEng;
 	@Autowired
 	CourseRepo jpaCourse;
+	@Autowired
+	MypageInfoRepo jpaMypage;
+	
 	
 	@RequestMapping(value="/index")
-	public ModelAndView indexPage() {
+	public ModelAndView indexPage(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("index");
 		return mav;
 	}
+	
 	@RequestMapping(value="/searchPage")
 	public ModelAndView searchPage(@RequestParam (name="search")String title) {
 		ModelAndView mav = new ModelAndView();
@@ -84,13 +92,23 @@ public class mainPage {
 		return mav;
 	}
 	@RequestMapping(value="/myPage")
-	public ModelAndView myPage() {
+	public ModelAndView myPage(@RequestParam("id") String id, MypageInfo mypageInfo) {
 		ModelAndView mav = new ModelAndView();
+		System.out.println("mypage >>" + id);
+		List<MypageInfo> mypageArr= null;
+		mypageArr = jpaMypage.selectById(id);
+		
+		System.out.println("mypageInfo >> " + mypageArr.size());
+		if(mypageArr.size() == 0) {
+			System.out.println("푼 문제 없다.");
+			mav.addObject("mypage", "임마 문제 풀어!!!");
+		}
+		mav.addObject("mypageArr", mypageArr);
+		//문제 여러개 배열로 받아야함
 		mav.setViewName("member/myPage");
 		return mav;
 	}
 	
-
 	@RequestMapping(value = "/detailcourse")
 	public ModelAndView detail(HttpServletRequest request) {
 		String title = request.getParameter("title");
@@ -98,7 +116,6 @@ public class mainPage {
 		CourseVo course = jpaCourse.getById(title);
 		mav.addObject("item", course);
 		mav.setViewName("search/detailCourse");
-
 		return mav;
 	}
 

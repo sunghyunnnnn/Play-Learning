@@ -14,9 +14,11 @@ import org.springframework.web.servlet.ModelAndView;
 import com.example.demo.jpa.EngRepo;
 import com.example.demo.jpa.KorRepo;
 import com.example.demo.jpa.MathRepo;
+import com.example.demo.jpa.MypageInfoRepo;
 import com.example.demo.vo.EngBookVo;
 import com.example.demo.vo.KorBookVo;
 import com.example.demo.vo.MathBookVo;
+import com.example.demo.vo.MypageInfo;
 
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -27,23 +29,28 @@ public class ResultBook {
 	List<String> korAnswer = new ArrayList<>(List.of("호떡", "제비", "열대어"));
 	List<String> mathAnswer = new ArrayList<>(List.of("23", "73", "41"));
 	List<String> engAnswer = new ArrayList<>(List.of("Good-bye", "teacher-삼촌", "What"));
+	List<MypageInfo> mypageInfo = new ArrayList<>();
 	@Autowired
 	KorRepo jpaKor;
 	@Autowired
 	MathRepo jpaMath;
 	@Autowired
 	EngRepo jpaEng;
+	@Autowired
+	MypageInfoRepo jpaMypage;
+	
 //	              name(혹은value) 반환형태        변수명
 //	@RequestParam(name="wrong") List<String> values
 	@RequestMapping(value = "/wrongKorPage")
 	public ModelAndView wrongKorPage(@RequestParam(name="wrong") List<String> values, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
-//		List<String> wrongAnswer = new ArrayList<>();
 		String[] wrongAnswer = new String[values.size()];
 		List<KorBookVo> korList = new ArrayList<>();
+		
 		for(int i = 0; i < values.size(); i++) {
 			korList.add(jpaKor.selectKorBookById(values.get(i)));
 		}
+		
 		System.out.println("이건가 ?? " + values);
 		int index = 0;
 		int i = 0;
@@ -64,10 +71,9 @@ public class ResultBook {
 		return mav;
 	}	
 	@RequestMapping(value = "/resultKorBook")
-	public ModelAndView korResult(HttpServletRequest request) {
+	public ModelAndView korResult(HttpServletRequest request, MypageInfo mypageInfo) {
 		ModelAndView mav = new ModelAndView();
 		List<String> result = new ArrayList<>();
-		
 		List<Integer> wrong = new ArrayList<>();
 		String result1 = request.getParameter("kor1");
 		String result2 = request.getParameter("kor2");
@@ -102,6 +108,12 @@ public class ResultBook {
 		else {
 			examAnswer = "노력요함";
 		}
+		System.out.println(mypageInfo);
+		mypageInfo.setSubjecttitle("국어");
+		mypageInfo.setSubjectlevel("가볍게 워밍업!!");
+		mypageInfo.setSubjectresult(examAnswer);
+		System.out.println("마이페이지 >> " + mypageInfo);
+		jpaMypage.save(mypageInfo);
 		mav.addObject("examAnswer", examAnswer);
 		mav.addObject("wrong", wrong);
 		mav.addObject("list", result);
@@ -140,7 +152,7 @@ public class ResultBook {
 		return mav;
 	}
 	@RequestMapping(value = "resultMathBook")
-	public ModelAndView mahtResult(HttpServletRequest request) {
+	public ModelAndView mahtResult(HttpServletRequest request, MypageInfo mypageInfo) {
 		ModelAndView mav = new ModelAndView();
 		List<String> result = new ArrayList<>();
 		
@@ -178,6 +190,11 @@ public class ResultBook {
 		else {
 			examAnswer = "노력요함";
 		}
+		mypageInfo.setSubjecttitle("수학");
+		mypageInfo.setSubjectlevel("가볍게 워밍업!!");
+		mypageInfo.setSubjectresult(examAnswer);
+		System.out.println("마이페이지 >> " + mypageInfo);
+		jpaMypage.save(mypageInfo);
 		mav.addObject("examAnswer", examAnswer);
 		mav.addObject("wrong", wrong);
 		mav.addObject("list", result);
@@ -216,7 +233,7 @@ public class ResultBook {
 		return mav;
 	}
 	@RequestMapping(value = "resultEngBook")
-	public ModelAndView engResult(HttpServletRequest request) {
+	public ModelAndView engResult(HttpServletRequest request, MypageInfo mypageInfo) {
 		ModelAndView mav = new ModelAndView();
 		List<String> result = new ArrayList<>();
 		
@@ -254,6 +271,11 @@ public class ResultBook {
 		else {
 			examAnswer = "노력요함";
 		}
+		mypageInfo.setSubjecttitle("영어");
+		mypageInfo.setSubjectlevel("가볍게 워밍업!!");
+		mypageInfo.setSubjectresult(examAnswer);
+		System.out.println("마이페이지 >> " + mypageInfo);
+		jpaMypage.save(mypageInfo);
 		mav.addObject("examAnswer", examAnswer);
 		mav.addObject("wrong", wrong);
 		mav.addObject("list", result);

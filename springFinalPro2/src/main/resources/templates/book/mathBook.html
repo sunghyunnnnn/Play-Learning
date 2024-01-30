@@ -26,6 +26,7 @@
 	<h1 class="bookTitle etcTitle">수학 문제집</h1>
 	<hr class="pageLine">
 	<form action="resultMathBook" method="post" class="BookForm">
+		<input type="hidden" name = "id" th:value = "${session.login_number.id}">
 		<div class="problemWrap" th:each="list : ${mathList}">
 			<span class="listNo" th:text="${list.math_no} + '. 계산을 하시오.'"></span>
 			<br>

@@ -25,7 +25,8 @@
 	</div>
 	<h1 class="bookTitle etcTitle">국어 문제집</h1>
 	<hr class="pageLine">
-	<form action="resultKorBook" method="post" class="BookForm">
+	<form action="resultKorBook" method="post" class="BookForm">	
+		<input type="hidden" name = "id" th:value = "${session.login_number.id}">
 		<div class="problemWrap" th:each="list : ${korList}">
 			<span class="listNo" th:text="${list.kor_no} + '. 글을 읽고, 빈칸에 알맞은 낱말을 쓰시오.'"></span>
 			<br>
@@ -42,7 +43,7 @@
 				<span class="no">1.</span>
 				<input type="radio"
 					   th:name="${list.kor_inputname}"
-					   th:value="${list.kor_items1}">
+					   th:value="${list.kor_items1}" required="required">
 				<span th:text="${list.kor_items1}"></span>
 			</label>
 			<br>
@@ -51,7 +52,7 @@
 				<input
 					type="radio" 
 					th:name="${list.kor_inputname}"
-					th:value="${list.kor_items2}">
+					th:value="${list.kor_items2}" required="required">
 				<span th:text="${list.kor_items2}"></span>
 			</label>
 			<br>
@@ -60,7 +61,7 @@
 				<input
 					type="radio" 
 					th:name="${list.kor_inputname}"
-					th:value="${list.kor_items3}">
+					th:value="${list.kor_items3}" required="required">
 				<span th:text="${list.kor_items3}"></span>
 			</label>
 			<br>
@@ -69,7 +70,7 @@
 				<input
 					type="radio" 
 					th:name="${list.kor_inputname}"
-					th:value="${list.kor_items4}">
+					th:value="${list.kor_items4}" required="required">
 				<span th:text="${list.kor_items4}"></span>
 			</label>
 			<br>
@@ -78,7 +79,7 @@
 				<input
 					type="radio" 
 					th:name="${list.kor_inputname}"
-					th:value="${list.kor_items5}">
+					th:value="${list.kor_items5}" required="required">
 				<span th:text="${list.kor_items5}"></span>
 			</label>
 			<br>
@@ -89,5 +90,8 @@
 			<button class="sign_login_Button commonbtn book_commonBtn" type="reset">RESET</button>
 		</div>
 	</form>
+	<script type="text/javascript">
+		console.log('test  :', [[${session.login_number.id}]]);
+	</script>
 </body>
 </html>

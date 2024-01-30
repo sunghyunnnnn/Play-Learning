@@ -26,6 +26,7 @@
 	<h1 class="bookTitle etcTitle">영어 문제집</h1>
 	<hr class="pageLine">
 	<form action="resultEngBook" method="post" class="BookForm">
+		<input type="hidden" name = "id" th:value = "${session.login_number.id}">
 		<div class="problemWrap" th:each="list : ${engList}">
 			<span class="listNo" th:text="${list.eng_no} + '. 글을 읽고 문제를 푸시오.'"></span>
 			<br>

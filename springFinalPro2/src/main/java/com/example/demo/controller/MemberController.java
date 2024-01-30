@@ -147,6 +147,7 @@ public class MemberController {
    public ModelAndView login(Member mem, HttpSession session) {
       String inputId = mem.getId();
       boolean pwMatch = false;
+      boolean indexCk = false;
       Member dbMember = null;
       System.out.println("plz : "+mem);
            
@@ -166,17 +167,22 @@ public class MemberController {
          e.printStackTrace();
             }
          ModelAndView mav = new ModelAndView();
-         
+         System.out.println("dbmember : " + dbMember);
          if(pwMatch == true) {
-            session.setAttribute("login_number", dbMember);
-            
-           
+        	 indexCk = true;
+        	 String login_id = dbMember.getId();
+            session.setAttribute("login_number", dbMember);   
             mav.addObject("pwMatch", pwMatch);
+            session.setAttribute("indexCk", indexCk);
+            session.setAttribute("loginId", login_id);
             mav.setViewName("index");
+          
             
          }else {
             System.out.println("아이디틀림");
+            indexCk = false;
             mav.addObject("msg", "로그인에 실패 했습니다. 다시 로그인 해 주세요.");
+            session.setAttribute("indexCk", indexCk);
             mav.setViewName("member/login");
          }
          return mav;

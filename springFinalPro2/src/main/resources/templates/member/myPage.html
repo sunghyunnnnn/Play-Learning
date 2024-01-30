@@ -27,9 +27,24 @@
 					<td scope="col" th:text="${session.login_number.email}"></td>
 				</tr>
 			</table>
-			<br> <br>
+			<br>
 			<hr>
-			<br> <br> 문제 푼 정보 <br> <br> <br>
+			문제 푼 정보 <br> <br> <br>
+			<span th:if = "${mypageArr.size() == 0}" th:text = "${mypage}"></span>
+			<table th:if = "${mypageArr.size() != 0}">
+				<tr>
+					<th>과목</th>
+					<th>난이도</th>
+					<th>시험결과</th>
+				</tr>
+				<tr th:each = "list : ${mypageArr}">
+					<td th:text = "${list.subjecttitle}"></td>
+					<td th:text = "${list.subjectlevel}"></td>
+					<td th:text = "${list.subjectresult}"></td>
+				</tr>
+				
+				
+			</table>
 			<hr>
 			<div class="btn">
 				<a class="sign_login_Button"
