@@ -14,7 +14,14 @@ public class Member {
    private String email;
    private String address;
    private String phonenum;
-   public String getName() {
+   private String sex;
+   public String getSex() {
+	return sex;
+}
+public void setSex(String sex) {
+	this.sex = sex;
+}
+public String getName() {
       return name;
    }
    public void setName(String name) {
@@ -56,11 +63,12 @@ public class Member {
    public void setPhonenum(String phonenum) {
       this.phonenum = phonenum;
    }
-   @Override
-   public String toString() {
-      return "Member [name=" + name + ", id=" + id + ", pw=" + pw + ", birth=" + birth + ", email=" + email
-            + ", address=" + address + ", phonenum=" + phonenum + "]";
-   }
+@Override
+public String toString() {
+	return "Member [id=" + id + ", name=" + name + ", pw=" + pw + ", birth=" + birth + ", email=" + email + ", address="
+			+ address + ", phonenum=" + phonenum + ", sex=" + sex + "]";
+}
+   
    
    
    

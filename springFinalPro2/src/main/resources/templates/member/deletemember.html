@@ -14,21 +14,43 @@
 		<div class="signForm">
 			<h2 class="sign_login_Header">회원 탈퇴를 위해<br>비밀번호를 입력해 주세요.</h2>
 			
-			<form class="sign_login_form" action="/deletememberControl" method="post"> 
+			<form class="sign_login_form" action="deletememberControl" method="post"> 
 			<p>
 			<input type="hidden" th:value="${session.login_number.id}" name="id">
-			<input type="password" class="pw" name="pw" placeholder="Password">
+			<input class="pw" type="password" name="pw" placeholder="Password" required="required">
 			</p>
 			<p>
-			<input type="password" class="pw" name="pw1" placeholder="Check Password">
+			<input class="pw2" type="password" name="pw2" placeholder="Check Password" required="required">
+			<span class = "check"></span>
 			</p>
 			<br>
 			<br>
-			<button class="sign_login_Button" type="submit">회원 탈퇴 완료</button>
+			<button class="delete_btn" type="submit">회원 탈퇴 완료</button>
 			
 			</form>
 		</div>
 	</div>
 </div>
+<script th:inline="javascript">
+
+	const pw = document.querySelector(".pw");
+	const pw2 = document.querySelector(".pw2");
+	const delete_btn = document.querySelector(".delete_btn");
+	console.log(delete_btn)
+	const funcChange = () => {
+		if(pw.value===pw2.value) {
+			alert("탈퇴 성공")
+			
+		}else {
+			
+			alert("비밀번호가 다릅니다.")
+			pw.value = "";
+			pw2.value = "";
+		}
+				
+	}
+	delete_btn.addEventListener("click", funcChange);
+
+</script>
 </body>
 </html>
