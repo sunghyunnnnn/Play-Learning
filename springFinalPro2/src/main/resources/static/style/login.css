@@ -195,3 +195,19 @@ button.commonbtn {
     box-shadow: 0 0 0 2px var(--pink-border), 0 0 var(--pink-shadow);
     transform: translate3d(0, 0, -1em);
   }
+
+.delete_btn {
+	font-family: 'Bagel Fat One', system-ui;
+	font-size: medium;
+    font: inherit;
+	width: 400px;
+	height: 50px;
+	left: 725px;
+	top: 875px;
+	background-color: #FFFFFF;
+	color: lightgray;
+	border-radius: 8px;
+	border: #f56a6a solid 1px;
+	padding: 10px;
+    align-content: center;
+}

@@ -52,6 +52,7 @@ public class MemberController {
 	         
 	      } catch (Exception e) {
 	         e.printStackTrace();
+	         System.out.println("아이디또틀림");
 	            }
 	         
 	         if(pwMatch == true) {
@@ -64,7 +65,6 @@ public class MemberController {
 	            
 	         }else {
 	            System.out.println("아이디틀림");
-	            mav.addObject("loginError", "아이디 혹은 비밀번호가 일치 하지 않습니다.");
 	            mav.addObject("pwMatch", pwMatch);
 	            System.out.println(pwMatch);
 	            mav.setViewName("member/deletemember");

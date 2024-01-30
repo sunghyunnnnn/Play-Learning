@@ -32,9 +32,9 @@
 	            <p>
 	            <input th:value="${member.birth}" type="text" name="birth" placeholder="yyyy-mm-dd"></p>
 	            <p>
-	            <input class="pw" name="pw" type="password" placeholder="Password"></p>
+	            <input class="pw" name="pw" type="password" placeholder="Password" required="required"></p>
 	            <p>
-	            <input class="pw" name="password2" type="password" placeholder="Check Password"></p>
+	            <input class="pw" name="password2" type="password" placeholder="Check Password" required="required"></p>
 	            <p>
 	            <input th:value="${member.email}" type="email" name="email" placeholder="e-mail"></p>
 	            <p>
@@ -43,8 +43,7 @@
 	            <p>
 	            <input th:value="${member.phonenum}" type="text" oninput="oninputPhone(this)" maxlength="13" name="phonenum" placeholder="Phone number"></p>
 				<br>
-					
-						<br>
+				
 						<button class="sign_login_Button" type="submit">수정 완료</button>
 					</p>
 				</form>
