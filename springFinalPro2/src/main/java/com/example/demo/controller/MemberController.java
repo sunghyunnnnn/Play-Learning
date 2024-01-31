@@ -188,13 +188,13 @@ public class MemberController {
             
          }else {
             System.out.println("아이디틀림");
-<<<<<<< HEAD
+
             indexCk = false;
             mav.addObject("msg", "로그인에 실패 했습니다. 다시 로그인 해 주세요.");
             session.setAttribute("indexCk", indexCk);
-=======
+
             mav.addObject("msg", "아이디 또는 비밀번호가 일치 하지 않습니다. 다시 로그인 해 주세요.");
->>>>>>> branch 'master' of https://github.com/hkw2304/springFinalPro2.git
+
             mav.setViewName("member/login");
          }
          return mav;

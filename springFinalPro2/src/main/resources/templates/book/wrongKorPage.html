@@ -31,59 +31,60 @@
 			<br>
 			<img class="listImg" th:src="${list.kor_img}">
 			<br>
-			<div class="problemSection">
-			<span class="listTitle"
-				  th:text="${list.kor_title}">
-			</span>
-			<span class="answerSection hiddenAnswer"></span>
-			<br>
-			
-			<label
-				th:for="${list.kor_inputname}">
-				<span class="no">1.</span>
-				<input type="radio"
-					   th:name="${list.kor_inputname}"
-					   th:value="${list.kor_items1}">
-				<span th:text="${list.kor_items1}"></span>
-			</label>
-			<br>
-			<label th:for="${list.kor_inputname}">
-				<span class="no">2.</span>
-				<input
-					type="radio" 
-					th:name="${list.kor_inputname}"
-					th:value="${list.kor_items2}">
-				<span th:text="${list.kor_items2}"></span>
-			</label>
-			<br>
-			<label th:for="${list.kor_inputname}">
-				<span class="no">3.</span>
-				<input
-					type="radio" 
-					th:name="${list.kor_inputname}"
-					th:value="${list.kor_items3}">
-				<span th:text="${list.kor_items3}"></span>
-			</label>
-			<br>
-			<label th:for="${list.kor_inputname}">
-				<span class="no">4.</span>
-				<input
-					type="radio" 
-					th:name="${list.kor_inputname}"
-					th:value="${list.kor_items4}">
-				<span th:text="${list.kor_items4}"></span>
-			</label>
-			<br>
-			<label th:for="${list.kor_inputname}">
-				<span class="no">5.</span>
-				<input
-					type="radio" 
-					th:name="${list.kor_inputname}"
-					th:value="${list.kor_items5}">
-				<span th:text="${list.kor_items5}"></span>
-			</label>
-			<br>
-			</div>
+				<div class="problemSection">
+					<span class="listTitle"
+						  th:text="${list.kor_title}">
+					</span>
+					<span class="answerSection hiddenAnswer"></span>
+					<br>
+					
+					<label
+						th:for="${list.kor_inputname}">
+						<span class="no">1.</span>
+						<input type="radio"
+							   th:name="${list.kor_inputname}"
+							   th:value="${list.kor_items1}">
+						<span th:text="${list.kor_items1}"></span>
+					</label>
+					<br>
+					<label th:for="${list.kor_inputname}">
+						<span class="no">2.</span>
+						<input
+							type="radio" 
+							th:name="${list.kor_inputname}"
+							th:value="${list.kor_items2}">
+						<span th:text="${list.kor_items2}"></span>
+					</label>
+					<br>
+					<label th:for="${list.kor_inputname}">
+						<span class="no">3.</span>
+						<input
+							type="radio" 
+							th:name="${list.kor_inputname}"
+							th:value="${list.kor_items3}">
+						<span th:text="${list.kor_items3}"></span>
+					</label>
+					<br>
+					<label th:for="${list.kor_inputname}">
+						<span class="no">4.</span>
+						<input
+							type="radio" 
+							th:name="${list.kor_inputname}"
+							th:value="${list.kor_items4}">
+						<span th:text="${list.kor_items4}"></span>
+					</label>
+					<br>
+					<label th:for="${list.kor_inputname}">
+						<span class="no">5.</span>
+						<input
+							type="radio" 
+							th:name="${list.kor_inputname}"
+							th:value="${list.kor_items5}"
+							class="lastNo" >
+						<span th:text="${list.kor_items5}"></span>
+					</label>
+					<br>
+				</div>
 		</div>
 		<div class="bookFormBtn">
 			<button class="sign_login_Button commonbtn book_commonBtn showAnswerBtn" type="button">정답보기</button>
