@@ -179,8 +179,11 @@ public class MemberController {
          if(pwMatch == true) {
         	 indexCk = true;
         	 String login_id = dbMember.getId();
+        	 String login_boyandgirl = dbMember.getSex();
+        	 System.out.println(login_boyandgirl);
             session.setAttribute("login_number", dbMember);   
             mav.addObject("pwMatch", pwMatch);
+            mav.addObject("login_boyandgirl", login_boyandgirl);
             session.setAttribute("indexCk", indexCk);
             session.setAttribute("loginId", login_id);
             mav.setViewName("index");
@@ -188,13 +191,13 @@ public class MemberController {
             
          }else {
             System.out.println("아이디틀림");
-<<<<<<< HEAD
+
             indexCk = false;
             mav.addObject("msg", "로그인에 실패 했습니다. 다시 로그인 해 주세요.");
             session.setAttribute("indexCk", indexCk);
-=======
+
             mav.addObject("msg", "아이디 또는 비밀번호가 일치 하지 않습니다. 다시 로그인 해 주세요.");
->>>>>>> branch 'master' of https://github.com/hkw2304/springFinalPro2.git
+
             mav.setViewName("member/login");
          }
          return mav;
