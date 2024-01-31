@@ -24,3 +24,6 @@ body{
 .hiddenAnswer{
 	display: none;
 }
+.myPage{
+	cursor: pointer;
+}

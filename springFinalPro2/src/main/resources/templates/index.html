@@ -15,7 +15,6 @@
       href="https://unpkg.com/swiper/swiper-bundle.min.css"
     />
 	<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-
 	</head>
 	<body class="is-preload">
 		
@@ -215,7 +214,7 @@
 							<!-- Section -->
 							<section>
 									<header class="major">
-										<h2>HOME</h2>
+										<h2>문제 풀기</h2>
 									</header>
 									<div class="posts">
 										<article>
@@ -223,7 +222,7 @@
 											<h3>가볍게 워밍업!</h3>
 											<p>국어</p>
 											<ul class="actions">
-												<li><a href="korBook" class="button">문제 풀기</a></li>
+												<li><a class="button problemKorBtn">문제 풀기</a></li>
 											</ul>
 										</article>
 										<article>
@@ -231,7 +230,7 @@
 											<h3>가볍게 워밍업!</h3>
 											<p>수학</p>
 											<ul class="actions">
-												<li><a href="mathBook" class="button">문제 풀기</a></li>
+												<li><a class="button problemMathBtn">문제 풀기</a></li>
 											</ul>
 										</article>									
 										<article>
@@ -239,7 +238,7 @@
 											<h3>가볍게 워밍업!</h3>
 											<p>영어</p>
 											<ul class="actions">
-												<li><a href="engBook" class="button">문제 풀기</a></li>
+												<li><a class="button problemEngBtn">문제 풀기</a></li>
 											</ul>
 										</article>
 										<article>
@@ -375,9 +374,13 @@
 			<script th:inline="javascript">
 				let indexCk = false;
 				indexCk = [[${session.indexCk}]];
-			
+				console.log(indexCk);
 				const mypage = document.querySelector(".myPage");
 				const gender = document.querySelector(".girlandboy");
+				const problemKorBtn = document.querySelector(".problemKorBtn");
+				const problemMathBtn = document.querySelector(".problemMathBtn");
+				const problemEngBtn = document.querySelector(".problemEngBtn");
+				
 				const bestTxtSwiper = new Swiper(".best-txt-slider", {
 				  autoplay: {
 					delay: 4000,
@@ -425,10 +428,37 @@
 						let id = [[${session.loginId}]];
 						location.href = `/myPage?id=${id}`
 					}
+					else{
+						console.log('마이페이지 안가짐');
+					}
 				}
-				let sex = [[${login_boyandgirl}]]
 				
-				mypage.addEventListener("click", clickFunc);
+				const clickProblemKorBtn = () =>{
+					if(indexCk === true){
+						location.href = 'korBook';					
+					}
+					else{
+						alert('로그인 하셈!!!');
+					}
+				}
+				const clickProblemEngBtn = () =>{
+					if(indexCk === true){
+						location.href = 'engBook';					
+					}
+					else{
+						alert('로그인 하셈!!!');
+					}
+				}
+				const clickProblemMathBtn = () =>{
+					if(indexCk === true){
+						location.href = 'mathBook';					
+					}
+					else{
+						alert('로그인 하셈!!!');
+					}
+				}
+				
+				let sex = [[${login_boyandgirl}]]
 				
 				if(sex==="여") {
 					gender.src = "./img/indexImg/girl.png"
@@ -436,6 +466,12 @@
 					gender.src = "./img/indexImg/boy.png"
 				}
 				
+				
+				
+				problemKorBtn.addEventListener('click', clickProblemKorBtn);			
+				problemEngBtn.addEventListener('click', clickProblemEngBtn);			
+				problemMathBtn.addEventListener('click', clickProblemMathBtn);			
+				mypage.addEventListener("click", clickFunc);
 			  </script>
 			  
 	</body>

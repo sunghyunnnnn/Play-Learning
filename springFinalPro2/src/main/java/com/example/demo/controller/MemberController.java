@@ -205,6 +205,7 @@ public class MemberController {
     @RequestMapping(value="/logoutControl")
     public ModelAndView logoutControl(HttpSession session) {
     	session.removeAttribute("login_number");
+    	session.removeAttribute("indexCk");
     	ModelAndView mav = new ModelAndView();
     	mav.setViewName("index");
     	return mav;
