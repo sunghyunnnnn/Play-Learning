@@ -58,7 +58,7 @@
 										</ul>
 									</div>
 									<span class="image object">
-										<img src="img/indexImg/pic10.jpg" alt="" />
+										<img class="girlandboy" src="img/indexImg/boyandgirl.jpg" alt="" />
 									</span>
 								</section>
 								<div class="slider__wrapper">
@@ -377,6 +377,7 @@
 				indexCk = [[${session.indexCk}]];
 			
 				const mypage = document.querySelector(".myPage");
+				const gender = document.querySelector(".girlandboy");
 				const bestTxtSwiper = new Swiper(".best-txt-slider", {
 				  autoplay: {
 					delay: 4000,
@@ -425,8 +426,17 @@
 						location.href = `/myPage?id=${id}`
 					}
 				}
+				let sex = [[${login_boyandgirl}]]
+				
 				mypage.addEventListener("click", clickFunc);
+				
+				if(sex==="여") {
+					gender.src = "./img/indexImg/girl.png"
+				}else if(sex==="남") {
+					gender.src = "./img/indexImg/boy.png"
+				}
+				
 			  </script>
-
+			  
 	</body>
 </html>
