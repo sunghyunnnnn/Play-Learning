@@ -53,7 +53,10 @@
 										</header>
 										<p style="font-size: 16px;">뿌셔뿌셔 사이트는 국어, 영어, 수학 문제를 난이도별로 풀 수 있는 사이트 입니다.<br>문제를 다 푼 후 결과도 제공하고, 오답 풀이도 제공하며 분석도 해 드립니다.<br>뿌셔뿌셔 사이트를 무료로 이용해 보세요!</p>
 										<ul class="actions">
-											<li><a href="#" class="button big">solve the test. for free!</a></li>
+											<li>
+												<a th:if="${session.indexCk == null}" href="freeTest" class="button big">solve the test. for free!</a>
+												<a th:if="${session.indexCk}" href="#" class="button big">유형 분석</a>
+											</li>
 										</ul>
 									</div>
 									<span class="image object">

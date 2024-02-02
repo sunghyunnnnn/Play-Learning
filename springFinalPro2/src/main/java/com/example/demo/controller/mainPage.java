@@ -15,8 +15,10 @@ import com.example.demo.jpa.JpaMemberRepository;
 import com.example.demo.jpa.KorRepo;
 import com.example.demo.jpa.MathRepo;
 import com.example.demo.jpa.MypageInfoRepo;
+import com.example.demo.jpa.freeTestRepo;
 import com.example.demo.vo.CourseVo;
 import com.example.demo.vo.EngBookVo;
+import com.example.demo.vo.FreeBookVo;
 import com.example.demo.vo.KorBookVo;
 import com.example.demo.vo.MathBookVo;
 import com.example.demo.vo.Member;
@@ -38,12 +40,24 @@ public class mainPage {
 	CourseRepo jpaCourse;
 	@Autowired
 	MypageInfoRepo jpaMypage;
+	@Autowired
+	freeTestRepo jpaFree;
 	
 	
 	@RequestMapping(value="/index")
 	public ModelAndView indexPage(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("index");
+		return mav;
+	}
+	
+	@RequestMapping(value="/freeTest")
+	public ModelAndView freeTest() {
+		ModelAndView mav = new ModelAndView();
+		List<FreeBookVo> freeList = jpaFree.findAll();
+		System.out.println(freeList);
+		mav.addObject("freeList", freeList);
+		mav.setViewName("book/freeTest");
 		return mav;
 	}
 	
