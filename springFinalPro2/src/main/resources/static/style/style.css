@@ -19,8 +19,11 @@
   }
   
 body{
-	height: 100vh;
+	height: 150vh;
 }
 .hiddenAnswer{
 	display: none;
+}
+.myPage{
+	cursor: pointer;
 }

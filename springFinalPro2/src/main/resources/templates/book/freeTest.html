@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="style/style.css">
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="commonHederBar">
+		<span class="teamTitle indexTitle commonLogo" onclick="location.href='index'">문제 뿌셔뿌셔!!</span>
+		<div class="commonHederBar__info">
+			<div th:if="${session.login_number == null}" class="signin">
+				<span class = "signinBtn" style="margin-right: 50px" onclick="location.href='signin'">회원가입</span>
+				<span class = "signinBtn" style="margin-right: 30px" onclick="location.href='login'">로그인</span>
+			</div>
+		</div>
+	</div>
+	<h1 class="bookTitle etcTitle">문제 풀어보기</h1>
+	<hr class="pageLine">
+	<form method="get" class="BookForm">
+		<div class="problemWrap" th:each="list : ${freeList}">
+			<span class="listNo" th:text="${list.free_no} + '. 글을 읽고, 문제를 푸시오.'"></span>
+			<br>
+				<div class="problemSection">
+					<span class="listTitle"
+						  th:text="${list.free_title}">
+					</span>
+					<span class="answerSection hiddenAnswer"></span>
+					<br>
+					
+					<label
+						th:for="${list.free_inputname}">
+						<span class="no">1.</span>
+						<input type="radio"
+							   th:name="${list.free_inputname}"
+							   th:value="${list.free_items1}">
+						<span th:text="${list.free_items1}"></span>
+					</label>
+					<br>
+					<label th:for="${list.free_inputname}">
+						<span class="no">2.</span>
+						<input
+							type="radio" 
+							th:name="${list.free_inputname}"
+							th:value="${list.free_items2}">
+						<span th:text="${list.free_items2}"></span>
+					</label>
+					<br>
+					<label th:for="${list.free_inputname}">
+						<span class="no">3.</span>
+						<input
+							type="radio" 
+							th:name="${list.free_inputname}"
+							th:value="${list.free_items3}">
+						<span th:text="${list.free_items3}"></span>
+					</label>
+					<br>
+					<label th:for="${list.free_inputname}">
+						<span class="no">4.</span>
+						<input
+							type="radio" 
+							th:name="${list.free_inputname}"
+							th:value="${list.free_items4}">
+						<span th:text="${list.free_items4}"></span>
+					</label>
+					<br>
+					<label th:for="${list.free_inputname}">
+						<span class="no">5.</span>
+						<input
+							type="radio" 
+							th:name="${list.free_inputname}"
+							th:value="${list.free_items5}"
+							class="lastNo" >
+						<span th:text="${list.free_items5}"></span>
+					</label>
+					<br>
+				</div>
+		</div>
+		<div class="bookFormBtn">
+			<button class="sign_login_Button commonbtn book_commonBtn showAnswerBtn" type="reset">리셋하기</button>
+			<button class="sign_login_Button commonbtn book_commonBtn" type="button" onclick="location.href='index'">메인으로</button>
+		</div>
+		
+	</form>
+</body>
+</html>

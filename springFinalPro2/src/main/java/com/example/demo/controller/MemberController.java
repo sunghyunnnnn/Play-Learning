@@ -179,8 +179,11 @@ public class MemberController {
          if(pwMatch == true) {
         	 indexCk = true;
         	 String login_id = dbMember.getId();
+        	 String login_boyandgirl = dbMember.getSex();
+        	 System.out.println(login_boyandgirl);
             session.setAttribute("login_number", dbMember);   
             mav.addObject("pwMatch", pwMatch);
+            mav.addObject("login_boyandgirl", login_boyandgirl);
             session.setAttribute("indexCk", indexCk);
             session.setAttribute("loginId", login_id);
             mav.setViewName("index");
@@ -202,6 +205,7 @@ public class MemberController {
     @RequestMapping(value="/logoutControl")
     public ModelAndView logoutControl(HttpSession session) {
     	session.removeAttribute("login_number");
+    	session.removeAttribute("indexCk");
     	ModelAndView mav = new ModelAndView();
     	mav.setViewName("index");
     	return mav;

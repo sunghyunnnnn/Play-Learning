@@ -26,9 +26,9 @@ import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class ResultBook {
-	List<String> korAnswer = new ArrayList<>(List.of("호떡", "제비", "열대어"));
-	List<String> mathAnswer = new ArrayList<>(List.of("23", "73", "41"));
-	List<String> engAnswer = new ArrayList<>(List.of("Good-bye", "teacher-삼촌", "What"));
+	List<String> korAnswer = new ArrayList<>(List.of("호떡", "제비", "열대어", "동화책", "쿠키", "꽃시장", "꼬리잡기", "책읽기", "책쌓기", "방망이 얻기"));
+	List<String> mathAnswer = new ArrayList<>(List.of("23", "73", "41", "1441", "1077", "354", "1689", "265", "553", "1147"));
+	List<String> engAnswer = new ArrayList<>(List.of("Good-bye", "teacher-삼촌", "What", "캐나다", "that", "kite", "Open", "Too bad", "three", "스키"));
 	List<MypageInfo> mypageInfo = new ArrayList<>();
 	@Autowired
 	KorRepo jpaKor;
@@ -78,11 +78,26 @@ public class ResultBook {
 		String result1 = request.getParameter("kor1");
 		String result2 = request.getParameter("kor2");
 		String result3 = request.getParameter("kor3");
+		String result4 = request.getParameter("kor4");
+		String result5 = request.getParameter("kor5");
+		String result6 = request.getParameter("kor6");
+		String result7 = request.getParameter("kor7");
+		String result8 = request.getParameter("kor8");
+		String result9 = request.getParameter("kor9");
+		String result10 = request.getParameter("kor10");
 		String examAnswer = "";
 		int korNo;
 		result.add(result1);
 		result.add(result2);
 		result.add(result3);
+		result.add(result4);
+		result.add(result5);
+		result.add(result6);
+		result.add(result7);
+		result.add(result8);
+		result.add(result9);
+		result.add(result10);
+		
 		int success = 0;
 		int fail = 0;
 		for (int i = 0; i < result.size(); i++) {
@@ -160,11 +175,25 @@ public class ResultBook {
 		String result1 = request.getParameter("math1");
 		String result2 = request.getParameter("math2");
 		String result3 = request.getParameter("math3");
+		String result4 = request.getParameter("math4");
+		String result5 = request.getParameter("math5");
+		String result6 = request.getParameter("math6");
+		String result7 = request.getParameter("math7");
+		String result8 = request.getParameter("math8");
+		String result9 = request.getParameter("math9");
+		String result10 = request.getParameter("math10");
 		String examAnswer = "";
 		int mathNo;
 		result.add(result1);
 		result.add(result2);
 		result.add(result3);
+		result.add(result4);
+		result.add(result5);
+		result.add(result6);
+		result.add(result7);
+		result.add(result8);
+		result.add(result9);
+		result.add(result10);
 		int success = 0;
 		int fail = 0;
 		for (int i = 0; i < result.size(); i++) {
@@ -241,11 +270,26 @@ public class ResultBook {
 		String result1 = request.getParameter("eng1");
 		String result2 = request.getParameter("eng2");
 		String result3 = request.getParameter("eng3");
+		String result4 = request.getParameter("eng4");
+		String result5 = request.getParameter("eng5");
+		String result6 = request.getParameter("eng6");
+		String result7 = request.getParameter("eng7");
+		String result8 = request.getParameter("eng8");
+		String result9 = request.getParameter("eng9");
+		String result10 = request.getParameter("eng10");
 		String examAnswer = "";
 		int engNo;
 		result.add(result1);
 		result.add(result2);
 		result.add(result3);
+		result.add(result4);
+		result.add(result5);
+		result.add(result6);
+		result.add(result7);
+		result.add(result8);
+		result.add(result9);
+		result.add(result10);
+		
 		int success = 0;
 		int fail = 0;
 		for (int i = 0; i < result.size(); i++) {

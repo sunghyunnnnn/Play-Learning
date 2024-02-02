@@ -8,6 +8,7 @@
     --pink-border: #f56a6a;
     --pink-shadow: #ffe3e2;
 }
+
 .bookTitle{
 	position: relative;
 	text-align: center;
@@ -17,10 +18,10 @@
 	width: 700px;
 	height: 800px;
 	border: 1px solid #f56a6a;
-	margin-left: 550px;
+	margin-left: 600px;
 	margin-top: 20px;
 	padding: 10px;
-	box-shadow: 7px 7px 39px #f56a6a;
+	
 	border-radius: 10px;
 	overflow-y:auto;
 }
@@ -63,13 +64,14 @@
 	
 }
 .problemWrap{
-	height: 700px;
+	height: 790px;
 }
 .problemSection{
 	
 	display: flex;
 	flex-direction: column;
 }
+
 .commonHederBar{
 	
 	display: flex;
