@@ -281,12 +281,15 @@
 										<li>
 											<span class="opener">내정보</span>
 											<ul>
-												<li><a th:if="${session.indexCk == true}" th:href = "@{./memberchangeControl(id = ${session.login_number.id})}">정보 수정</a>
-												<a class="loginError" th:if="${session.indexCk == null}">정보 수정</a></li>
+												<li>
+													<a th:if="${session.indexCk == true}" th:href = "@{./memberchangeControl(id = ${session.login_number.id})}">정보 수정</a>
+													<a class="loginError" th:if="${session.indexCk == null}">정보 수정</a></li>
 												<li><a href="#">등업 신청</a></li>
 												<li><a href="#">내가 푼 문제</a></li>
-												<li><a th:if="${session.indexCk == true}" th:href = "@{./deletememberControl(id = ${session.login_number.id})}">회원 탈퇴</a>
-												<a class="deleteError" th:if="${session.indexCk == null}">회원 탈퇴</a></li>
+												<li>
+													<a th:if="${session.indexCk == true}" th:href = "@{./deletememberControl(id = ${session.login_number.id})}">회원 탈퇴</a>
+													<a class="deleteError" th:if="${session.indexCk == null}">회원 탈퇴</a>
+												</li>
 											
 											</ul>
 										</li>
@@ -380,14 +383,15 @@
 				let indexCk = false;
 				indexCk = [[${session.indexCk}]];
 				console.log(indexCk);
-				const mypage = document.querySelector(".myPage");
-				console.log(mypage)
+				
+				
 				const gender = document.querySelector(".girlandboy");
 				const problemKorBtn = document.querySelector(".problemKorBtn");
 				const problemMathBtn = document.querySelector(".problemMathBtn");
 				const problemEngBtn = document.querySelector(".problemEngBtn");
 				const loginError = document.querySelector(".loginError");
 				const deleteError = document.querySelector(".deleteError");
+				const mypage = document.querySelector(".myPage");
 				const bestTxtSwiper = new Swiper(".best-txt-slider", {
 				  autoplay: {
 					delay: 4000,
@@ -430,6 +434,7 @@
 				});
 				
 				const clickFunc = () => {
+					
 					console.log("dkanrjsk");
 					if(indexCk){
 						let id = [[${session.loginId}]];
@@ -473,16 +478,25 @@
 					gender.src = "./img/indexImg/boy.png"
 				}
 				
-				const clickloginError = () => {
-					alert('서비스를 이용하고 싶으시면 로그인 해주세요.')
+				
+				if(!indexCk){
+					const clickloginError = () => {
+						alert('서비스를 이용하고 싶으시면 로그인 해주세요.');
+					}					
+					loginError.addEventListener('click', clickloginError);
+				}
+				if(!indexCk){
+					const clickdeleteError = () => {
+						alert('서비스를 이용하고 싶으시면 로그인 해주세요.');
+					}					
+					deleteError.addEventListener('click', clickdeleteError);
+				}
+				if(indexCk){
+					mypage.addEventListener('click', clickFunc);
+					
 				}
 				
-				const clickdeleteError = () => {
-					alert('서비스를 이용하고 싶으시면 로그인 해주세요.')
-				}
-				mypage.addEventListener('click', clickFunc);
-				deleteError.addEventListener('click', clickdeleteError);
-				loginError.addEventListener('click', clickloginError);
+				
 				problemKorBtn.addEventListener('click', clickProblemKorBtn);			
 				problemEngBtn.addEventListener('click', clickProblemEngBtn);			
 				problemMathBtn.addEventListener('click', clickProblemMathBtn);			
