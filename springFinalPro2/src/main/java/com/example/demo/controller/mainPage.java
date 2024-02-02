@@ -9,18 +9,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.example.demo.jpa.BoardRepo;
 import com.example.demo.jpa.CourseRepo;
 import com.example.demo.jpa.EngRepo;
 import com.example.demo.jpa.JpaMemberRepository;
 import com.example.demo.jpa.KorRepo;
 import com.example.demo.jpa.MathRepo;
 import com.example.demo.jpa.MypageInfoRepo;
+import com.example.demo.jpa.NoticeRepo;
+import com.example.demo.vo.Board;
 import com.example.demo.vo.CourseVo;
 import com.example.demo.vo.EngBookVo;
 import com.example.demo.vo.KorBookVo;
 import com.example.demo.vo.MathBookVo;
 import com.example.demo.vo.Member;
 import com.example.demo.vo.MypageInfo;
+import com.example.demo.vo.Notice;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -38,7 +42,10 @@ public class mainPage {
 	CourseRepo jpaCourse;
 	@Autowired
 	MypageInfoRepo jpaMypage;
-	
+	@Autowired
+	BoardRepo jpaBoard;
+	@Autowired
+	NoticeRepo jpaNotice;
 	
 	@RequestMapping(value="/index")
 	public ModelAndView indexPage(HttpSession session) {
@@ -132,6 +139,28 @@ public class mainPage {
 		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("admin/admin");
+
+		return mav;
+	}
+	@RequestMapping(value = "/board")
+	public ModelAndView board(Board board) {
+		
+		ModelAndView mav = new ModelAndView();
+		List<Board> boardlist = jpaBoard.findAll();
+		System.out.println(boardlist);
+		mav.addObject("boardlist",boardlist);
+		mav.setViewName("admin/board/boardlist");
+
+		return mav;
+	}
+	@RequestMapping(value = "/adminnotice")
+	public ModelAndView notice() {
+		
+		ModelAndView mav = new ModelAndView();
+		List<Notice> noticelist = jpaNotice.findAll();
+		System.out.println(noticelist);
+		mav.addObject("noticelist",noticelist);
+		mav.setViewName("admin/notice/noticelist");
 
 		return mav;
 	}
