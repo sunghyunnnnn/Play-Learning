@@ -8,6 +8,8 @@
 @import "login.css";
 @import "result.css";
 @import "common.css";
+@import "analyze.css";
+
 :root {
     --bg: #fff;
     --text: #382b22;

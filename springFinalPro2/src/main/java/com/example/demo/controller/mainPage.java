@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+
 import com.example.demo.jpa.BoardRepo;
 import com.example.demo.jpa.CourseRepo;
 import com.example.demo.jpa.EngRepo;
@@ -18,6 +19,7 @@ import com.example.demo.jpa.MathRepo;
 import com.example.demo.jpa.MypageInfoRepo;
 
 import com.example.demo.jpa.NoticeRepo;
+
 import com.example.demo.vo.Board;
 
 import com.example.demo.jpa.freeTestRepo;
@@ -48,11 +50,10 @@ public class mainPage {
 	@Autowired
 	MypageInfoRepo jpaMypage;
 	@Autowired
-
 	BoardRepo jpaBoard;
 	@Autowired
 	NoticeRepo jpaNotice;
-
+	@Autowired
 	freeTestRepo jpaFree;
 	
 
@@ -61,6 +62,14 @@ public class mainPage {
 	public ModelAndView indexPage(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("index");
+		return mav;
+	}
+	
+	@RequestMapping(value="/analyze")
+	public ModelAndView analyzePage() {
+		ModelAndView mav = new ModelAndView();
+	
+		mav.setViewName("analyze/analyze");
 		return mav;
 	}
 	
