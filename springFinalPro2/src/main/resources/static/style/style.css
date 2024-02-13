@@ -8,12 +8,12 @@
 @import "login.css";
 @import "result.css";
 @import "common.css";
-<<<<<<< HEAD
+
 @import "analyze.css";
 
-=======
+
 @import "payment.css";
->>>>>>> branch 'master' of https://github.com/hkw2304/springFinalPro2.git
+
 :root {
     --bg: #fff;
     --text: #382b22;
@@ -23,10 +23,7 @@
     --pink-border: #f56a6a;
     --pink-shadow: #ffe3e2;
   }
-  
-body{
-	height: 150vh;
-}
+
 .hiddenAnswer{
 	display: none;
 }
