@@ -11,10 +11,11 @@ public class Notice {
 	private String writer;
 	private String writedate;
 	private int views;
+	private String writetext;
+	
 	public int getNumbers() {
 		return numbers;
 	}
-	
 	public void setNumbers(int numbers) {
 		this.numbers = numbers;
 	}
@@ -42,10 +43,16 @@ public class Notice {
 	public void setViews(int views) {
 		this.views = views;
 	}
+	public String getWritetext() {
+		return writetext;
+	}
+	public void setWritetext(String writetext) {
+		this.writetext = writetext;
+	}
 	@Override
 	public String toString() {
 		return "Notice [numbers=" + numbers + ", title=" + title + ", writer=" + writer + ", writedate=" + writedate
-				+ ", views=" + views + "]";
+				+ ", views=" + views + ", writetext=" + writetext + "]";
 	}
-
+	
 }

@@ -40,7 +40,7 @@ a {
     font-size: 0;
 }
 
-.bt_wrap a {
+.bt_wrap button {
     display: inline-block;
     min-width: 80px;
     margin-left: 10px;
@@ -50,11 +50,11 @@ a {
     font-size: 1.4rem;
 }
 
-.bt_wrap a:first-child {
+.bt_wrap bt_wrap:first-child {
     margin-left: 0;
 }
 
-.bt_wrap a.on {
+.bt_wrap bt_wrap.on {
     background:  #f56a6a;
     color: #fff;
 }

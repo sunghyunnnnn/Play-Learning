@@ -193,4 +193,34 @@ public class mainPage {
 
 		return mav;
 	}
+	@RequestMapping(value = "/boardregister")
+	public ModelAndView boardregister(Board boardvo) {
+		
+		ModelAndView mav = new ModelAndView();
+		jpaBoard.save(boardvo);
+		List<Board> boardlist = jpaBoard.findAll();
+		mav.addObject("boardlist",boardlist);
+		mav.setViewName("admin/board/boardlist");
+		System.out.println(boardvo);
+		return mav;
+	}
+	@RequestMapping(value = "/boardwrite")
+	public ModelAndView boardview() {
+		
+		ModelAndView mav = new ModelAndView();
+		
+		
+		
+		mav.setViewName("admin/board/boardwrite");
+
+		return mav;
+	}
+	@RequestMapping(value = "/noticewrite")
+	public ModelAndView noticeview() {
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("admin/notice/noticewrite");
+
+		return mav;
+	}
 }
