@@ -279,6 +279,13 @@ public class MemberController {
 		
 		return mav;
 	}
+	@RequestMapping(value="/payment")
+	public ModelAndView payment() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("member/payment");
+		
+		return mav;
+	}
 	
 }
 

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+<title>payment</title>
+<link rel="stylesheet" href="style/style.css">
+</head>
+<body class="body">
+<h2>더 많은 서비스를 이용하고 싶으시면<br>결제 해 주세요.</h2>
+<h3>계좌번호 : 우리은행 1002157997455 김미정<br><br>
+	계좌에 이체 완료 후, 결제 완료 버튼을 눌러 주세요.
+</h3>
+
+<form action="paymentContorl">
+<div class="div1" style="position: center;">
+<table class="tableclass" align="center";>
+				<tr class="tabletr">
+					<th class="tableth" style="font-weight:bold" scope="col">아이디</th>
+					<td scope="col" th:text="${session.login_number.id}"></td>
+				</tr>
+</table>
+<button class="sign_login_Button paymentBtn" type="button">일반 유저</button>
+<button class="sign_login_Button paymentBtnPre" type="button">프리미엄 유저</button><br><br><br>
+<button class="sign_login_Button" type="button">결제 완료</button>
+<div>
+<br>
+<img class="paymentInfo"></img>
+</div>
+</form>
+<span class="teamTitle" onclick="location.href='index'" style="position: fixed; left:1700px; top: 0px;">문제 뿌셔뿌셔!!</span>
+	
+<script>
+	const paymentBtn = document.querySelector(".paymentBtn");
+	const paymentBtnPre = document.querySelector(".paymentBtnPre");
+	const paymentInfo = document.querySelector(".paymentInfo");
+	const paymentButton = () => {
+		paymentInfo.classList.toggle("paymentInfo");
+		paymentInfo.src = "./img/indexImg/general_user.jpg" 
+	}
+	const paymentButtonPre = () => {
+		paymentInfo.classList.toggle("paymentInfo");
+		paymentInfo.src = "./img/indexImg/pre_user.jpg" 
+	}
+	paymentBtn.addEventListener("click", paymentButton);
+	paymentBtnPre.addEventListener("click", paymentButtonPre);
+
+
+
+
+</script>
+</body>
+</html>

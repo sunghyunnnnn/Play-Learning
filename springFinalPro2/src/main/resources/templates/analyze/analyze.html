@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="style/style.css">
+<title>Insert title here</title>
+</head>
+<body>
+<div class="commonHederBar">
+		<span class="teamTitle indexTitle commonLogo" onclick="location.href='index'">문제 뿌셔뿌셔!!</span>
+		<div class="commonHederBar__info">
+				<div th:if="${session.login_number == null}" class="signin">
+					<span class = "signinBtn" style="margin-right: 50px" onclick="location.href='signin'">회원가입</span>
+					<span class = "signinBtn" style="margin-right: 30px" onclick="location.href='login'">로그인</span>
+					</div>
+			<div th:if ="${session.login_number != null}">
+				<span th:text = "${session.login_number.id} + ' 님 환영합니다.'"></span>
+				<span class="myPage" onclick="location.href='myPage'">마이페이지</span>
+				<a th:href="@{logoutControl}"
+				th:text=" '로그아웃' "></a>
+				<a th:if="${session.login_member != null}"></a>
+			</div>
+		</div>
+</div>
+	<form methot = "get" class="analyzeForm">
+		<div class="analyzeForm__wrap">
+			<span class="analyzeForm__title">01. 공부를 하는 과정에서 내가 보다 중요하게 생각하는 것은? </span>
+			<br>
+			<label>1. 나는 전체 내용을 고민한 후, 큰 개념과 작은 개념을 한꺼번에 공부한다.</label>
+			<input type="radio" name = "1" value = "1" required="required">
+			<br>
+			<label>2. 좋은 성적을 받으면 보상 받을 수 있어서 공부한다.(보상=용돈,칭찬 등)</label>
+			<input type="radio" name = "1" value = "2" required="required">
+			<br>
+			<label>3. 공부할 때 하고 싶은 과목에 시간을 많이 소비한다.</label>
+			<input type="radio" name = "1" value = "3" required="required">
+			<br>
+			<br>
+			<span class="analyzeForm__title">02. 평소 공부하는 모습과 가까운 것은? </span>
+			<br>
+			<label>1. 이해한 내용은 나만의 방법으로 다시 정리하면서 학습한다.</label>
+			<input type="radio" name = "2" value = "1" required="required">
+			<br>
+			<label>2. 친구들보다 좋은 성적을 받아 사람들로부터 인정을 받으려고 한다.</label>
+			<input type="radio" name = "2" value = "2" required="required">
+			<br>
+			<label>3. 기분에 따라 공부할 과목을 정한다.</label>
+			<input type="radio" name = "2" value = "3" required="required">
+			<br>
+			<button type="submit" class = "analyzeBtn">간편검사 결과보기</button>
+			<button type="reset" class = "analyzeResetBtn">리셋하기</button>
+		</div>		
+	</form>
+	<div class="analyzeSection">
+		<h3 class = "analyzeSection__name"></h3>
+		<h3 class="analyzeText"></h3>
+		<span class="analyzeStyle1"></span>
+		<br>
+		<span class="analyzeText1"></span>
+		<br>
+		<br>
+		<span class="analyzeStyle2"></span>
+		<br>
+		<span class="analyzeText2"></span>
+		<br>
+		<br>
+		<span class="analyzeStyle3"></span>
+		<br>
+		<span class="analyzeText3"></span>
+		<br>
+		<br>
+	</div>
+	<script h:inline="javascript">
+		const memberName = [[${session.login_number.name}]];
+		console.log(memberName);
+		const radio1 = document.getElementsByName('1');
+		const radio2 = document.getElementsByName('2');
+		const analyzeName = document.querySelector('.analyzeSection__name');
+		const analyzeText = document.querySelector('.analyzeText');
+		const analyzeStyle1 = document.querySelector('.analyzeStyle1');
+		const analyzeText1 = document.querySelector('.analyzeText1');
+		const analyzeStyle2 = document.querySelector('.analyzeStyle2');
+		const analyzeText2 = document.querySelector('.analyzeText2');
+		const analyzeStyle3 = document.querySelector('.analyzeStyle3');
+		const analyzeText3 = document.querySelector('.analyzeText3');
+		const analyzeBtn = document.querySelector(".analyzeBtn");
+		const analyzeResetBtn = document.querySelector('.analyzeResetBtn');
+		let item1;
+		let item2;
+		const clickFunc = (event) =>{
+			
+			radio1.forEach((item) => {
+				if(item.checked){
+					item1 = item.value;
+				}
+			})
+			radio2.forEach((item) => {
+				if(item.checked){
+					item2 = item.value;
+				}
+			})
+			if(item1 === '1' && item2 ==='1'){
+				analyzeName.innerText = `${memberName} 님 학생의 학습스타일`;
+				analyzeText.innerText = `학생의 학습스타일은 총제적 사고유형, 자기지향적, 학습성격, 이성적 행동조절의 특성을 가진 유형`;
+				analyzeStyle1.innerText = '총제적 사고유형';
+				analyzeText1.innerText = '전체적인 맥락과 관계에 관심을 가지고 자신만의 구조를 만들어 가면서 공부를 하고 있습니다.';
+				analyzeStyle2.innerText = '자기지향적';
+				analyzeText2.innerText = '공부에 완벽 하려는 성격은 공부의 이유와 결과에 대한 평가를 자기 자신이 설정한 기준을 중심으로 생각하는 특성을 가지고 있습니다.';
+				analyzeStyle3.innerText = '이성적';
+				analyzeText3.innerText = '공부에 집중하기 위한 노력이 필요할 때, 주로 이성적으로 자신을 되돌아 보려고 노력하고 효과가 검증된 학습전략 등을 체계적으로 활용하는 특성을 나타냅니다';
+			}
+			else if(item1 === '1' && item2 ==='2'){
+				analyzeName.innerText = `${memberName} 님 학생의 학습스타일`;
+				analyzeText.innerText = `학생의 학습스타일은 분석적 사고유형, 사회지향적 학습성격, 이성적 행동조절 의 특성을 가진 유형`;
+				analyzeStyle1.innerText = '분석형';
+				analyzeText1.innerText = '전체 내용을 잘게 쪼개어 구체적, 세부적으로 꼼꼼하게 공부를 하고 있습니다.';
+				analyzeStyle2.innerText = '사회 지향적';
+				analyzeText2.innerText = '공부에 대한 목표를 설정하고 평가하며, 공부에 대한 어려움이 생겼을 때, 다른 사람들의 생각과 기준을 의식합니다.';
+				analyzeStyle3.innerText = '이성적';
+				analyzeText3.innerText = '공부에 집중하기 위한 노력이 필요할 때, 주로 이성적으로 자신을 되돌아 보려고 노력하고 효과가 검증된 학습전략 등을 체계적으로 활용하는 특성을 나타냅니다';
+			}
+			else if(item1 === '1' && item2 ==='3'){
+				analyzeName.innerText = `${memberName} 님 학생의 학습스타일`;
+				analyzeText.innerText = `학생의 학습스타일은 분석적 사고유형, 자기지향적 학습성격, 김성적 행동조절 의 특성을 가진 유형`;
+				analyzeStyle1.innerText = '분석형';
+				analyzeText1.innerText = '전체 내용을 잘게 쪼개어 구체적, 세부적으로 꼼꼼하게 공부를 하고 있습니다.';
+				analyzeStyle2.innerText = '자기지향적';
+				analyzeText2.innerText = '공공부에 완벽 하려는 성격은 공부의 이유와 결과에 대한 평가를 자기 자신이 설정한 기준을 중심으로 생각하는 특성을 가지고 있습니다.';
+				analyzeStyle3.innerText = '감성적';
+				analyzeText3.innerText = '학습과정에서 자신의 감성과 주변 상황에 예민하게 반영하면서 스스로의 행동을 조절하는 감성형(emotional)학습자이며, 상황에 따라 즉각적으로 공부의 내용과 방법을 변화시켜가면서 공부하는 것을 선호합니다.';
+			}
+			else if(item1 === '2' && item2 ==='1'){
+				analyzeName.innerText = `${memberName} 님 학생의 학습스타일`;
+				analyzeText.innerText = `학생의 학습스타일은 총제적 사고유형, 자기지향적, 학습성격, 이성적 행동조절의 특성을 가진 유형`;
+				analyzeStyle1.innerText = '총제적 사고유형';
+				analyzeText1.innerText = '전체적인 맥락과 관계에 관심을 가지고 자신만의 구조를 만들어 가면서 공부를 하고 있습니다.';
+				analyzeStyle2.innerText = '자기지향적';
+				analyzeText2.innerText = '공부에 완벽 하려는 성격은 공부의 이유와 결과에 대한 평가를 자기 자신이 설정한 기준을 중심으로 생각하는 특성을 가지고 있습니다.';
+				analyzeStyle3.innerText = '이성적';
+				analyzeText3.innerText = '공부에 집중하기 위한 노력이 필요할 때, 주로 이성적으로 자신을 되돌아 보려고 노력하고 효과가 검증된 학습전략 등을 체계적으로 활용하는 특성을 나타냅니다';
+			}
+			else if(item1 === '2' && item2 ==='2'){
+				analyzeName.innerText = `${memberName} 님 학생의 학습스타일`;
+				analyzeText.innerText = `학생의 학습스타일은 분석적 사고유형, 사회지향적 학습성격, 이성적 행동조절 의 특성을 가진 유형`;
+				analyzeStyle1.innerText = '분석형';
+				analyzeText1.innerText = '전체 내용을 잘게 쪼개어 구체적, 세부적으로 꼼꼼하게 공부를 하고 있습니다.';
+				analyzeStyle2.innerText = '사회 지향적';
+				analyzeText2.innerText = '공부에 대한 목표를 설정하고 평가하며, 공부에 대한 어려움이 생겼을 때, 다른 사람들의 생각과 기준을 의식합니다.';
+				analyzeStyle3.innerText = '이성적';
+				analyzeText3.innerText = '공부에 집중하기 위한 노력이 필요할 때, 주로 이성적으로 자신을 되돌아 보려고 노력하고 효과가 검증된 학습전략 등을 체계적으로 활용하는 특성을 나타냅니다';
+			}
+			
+			else if(item1 === '2' && item2 ==='3'){
+				analyzeName.innerText = `${memberName} 님 학생의 학습스타일`;
+				analyzeText.innerText = `학생의 학습스타일은 분석적 사고유형, 자기지향적 학습성격, 김성적 행동조절 의 특성을 가진 유형`;
+				analyzeStyle1.innerText = '분석형';
+				analyzeText1.innerText = '전체 내용을 잘게 쪼개어 구체적, 세부적으로 꼼꼼하게 공부를 하고 있습니다.';
+				analyzeStyle2.innerText = '자기지향적';
+				analyzeText2.innerText = '공공부에 완벽 하려는 성격은 공부의 이유와 결과에 대한 평가를 자기 자신이 설정한 기준을 중심으로 생각하는 특성을 가지고 있습니다.';
+				analyzeStyle3.innerText = '감성적';
+				analyzeText3.innerText = '학습과정에서 자신의 감성과 주변 상황에 예민하게 반영하면서 스스로의 행동을 조절하는 감성형(emotional)학습자이며, 상황에 따라 즉각적으로 공부의 내용과 방법을 변화시켜가면서 공부하는 것을 선호합니다.';
+			}
+			else if(item1 === '3' && item2 ==='1'){
+				analyzeName.innerText = `${memberName} 님 학생의 학습스타일`;
+				analyzeText.innerText = `학생의 학습스타일은 총제적 사고유형, 자기지향적, 학습성격, 이성적 행동조절의 특성을 가진 유형`;
+				analyzeStyle1.innerText = '총제적 사고유형';
+				analyzeText1.innerText = '전체적인 맥락과 관계에 관심을 가지고 자신만의 구조를 만들어 가면서 공부를 하고 있습니다.';
+				analyzeStyle2.innerText = '자기지향적';
+				analyzeText2.innerText = '공부에 완벽 하려는 성격은 공부의 이유와 결과에 대한 평가를 자기 자신이 설정한 기준을 중심으로 생각하는 특성을 가지고 있습니다.';
+				analyzeStyle3.innerText = '이성적';
+				analyzeText3.innerText = '공부에 집중하기 위한 노력이 필요할 때, 주로 이성적으로 자신을 되돌아 보려고 노력하고 효과가 검증된 학습전략 등을 체계적으로 활용하는 특성을 나타냅니다';
+			}
+			else if(item1 === '3' && item2 ==='2'){
+				analyzeName.innerText = `${memberName} 님 학생의 학습스타일`;
+				analyzeText.innerText = `학생의 학습스타일은 분석적 사고유형, 사회지향적 학습성격, 이성적 행동조절 의 특성을 가진 유형`;
+				analyzeStyle1.innerText = '분석형';
+				analyzeText1.innerText = '전체 내용을 잘게 쪼개어 구체적, 세부적으로 꼼꼼하게 공부를 하고 있습니다.';
+				analyzeStyle2.innerText = '사회 지향적';
+				analyzeText2.innerText = '공부에 대한 목표를 설정하고 평가하며, 공부에 대한 어려움이 생겼을 때, 다른 사람들의 생각과 기준을 의식합니다.';
+				analyzeStyle3.innerText = '이성적';
+				analyzeText3.innerText = '공부에 집중하기 위한 노력이 필요할 때, 주로 이성적으로 자신을 되돌아 보려고 노력하고 효과가 검증된 학습전략 등을 체계적으로 활용하는 특성을 나타냅니다';
+			}
+			else if(item1 === '3' && item2 ==='3'){
+				analyzeName.innerText = `${memberName} 님 학생의 학습스타일`;
+				analyzeText.innerText = `학생의 학습스타일은 분석적 사고유형, 자기지향적 학습성격, 김성적 행동조절 의 특성을 가진 유형`;
+				analyzeStyle1.innerText = '분석형';
+				analyzeText1.innerText = '전체 내용을 잘게 쪼개어 구체적, 세부적으로 꼼꼼하게 공부를 하고 있습니다.';
+				analyzeStyle2.innerText = '자기지향적';
+				analyzeText2.innerText = '공부에 완벽 하려는 성격은 공부의 이유와 결과에 대한 평가를 자기 자신이 설정한 기준을 중심으로 생각하는 특성을 가지고 있습니다.';
+				analyzeStyle3.innerText = '감성적';
+				analyzeText3.innerText = '학습과정에서 자신의 감성과 주변 상황에 예민하게 반영하면서 스스로의 행동을 조절하는 감성형(emotional)학습자이며, 상황에 따라 즉각적으로 공부의 내용과 방법을 변화시켜가면서 공부하는 것을 선호합니다.';
+			}
+			console.log( item1, item2);
+			event.preventDefault();
+		}
+		const resetFunc = () =>{
+			analyzeName.innerText = "";
+			analyzeText.innerText = "";
+			analyzeStyle1.innerText = "";
+			analyzeText1.innerText = "";
+			analyzeStyle2.innerText = "";
+			analyzeText2.innerText = "";
+			analyzeStyle3.innerText = "";
+			analyzeText3.innerText = "";
+			event.preventDefault();
+		}
+		analyzeResetBtn.addEventListener('click', resetFunc);
+		analyzeBtn.addEventListener('click', clickFunc);
+	</script>
+</body>
+</html>
