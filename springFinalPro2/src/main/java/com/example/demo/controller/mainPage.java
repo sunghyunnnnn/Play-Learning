@@ -223,4 +223,10 @@ public class mainPage {
 
 		return mav;
 	}
+	@RequestMapping(value = "/levelup")
+	public ModelAndView levelup() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("admin/levelup");
+		return mav;
+	}
 }

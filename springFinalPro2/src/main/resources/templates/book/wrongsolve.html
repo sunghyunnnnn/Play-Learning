@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600,400italic,600italic|Roboto+Slab:400,700");
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Do+Hyeon&display=swap');
+body{
+display: flex;
+align-items:center;
+justify-content: center;
+margin: 0 auto;
+height: 100vh;
+background-color: pink;
+}
+input{
+display: flex;
+align-items: center;
+justify-content: center;
+margin: 0 auto;
+font-family: 'Bagel Fat One', system-ui;
+}
+label {
+display: flex;
+align-items: center;
+justify-content: center;
+margin: 0 auto;
+font-family: 'Bagel Fat One', system-ui;
+}
+select {
+margin-bottom: 10px;
+margin-top: 10px;
+font-family: 'Bagel Fat One', system-ui;
+outline: 0;
+background: lightpink;
+color: black;
+border: 1px solid crimson;
+padding: 4px;
+border-radius: 9px;
+}
+</style>
+</head>
+<body>
+<form>
+	<label for ="solve">오답 풀이</label>
+	<select name="solves" id="solve">
+		<option value="light_kor">가볍게 워밍업! 국어</option>
+		<option value="light_math">가볍게 워밍업! 수학</option>
+		<option value="light_eng">가볍게 워밍업! 영어</option>
+		<option value="heavy_kor">무겁게 워밍업! 국어</option>
+		<option value="heavy_math">무겁게 워밍업! 수학</option>
+		<option value="heavy_eng">무겁게 워밍업! 영어</option>
+		<option value="hard_kor">빡세게 워밍업! 국어</option>
+		<option value="hard_math">빡세게 워밍업! 수학</option>
+		<option value="hard_eng">빡세게 워밍업! 영어</option>
+	</select>
+	<input class = "submit" type="submit" value="submit"></input>
+	
+
+</form>
+
+<script>
+
+
+</script>
+</body>
+</html>

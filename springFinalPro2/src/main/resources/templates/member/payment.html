@@ -7,12 +7,13 @@
 <link rel="stylesheet" href="style/style.css">
 </head>
 <body class="body">
+<br><br>
 <h2>더 많은 서비스를 이용하고 싶으시면<br>결제 해 주세요.</h2>
 <h3>계좌번호 : 우리은행 1002157997455 김미정<br><br>
 	계좌에 이체 완료 후, 결제 완료 버튼을 눌러 주세요.
 </h3>
 
-<form action="paymentContorl">
+<form action="paymentContorl" method="get">
 <div class="div1" style="position: center;">
 <table class="tableclass" align="center";>
 				<tr class="tabletr">
@@ -20,9 +21,11 @@
 					<td scope="col" th:text="${session.login_number.id}"></td>
 				</tr>
 </table>
-<button class="sign_login_Button paymentBtn" type="button">일반 유저</button>
-<button class="sign_login_Button paymentBtnPre" type="button">프리미엄 유저</button><br><br><br>
-<button class="sign_login_Button" type="button">결제 완료</button>
+
+<input class="sign_login_Button paymentBtn" type="radio" value="gen_user" id="gen_user" name="comple">일반 유저</button>
+<input class="sign_login_Button paymentBtnPre" type="radio" value="pre_user" id="pre_user" name="comple">프리미엄 유저</button><br><br><br>
+<button class="sign_login_Button comple_pay" type="button">결제 완료</button>
+
 <div>
 <br>
 <img class="paymentInfo"></img>
@@ -31,6 +34,12 @@
 <span class="teamTitle" onclick="location.href='index'" style="position: fixed; left:1700px; top: 0px;">문제 뿌셔뿌셔!!</span>
 	
 <script>
+	
+	const pre_user = document.querySelector("#pre_user");
+	
+	const gen_user = document.querySelector("#gen_user");
+	
+	const comple_pay = document.querySelector(".comple_pay");
 	const paymentBtn = document.querySelector(".paymentBtn");
 	const paymentBtnPre = document.querySelector(".paymentBtnPre");
 	const paymentInfo = document.querySelector(".paymentInfo");
@@ -42,12 +51,24 @@
 		paymentInfo.classList.toggle("paymentInfo");
 		paymentInfo.src = "./img/indexImg/pre_user.jpg" 
 	}
+	const comple_payment = () => {
+		if(gen_user.checked) {
+			console.log(gen_user.checked)
+			alert("일반 유저로 신청 되었습니다. 승인 후 이용 가능합니다.")
+		}else if(pre_user.checked) {
+			alert("프리미엄 유저로 신청 되었습니다. 승인 후 이용 가능합니다.")
+		}
+	}
+	
+	
 	paymentBtn.addEventListener("click", paymentButton);
 	paymentBtnPre.addEventListener("click", paymentButtonPre);
+	comple_pay.addEventListener("click", comple_payment);
+	
 
-
-
-
+	
+	
+	
 </script>
 </body>
 </html>
