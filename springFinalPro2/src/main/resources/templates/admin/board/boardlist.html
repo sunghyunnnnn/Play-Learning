@@ -37,7 +37,7 @@
                 </div>
                 <div th:each="list: ${boardlist}">
                     <div class="num" th:text="${list.numbers}"></div>
-                    <div class="title" th:text="${list.title}" ></div>
+                    <div class="title" ><a th:text="${list.title}" th:href="@{/boardview(numbers=${list.numbers})}"></a></div>
                     <div class="writer" th:text="${list.writer}"></div>
                     <div class="date" th:text="${list.writedate}"></div>
                     <div class="count" th:text="${list.views}"></div>
@@ -55,11 +55,12 @@
                 <a href="#" class="bt next">></a>
                 <a href="#" class="bt last">>></a>
             </div>
+            
             <div class="bt_wrap">
-               <button type ="submit" class="on">등록</a>
-                <!--<a href="#">수정</a>-->
+                <a href="boardwrite" class="on">등록</a>
             </div>
         </div>
     </div>
+   
 </body>
 </html> 

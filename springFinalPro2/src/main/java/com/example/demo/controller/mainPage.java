@@ -204,6 +204,18 @@ public class mainPage {
 		System.out.println(boardvo);
 		return mav;
 	}
+	@RequestMapping(value = "/noticeregister")
+	public ModelAndView boardregister(Notice noticevo) {
+		
+		ModelAndView mav = new ModelAndView();
+		jpaNotice.save(noticevo);
+		List<Notice> noticelist = jpaNotice.findAll();
+		mav.addObject("noticelist", noticelist);
+		mav.setViewName("admin/notice/noticelist");
+		System.out.println(noticevo);
+		return mav;
+	}
+	
 	@RequestMapping(value = "/boardwrite")
 	public ModelAndView boardview() {
 		
@@ -220,6 +232,53 @@ public class mainPage {
 		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("admin/notice/noticewrite");
+
+		return mav;
+	}
+	@RequestMapping(value = "/boardview")
+	   public ModelAndView boardview(HttpServletRequest request) {
+	      String numbers = request.getParameter("numbers");
+	      int num = Integer.parseInt(numbers);
+	      System.out.println(numbers);
+	      ModelAndView mav = new ModelAndView();
+	      Board course = jpaBoard.getById(num);
+	      System.out.println(course);
+	      mav.addObject("list", course);
+	      mav.setViewName("admin/board/boardview");
+	      return mav;
+	   }
+	@RequestMapping(value = "/noticeview")
+	   public ModelAndView noticeview(HttpServletRequest request) {
+	      String numbers = request.getParameter("numbers");
+	      int num = Integer.parseInt(numbers);
+	      System.out.println(numbers);
+	      ModelAndView mav = new ModelAndView();
+	      Notice course = jpaNotice.getById(num);
+	      System.out.println(course);
+	      mav.addObject("list", course);
+	      mav.setViewName("admin/notice/noticeview");
+	      return mav;
+	   }
+	@RequestMapping(value = "/usernoticeview")
+	   public ModelAndView usernoticeview(HttpServletRequest request) {
+	      String numbers = request.getParameter("numbers");
+	      int num = Integer.parseInt(numbers);
+	      System.out.println(numbers);
+	      ModelAndView mav = new ModelAndView();
+	      Notice course = jpaNotice.getById(num);
+	      System.out.println(course);
+	      mav.addObject("list", course);
+	      mav.setViewName("admin/notice/usernoticeview");
+	      return mav;
+	   }
+	@RequestMapping(value = "/usernotice")
+	public ModelAndView usernotice() {
+		
+		ModelAndView mav = new ModelAndView();
+		List<Notice> noticelist = jpaNotice.findAll();
+		System.out.println(noticelist);
+		mav.addObject("noticelist", noticelist);
+		mav.setViewName("admin/notice/usernoticelist");
 
 		return mav;
 	}

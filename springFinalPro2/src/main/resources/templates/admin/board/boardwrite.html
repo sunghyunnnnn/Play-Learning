@@ -41,21 +41,15 @@
                     <textarea name = "writetext" placeholder="내용 입력"></textarea>
                 </div>
             </div>
-            <div class="bt_wrap">
-            
-                <button type ="submit" class="on">등록</a>
-                <button type = "reset" class="cancleBtn on">취소</a>
+          
+             <div class="bt_wrap">
+                <a href= "boardview" class= "on">등록</a>
+                <a href= "board" >취소</a>
             </div>
+            
         </div>
     </div>
     </form>
-    <script>
-    const cancleBtn = document.querySelector(".cancleBtn");
-    console.log(cancleBtn)
-    const cancleFunc = () => {
-    	location.href = "board";
-    }
-    cancleBtn.addEventListener('click', cancleFunc);
-    </script>
+
 </body>
 </html>
