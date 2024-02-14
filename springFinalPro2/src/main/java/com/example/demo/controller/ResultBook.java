@@ -12,10 +12,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.jpa.EngRepo;
+import com.example.demo.jpa.EngUpperRepo;
 import com.example.demo.jpa.KorRepo;
 import com.example.demo.jpa.MathRepo;
 import com.example.demo.jpa.MypageInfoRepo;
 import com.example.demo.vo.EngBookVo;
+import com.example.demo.vo.EngUpperBookVo;
 import com.example.demo.vo.KorBookVo;
 import com.example.demo.vo.MathBookVo;
 import com.example.demo.vo.MypageInfo;
@@ -29,6 +31,7 @@ public class ResultBook {
 	List<String> korAnswer = new ArrayList<>(List.of("호떡", "제비", "열대어", "동화책", "쿠키", "꽃시장", "꼬리잡기", "책읽기", "책쌓기", "방망이 얻기"));
 	List<String> mathAnswer = new ArrayList<>(List.of("23", "73", "41", "1441", "1077", "354", "1689", "265", "553", "1147"));
 	List<String> engAnswer = new ArrayList<>(List.of("Good-bye", "teacher-삼촌", "What", "캐나다", "that", "kite", "Open", "Too bad", "three", "스키"));
+	List<String> engUpperAnswer = new ArrayList<>(List.of("Not so good", "7시", "I get up at six", "evening", "학교의 위치", "go to school", "여기", "store", "toy store", "I will visit my uncle in London"));
 	List<MypageInfo> mypageInfo = new ArrayList<>();
 	@Autowired
 	KorRepo jpaKor;
@@ -36,6 +39,8 @@ public class ResultBook {
 	MathRepo jpaMath;
 	@Autowired
 	EngRepo jpaEng;
+	@Autowired
+	EngUpperRepo jpaEngUpper;
 	@Autowired
 	MypageInfoRepo jpaMypage;
 	
@@ -261,6 +266,37 @@ public class ResultBook {
 		mav.setViewName("book/wrongEngPage");
 		return mav;
 	}
+	
+	@RequestMapping(value = "/wrongEngUpperPage")
+	public ModelAndView wrongEngUpperPage(@RequestParam(name="wrong") List<String> values, HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+//		List<String> wrongAnswer = new ArrayList<>();
+		String[] wrongAnswer = new String[values.size()];
+		List<EngUpperBookVo> engList = new ArrayList<>();
+		
+		for(int i = 0; i < values.size(); i++) {
+			engList.add(jpaEngUpper.selectEngBookById(values.get(i)));
+		}
+		System.out.println("이건가 ?? " + values);
+		int index = 0;
+		int i = 0;
+		while(true) {
+			if(i > values.size() - 1) {
+				break;
+			}
+			index = Integer.parseInt(values.get(i));
+			wrongAnswer[i] = engAnswer.get(index - 1);
+//			wrongAnswer.add(answer.get(index - 1));
+			i++;
+		}
+		
+//		System.out.println(wrongAnswer[0]);
+		session.setAttribute("wrongEngAnswer", wrongAnswer);
+		mav.addObject("engList", engList);
+		mav.setViewName("book/wrongEngUpperPage");
+		return mav;
+	}
+	
 	@RequestMapping(value = "resultEngBook")
 	public ModelAndView engResult(HttpServletRequest request, MypageInfo mypageInfo) {
 		ModelAndView mav = new ModelAndView();
@@ -328,5 +364,76 @@ public class ResultBook {
 		mav.setViewName("book/resultEng");
 		return mav;
 	}
+
 	
+
+	@RequestMapping(value = "resultEngUpperBook")
+	public ModelAndView engUpperResult(HttpServletRequest request, MypageInfo mypageInfo) {
+		ModelAndView mav = new ModelAndView();
+		List<String> result = new ArrayList<>();
+		
+		List<Integer> wrong = new ArrayList<>();
+		String result1 = request.getParameter("eng1");
+		String result2 = request.getParameter("eng2");
+		String result3 = request.getParameter("eng3");
+		String result4 = request.getParameter("eng4");
+		String result5 = request.getParameter("eng5");
+		String result6 = request.getParameter("eng6");
+		String result7 = request.getParameter("eng7");
+		String result8 = request.getParameter("eng8");
+		String result9 = request.getParameter("eng9");
+		String result10 = request.getParameter("eng10");
+		String examAnswer = "";
+		int engNo;
+		result.add(result1);
+		result.add(result2);
+		result.add(result3);
+		result.add(result4);
+		result.add(result5);
+		result.add(result6);
+		result.add(result7);
+		result.add(result8);
+		result.add(result9);
+		result.add(result10);
+		
+		int success = 0;
+		int fail = 0;
+		for (int i = 0; i < result.size(); i++) {
+			if (result.get(i).equals(engUpperAnswer.get(i))) {
+				success++;
+			}
+			else {
+				engNo= i + 1;
+				wrong.add(engNo);
+			}
+
+		}
+		fail = result.size() - success;
+		if(fail <= result.size() * 0.2) {
+			examAnswer = "매우 우수";
+		}
+		else if(fail <= result.size() * 0.4 && fail > result.size() * 0.2) {
+			examAnswer = "우수";
+		}
+		else if(fail <= result.size() / 2 && fail > result.size() * 0.4) {
+			examAnswer = "보통";
+		}
+		else {
+			examAnswer = "노력요함";
+		}
+		mypageInfo.setSubjecttitle("영어");
+		mypageInfo.setSubjectlevel("무겁게 워밍업!!");
+		mypageInfo.setSubjectresult(examAnswer);
+		System.out.println("마이페이지 >> " + mypageInfo);
+		jpaMypage.save(mypageInfo);
+		mav.addObject("examAnswer", examAnswer);
+		mav.addObject("wrong", wrong);
+		mav.addObject("list", result);
+		mav.addObject("success", success);
+		mav.addObject("fail", fail);
+		mav.setViewName("book/resultEngUpper");
+		return mav;
+	}
+
 }
+
