@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.example.demo.jpa.BoardRepo;
 import com.example.demo.jpa.CourseRepo;
 import com.example.demo.jpa.EngRepo;
+import com.example.demo.jpa.EngUpperRepo;
 import com.example.demo.jpa.JpaMemberRepository;
 import com.example.demo.jpa.KorRepo;
 import com.example.demo.jpa.MathRepo;
@@ -26,6 +27,7 @@ import com.example.demo.jpa.freeTestRepo;
 
 import com.example.demo.vo.CourseVo;
 import com.example.demo.vo.EngBookVo;
+import com.example.demo.vo.EngUpperBookVo;
 import com.example.demo.vo.FreeBookVo;
 import com.example.demo.vo.KorBookVo;
 import com.example.demo.vo.MathBookVo;
@@ -55,6 +57,8 @@ public class mainPage {
 	NoticeRepo jpaNotice;
 	@Autowired
 	freeTestRepo jpaFree;
+	@Autowired
+	EngUpperRepo jpaEngUpper;
 	
 
 	
@@ -117,6 +121,14 @@ public class mainPage {
 		List<EngBookVo> engList = jpaEng.findAll();
 		mav.addObject("engList", engList);
 		mav.setViewName("book/engBook");
+		return mav;
+	}
+	@RequestMapping(value="/engUpperBook")
+	public ModelAndView engUpperBook() {
+		ModelAndView mav = new ModelAndView();
+		List<EngUpperBookVo> engList = jpaEngUpper.findAll();
+		mav.addObject("engList", engList);
+		mav.setViewName("book/engUpperBook");
 		return mav;
 	}
 	@RequestMapping(value="/mathBook")

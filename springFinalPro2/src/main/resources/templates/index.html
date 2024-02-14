@@ -242,25 +242,25 @@
 										<article>
 											<a href="#" class="image"><img src="img/indexImg/heavy_kor_ad.jpg" alt="" /></a>
 											<h3>무겁게 워밍업!</h3>
-											<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
+											<p>국어</p>
 											<ul class="actions">
-												<li><a href="#" class="button">Q/A</a></li>
+												<li><a href="#" class="button problemKorUpperBtn">solve Korean problem</a></li>
 											</ul>
 										</article>
 										<article>
 											<a href="#" class="image"><img src="img/indexImg/heavy_math_ad.jpg" alt="" /></a>
 											<h3>무겁게 워밍업!</h3>
-											<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
+											<p>수학</p>
 											<ul class="actions">
-												<li><a href="#" class="button">Q/A</a></li>
+												<li><a href="#" class="button problemMathUpperBtn">solve math problem</a></li>
 											</ul>
 										</article>
 										<article>
 											<a href="#" class="image"><img src="img/indexImg/heavy_eng_ad.jpg" alt="" /></a>
 											<h3>무겁게 워밍업!</h3>
-											<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
+											<p>영어</p>
 											<ul class="actions">
-												<li><a href="#" class="button">Q/A</a></li>
+												<li><a href="#" class="button problemEngUpperBtn">solve English problem</a></li>
 											</ul>
 										</article>
 										<article>
@@ -429,6 +429,9 @@
 				const problemKorBtn = document.querySelector(".problemKorBtn");
 				const problemMathBtn = document.querySelector(".problemMathBtn");
 				const problemEngBtn = document.querySelector(".problemEngBtn");
+				const problemKorUpperBtn = document.querySelector(".problemKorUpperBtn");
+				const problemMathUpperBtn = document.querySelector(".problemMathUpperBtn");
+				const problemEngUpperBtn = document.querySelector(".problemEngUpperBtn");
 				const loginError = document.querySelector(".loginError");
 				const deleteError = document.querySelector(".deleteError");
 				const mypage = document.querySelector(".myPage");
@@ -510,6 +513,14 @@
 						alert('로그인 하셈!!!');
 					}
 				}
+				const clickProblemEngUpperBtn = () =>{
+					if(indexCk === true){
+						location.href = 'engUpperBook';					
+					}
+					else{
+						alert('로그인 하셈!!!');
+					}
+				}
 				const clickpayment = () =>{
 					if(indexCk === true){
 						location.href = 'payment';					
@@ -552,7 +563,8 @@
 				
 				problemKorBtn.addEventListener('click', clickProblemKorBtn);			
 				problemEngBtn.addEventListener('click', clickProblemEngBtn);			
-				problemMathBtn.addEventListener('click', clickProblemMathBtn);			
+				problemMathBtn.addEventListener('click', clickProblemMathBtn);	
+				problemEngUpperBtn.addEventListener('click', clickProblemEngUpperBtn);
 			  </script>
 	  
 	</body>
