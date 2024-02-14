@@ -184,11 +184,11 @@ public class mainPage {
 		return mav;
 	}
 	@RequestMapping(value = "/board")
-	public ModelAndView board(Board board) {
+	public ModelAndView board() {
 		
 		ModelAndView mav = new ModelAndView();
 		List<Board> boardlist = jpaBoard.findAll();
-		System.out.println(boardlist);
+		
 		mav.addObject("boardlist",boardlist);
 		mav.setViewName("admin/board/boardlist");
 
@@ -209,6 +209,9 @@ public class mainPage {
 	public ModelAndView boardregister(Board boardvo) {
 		
 		ModelAndView mav = new ModelAndView();
+		
+		
+		
 		jpaBoard.save(boardvo);
 		List<Board> boardlist = jpaBoard.findAll();
 		mav.addObject("boardlist",boardlist);
