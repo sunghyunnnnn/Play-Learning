@@ -16,7 +16,9 @@ import com.example.demo.jpa.EngRepo;
 import com.example.demo.jpa.EngUpperRepo;
 import com.example.demo.jpa.JpaMemberRepository;
 import com.example.demo.jpa.KorRepo;
+import com.example.demo.jpa.KorUpperRepo;
 import com.example.demo.jpa.MathRepo;
+import com.example.demo.jpa.MathUpperRepo;
 import com.example.demo.jpa.MypageInfoRepo;
 
 import com.example.demo.jpa.NoticeRepo;
@@ -30,7 +32,9 @@ import com.example.demo.vo.EngBookVo;
 import com.example.demo.vo.EngUpperBookVo;
 import com.example.demo.vo.FreeBookVo;
 import com.example.demo.vo.KorBookVo;
+import com.example.demo.vo.KorUpperBookVo;
 import com.example.demo.vo.MathBookVo;
+import com.example.demo.vo.MathUpperBookVo;
 import com.example.demo.vo.Member;
 import com.example.demo.vo.MypageInfo;
 import com.example.demo.vo.Notice;
@@ -59,6 +63,10 @@ public class mainPage {
 	freeTestRepo jpaFree;
 	@Autowired
 	EngUpperRepo jpaEngUpper;
+	@Autowired
+	KorUpperRepo jpaKorUpper;
+	@Autowired
+	MathUpperRepo jpaMathUpper;
 	
 
 	
@@ -121,6 +129,22 @@ public class mainPage {
 		List<EngBookVo> engList = jpaEng.findAll();
 		mav.addObject("engList", engList);
 		mav.setViewName("book/engBook");
+		return mav;
+	}
+	@RequestMapping(value="/korUpperBook")
+	public ModelAndView korUpperBook() {
+		ModelAndView mav = new ModelAndView();
+		List<KorUpperBookVo> korList = jpaKorUpper.findAll();
+		mav.addObject("korList", korList);
+		mav.setViewName("book/korUpperBook");
+		return mav;
+	}
+	@RequestMapping(value="/mathUpperBook")
+	public ModelAndView mathUpperBook() {
+		ModelAndView mav = new ModelAndView();
+		List<MathUpperBookVo> mathList = jpaMathUpper.findAll();
+		mav.addObject("mathList", mathList);
+		mav.setViewName("book/mathUpperBook");
 		return mav;
 	}
 	@RequestMapping(value="/engUpperBook")
