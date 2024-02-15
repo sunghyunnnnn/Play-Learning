@@ -8,7 +8,6 @@ public class KorUpperBookVo {
 	@Id
 	private int kor_no;
 	private String kor_title;
-	private String kor_img;
 	private String kor_inputname;
 	private String kor_items1;
 	private String kor_items2;
@@ -27,12 +26,6 @@ public class KorUpperBookVo {
 	}
 	public void setKor_title(String kor_title) {
 		this.kor_title = kor_title;
-	}
-	public String getKor_img() {
-		return kor_img;
-	}
-	public void setKor_img(String kor_img) {
-		this.kor_img = kor_img;
 	}
 	public String getKor_inputname() {
 		return kor_inputname;
@@ -72,7 +65,7 @@ public class KorUpperBookVo {
 	}
 	@Override
 	public String toString() {
-		return "KorBookVo [kor_no=" + kor_no + ", kor_title=" + kor_title + ", kor_img=" + kor_img + ", kor_inputname="
+		return "KorBookVo [kor_no=" + kor_no + ", kor_title=" + kor_title + ", kor_img=" + ", kor_inputname="
 				+ kor_inputname + ", kor_items1=" + kor_items1 + ", kor_items2=" + kor_items2 + ", kor_items3="
 				+ kor_items3 + ", kor_items4=" + kor_items4 + ", kor_items5=" + kor_items5 + "]";
 	}

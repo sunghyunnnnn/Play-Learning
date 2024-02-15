@@ -27,8 +27,7 @@
 	<form method="get" class="BookForm">
 		<div class="problemWrap" th:each="list : ${korList}">
 			<span class="listNo" th:text="${list.kor_no} + '. 글을 읽고, 빈칸에 알맞은 낱말을 쓰시오.'"></span>
-			<br>
-			<img class="listImg" th:src="${list.kor_img}">
+			
 			<br>
 				<div class="problemSection">
 					<span class="listTitle"

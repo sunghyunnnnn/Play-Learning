@@ -1,7 +1,7 @@
 @import url(fontawesome-all.min.css);
 @import "../../style/slider.css";
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600,400italic,600italic|Roboto+Slab:400,700");
-@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Do+Hyeon&display=swap');
 
 /*
@@ -232,7 +232,7 @@ input,
 select,
 textarea {
   color: #7f888f;
-  font-family: 'Bagel Fat One', system-ui;
+  font-family:  "Black Han Sans", sans-serif;
   font-size: 13pt;
   font-weight: 400;
   line-height: 1.65;
@@ -293,6 +293,9 @@ i {
 
 p {
   margin: 0 0 2em 0;
+  font-family: "Black Han Sans", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
 h1,
@@ -1547,7 +1550,9 @@ article.special {
 }
 
 header p {
-  font-family: "Roboto Slab", serif;
+  font-family: "Black Han Sans", sans-serif;
+  font-weight: 400;
+  font-style: normal;
   font-size: 1em;
   font-weight: 400;
   letter-spacing: 0.075em;
@@ -2088,7 +2093,7 @@ button,
  
   cursor: pointer;
   display: inline-block;
-  font-family: "Roboto Slab", serif;
+  font-family: "Black Han Sans", sans-serif;
   font-size: 0.8em;
   font-weight: 700;
   height: 3.5em;
@@ -2585,7 +2590,7 @@ button:disabled,
   text-rendering: auto;
   line-height: 1;
   text-transform: none;
-  font-family: "Font Awesome 5 Free";
+  font-family: "Black Han Sans", sans-serif;
   font-weight: 900;
 }
 #search form:before {
@@ -2815,7 +2820,7 @@ button:disabled,
 #header .logo {
   border-bottom: 0;
   color: inherit;
-  font-family: "Roboto Slab", serif;
+    font-family: "Black Han Sans", sans-serif;
   font-size: 1.125em;
 }
 #header .icons {
@@ -2959,11 +2964,12 @@ button:disabled,
 }
 #menu ul a,
 #menu ul span {
-  border-bottom: 0;
-  color: inherit;
+  border-bottom: 0;	
   cursor: pointer;
   display: block;
-  font-size: 0.9em;
+  font-size: 1.2em;
+  font-family: "Black Han Sans", sans-serif;
+  font-style: normal;
   padding: 0.625em 0;
 }
 #menu ul a:hover,
@@ -3033,7 +3039,7 @@ button:disabled,
 }
 #menu > ul > li > ul a,
 #menu > ul > li > ul span {
-  font-size: 0.8em;
+  font-size: 1.2em;
 }
 #menu > ul > li > ul > li {
   margin: 0.125em 0 0 0;
