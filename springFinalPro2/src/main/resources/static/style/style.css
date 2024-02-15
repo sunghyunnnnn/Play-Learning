@@ -1,15 +1,14 @@
 @charset "UTF-8";
 @import "reset.css";
 @import "main.css";
-@import "kor.css";
 @import "search.css";
 @import "detail.css";
 @import "slider.css";
 @import "login.css";
 @import "result.css";
 @import "common.css";
-
 @import "analyze.css";
+@import "light_korea.css";
 
 
 @import "payment.css";
