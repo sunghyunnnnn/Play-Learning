@@ -426,12 +426,15 @@
 				
 				const pay = document.querySelector(".payError");
 				const gender = document.querySelector(".girlandboy");
+				
 				const problemKorBtn = document.querySelector(".problemKorBtn");
 				const problemMathBtn = document.querySelector(".problemMathBtn");
 				const problemEngBtn = document.querySelector(".problemEngBtn");
+				
 				const problemKorUpperBtn = document.querySelector(".problemKorUpperBtn");
 				const problemMathUpperBtn = document.querySelector(".problemMathUpperBtn");
 				const problemEngUpperBtn = document.querySelector(".problemEngUpperBtn");
+				
 				const loginError = document.querySelector(".loginError");
 				const deleteError = document.querySelector(".deleteError");
 				const mypage = document.querySelector(".myPage");
@@ -513,6 +516,22 @@
 						alert('로그인 하셈!!!');
 					}
 				}
+				const clickProblemKorUpperBtn = () =>{
+					if(indexCk === true){
+						location.href = 'korUpperBook';					
+					}
+					else{
+						alert('로그인 하셈!!!');
+					}
+				}
+				const clickProblemMathUpperBtn = () =>{
+					if(indexCk === true){
+						location.href = 'mathUpperBook';					
+					}
+					else{
+						alert('로그인 하셈!!!');
+					}
+				}
 				const clickProblemEngUpperBtn = () =>{
 					if(indexCk === true){
 						location.href = 'engUpperBook';					
@@ -563,7 +582,9 @@
 				
 				problemKorBtn.addEventListener('click', clickProblemKorBtn);			
 				problemEngBtn.addEventListener('click', clickProblemEngBtn);			
-				problemMathBtn.addEventListener('click', clickProblemMathBtn);	
+				problemMathBtn.addEventListener('click', clickProblemMathBtn);
+				problemKorUpperBtn.addEventListener('click', clickProblemKorUpperBtn);
+				problemMathUpperBtn.addEventListener('click', clickProblemMathUpperBtn);
 				problemEngUpperBtn.addEventListener('click', clickProblemEngUpperBtn);
 			  </script>
 	  
