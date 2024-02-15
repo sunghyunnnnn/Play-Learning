@@ -21,6 +21,7 @@ import com.example.demo.jpa.MypageInfoRepo;
 import com.example.demo.vo.EngBookVo;
 import com.example.demo.vo.EngUpperBookVo;
 import com.example.demo.vo.KorBookVo;
+import com.example.demo.vo.KorUpperBookVo;
 import com.example.demo.vo.MathBookVo;
 import com.example.demo.vo.MathUpperBookVo;
 import com.example.demo.vo.MypageInfo;
@@ -32,6 +33,7 @@ import jakarta.servlet.http.HttpSession;
 @Controller
 public class ResultBook {
 	List<String> korAnswer = new ArrayList<>(List.of("호떡", "제비", "열대어", "동화책", "쿠키", "꽃시장", "꼬리잡기", "책읽기", "책쌓기", "방망이 얻기"));
+	List<String> korUpperAnswer = new ArrayList<>(List.of("가는 날이 장날", "까마귀 날자 배 떨어진다", "도둑이 제 발 저리다", "겨 묻은 개가 똥 묻은 개를 나무란다.", "거미도 줄을 쳐야 벌레를 잡는다", "계란으로 바위 치기", "가재는 게 편", "가는 말이 고와야 오는 말이 곱다", "새해 못할 제사 있으랴", "달면 삼키고 쓰면 뱉는다"));
 	List<String> mathAnswer = new ArrayList<>(List.of("23", "73", "41", "1441", "1077", "354", "1689", "265", "553", "1147"));
 	List<String> mathUpperAnswer = new ArrayList<>(List.of("8", "12", "3,4,12,15", "5,10,15,20", "7,14,21,28", "13.64", "8.41", "200.96", "50.24", "254.34"));
 	List<String> engAnswer = new ArrayList<>(List.of("Good-bye", "teacher-삼촌", "What", "캐나다", "that", "kite", "Open", "Too bad", "three", "스키"));
@@ -82,7 +84,38 @@ public class ResultBook {
 		mav.addObject("korList", korList);
 		mav.setViewName("book/wrongKorPage");
 		return mav;
-	}	
+	}
+	
+	@RequestMapping(value = "/wrongKorUpperPage")
+	public ModelAndView wrongKorUpperPage(@RequestParam(name="wrong") List<String> values, HttpSession session) {
+		
+		ModelAndView mav = new ModelAndView();
+		String[] wrongAnswer = new String[values.size()];
+		List<KorUpperBookVo> korList = new ArrayList<>();
+		
+		for(int i = 0; i < values.size(); i++) {
+			korList.add(jpaKorUpper.selectKorBookById(values.get(i)));
+		}
+		
+		System.out.println("이건가 ?? " + values);
+		int index = 0;
+		int i = 0;
+		while(true) {
+			if(i > values.size() - 1) {
+				break;
+			}
+			index = Integer.parseInt(values.get(i));
+			wrongAnswer[i] = korUpperAnswer.get(index - 1);
+//			wrongAnswer.add(answer.get(index - 1));
+			i++;
+		}
+		
+//		System.out.println(wrongAnswer[0]);
+		session.setAttribute("wrongKorAnswer", wrongAnswer);
+		mav.addObject("korList", korList);
+		mav.setViewName("book/wrongKorUpperPage");
+		return mav;
+	}
 	@RequestMapping(value = "/resultKorBook")
 	public ModelAndView korResult(HttpServletRequest request, MypageInfo mypageInfo) {
 		ModelAndView mav = new ModelAndView();
@@ -148,6 +181,73 @@ public class ResultBook {
 		mav.addObject("success", success);
 		mav.addObject("fail", fail);
 		mav.setViewName("book/resultKor");
+		return mav;
+	}
+	@RequestMapping(value = "/resultKorUpperBook")
+	public ModelAndView korUpperResult(HttpServletRequest request, MypageInfo mypageInfo) {
+		ModelAndView mav = new ModelAndView();
+		List<String> result = new ArrayList<>();
+		List<Integer> wrong = new ArrayList<>();
+		String result1 = request.getParameter("kor1");
+		String result2 = request.getParameter("kor2");
+		String result3 = request.getParameter("kor3");
+		String result4 = request.getParameter("kor4");
+		String result5 = request.getParameter("kor5");
+		String result6 = request.getParameter("kor6");
+		String result7 = request.getParameter("kor7");
+		String result8 = request.getParameter("kor8");
+		String result9 = request.getParameter("kor9");
+		String result10 = request.getParameter("kor10");
+		String examAnswer = "";
+		int korNo;
+		result.add(result1);
+		result.add(result2);
+		result.add(result3);
+		result.add(result4);
+		result.add(result5);
+		result.add(result6);
+		result.add(result7);
+		result.add(result8);
+		result.add(result9);
+		result.add(result10);
+		
+		int success = 0;
+		int fail = 0;
+		for (int i = 0; i < result.size(); i++) {
+			if (result.get(i).equals(korUpperAnswer.get(i))) {
+				success++;
+			}
+			else {
+				korNo = i + 1;
+				wrong.add(korNo);
+			}
+
+		}
+		fail = result.size() - success;
+		if(fail <= result.size() * 0.2) {
+			examAnswer = "매우 우수";
+		}
+		else if(fail <= result.size() * 0.4 && fail > result.size() * 0.2) {
+			examAnswer = "우수";
+		}
+		else if(fail <= result.size() / 2 && fail > result.size() * 0.4) {
+			examAnswer = "보통";
+		}
+		else {
+			examAnswer = "노력요함";
+		}
+		System.out.println(mypageInfo);
+		mypageInfo.setSubjecttitle("국어");
+		mypageInfo.setSubjectlevel("가볍게 워밍업!!");
+		mypageInfo.setSubjectresult(examAnswer);
+		System.out.println("마이페이지 >> " + mypageInfo);
+		jpaMypage.save(mypageInfo);
+		mav.addObject("examAnswer", examAnswer);
+		mav.addObject("wrong", wrong);
+		mav.addObject("list", result);
+		mav.addObject("success", success);
+		mav.addObject("fail", fail);
+		mav.setViewName("book/resultKorUpper");
 		return mav;
 	}
 	@RequestMapping(value = "/wrongMathPage")
