@@ -154,6 +154,7 @@ public class MemberController {
    @RequestMapping(value="loginControl")
    public ModelAndView login(Member mem, HttpSession session) {
       String inputId = mem.getId();
+      System.out.println("inputId"+inputId);
       boolean pwMatch = false;
       boolean indexCk = false;
       Member dbMember = null;
@@ -176,9 +177,21 @@ public class MemberController {
             }
          ModelAndView mav = new ModelAndView();
          System.out.println("dbmember : " + dbMember);
+         
+         // 세션에 저장된 아이디가 관리자 아이디인지 확인
+         if (inputId.equals("manager")) {
+        	 // 관리자 페이지로 이동
+        	 mav.setViewName("admin/admin");
+        	 // 필요한 경우 모델에 데이터를 추가
+        	 mav.addObject("id", inputId);
+        	 
+        	 
+        	 return mav;
+         }
          if(pwMatch == true) {
         	 indexCk = true;
         	 String login_id = dbMember.getId();
+        	 
         	 String login_boyandgirl = dbMember.getSex();
         	 System.out.println(login_boyandgirl);
             session.setAttribute("login_number", dbMember);   
@@ -201,7 +214,8 @@ public class MemberController {
             mav.setViewName("member/login");
          }
          return mav;
-      }  
+      }
+
     @RequestMapping(value="/logoutControl")
     public ModelAndView logoutControl(HttpSession session) {
     	session.removeAttribute("login_number");
