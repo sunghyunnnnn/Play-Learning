@@ -13,7 +13,7 @@
 	계좌에 이체 완료 후, 결제 완료 버튼을 눌러 주세요.
 </h3>
 
-<form action="paymentContorl" method="get">
+<form action="paymentControl" method="post">
 <div class="div1" style="position: center;">
 <table class="tableclass" align="center";>
 				<tr class="tabletr">
@@ -21,10 +21,10 @@
 					<td scope="col" th:text="${session.login_number.id}"></td>
 				</tr>
 </table>
-
+<input type="hidden" name="payment" th:value="${session.login_number.id}">
 <input class="sign_login_Button paymentBtn" type="radio" value="gen_user" id="gen_user" name="comple">일반 유저
 <input class="sign_login_Button paymentBtnPre" type="radio" value="pre_user" id="pre_user" name="comple">프리미엄 유저</button><br><br><br>
-<button class="sign_login_Button comple_pay" type="button">결제 완료</button>
+<button class="sign_login_Button comple_pay" type="submit" >결제 완료</button>
 
 <div>
 <br>
@@ -64,8 +64,6 @@
 	paymentBtn.addEventListener("click", paymentButton);
 	paymentBtnPre.addEventListener("click", paymentButtonPre);
 	comple_pay.addEventListener("click", comple_payment);
-	
-
 	
 	
 	

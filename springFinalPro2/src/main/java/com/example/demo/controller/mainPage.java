@@ -39,12 +39,15 @@ import com.example.demo.vo.Member;
 import com.example.demo.vo.MypageInfo;
 import com.example.demo.vo.Notice;
 
+import jakarta.security.auth.message.callback.PrivateKeyCallback.Request;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 //변경테스트!!!
 @Controller
 public class mainPage {
+	@Autowired
+	JpaMemberRepository jpaMember;
 	@Autowired
 	KorRepo jpaKor;
 	@Autowired
@@ -329,5 +332,22 @@ public class mainPage {
 		mav.setViewName("admin/levelup");
 
 		return mav;
+	}
+	@RequestMapping(value = "/levelupControl")
+	public ModelAndView levelupControl(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		String accept = request.getParameter("accept");
+		Member member = jpaMember.getById(accept);
+		if(member.getUsers().equals("일반 유저 승인 대기 중")) {
+			member.setUsers("일반유저");
+			
+		}else if(member.getUsers().equals("프리미엄 유저 승인 대기 중")) {
+			member.setUsers("프리미엄 유저");
+		}
+		jpaMember.save(member);
+		System.out.println("memberrrrrrr:" + member);
+		mav.setViewName("index");
+		return mav;
+		
 	}
 }

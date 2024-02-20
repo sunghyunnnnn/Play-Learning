@@ -325,6 +325,7 @@
 											</li>
 											<li><a class="payError">결제 하기</a></li>
 											<li><a href="wrongsolve">오답 풀이</a></li>
+											<li><a href="levelup">임시 관리자 승인 페이지</a></li>
 											 <li>
                                        <a th:if="${session.indexCk == true}" th:href = "@{./deletememberControl(id = ${session.login_number.id})}">회원 탈퇴</a>
                                        <a class="deleteError" th:if="${session.indexCk == null}">회원 탈퇴</a>
@@ -543,7 +544,8 @@
 				}
 				const clickpayment = () =>{
 					if(indexCk === true){
-						location.href = 'payment';					
+						let id = [[${session.loginId}]];
+						location.href = `payment?id=${id}`;					
 					}
 					else{
 						alert('로그인 하셈!!!');

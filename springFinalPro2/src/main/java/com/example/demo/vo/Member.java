@@ -15,11 +15,18 @@ public class Member {
    private String address;
    private String phonenum;
    private String sex;
+   private String users;
    public String getSex() {
 	return sex;
 }
 public void setSex(String sex) {
 	this.sex = sex;
+}
+public String getUsers() {
+	return users;
+}
+public void setUsers(String users) {
+	this.users = users;
 }
 public String getName() {
       return name;
@@ -66,8 +73,9 @@ public String getName() {
 @Override
 public String toString() {
 	return "Member [id=" + id + ", name=" + name + ", pw=" + pw + ", birth=" + birth + ", email=" + email + ", address="
-			+ address + ", phonenum=" + phonenum + ", sex=" + sex + "]";
+			+ address + ", phonenum=" + phonenum + ", sex=" + sex + ", users=" + users + "]";
 }
+
    
    
    
