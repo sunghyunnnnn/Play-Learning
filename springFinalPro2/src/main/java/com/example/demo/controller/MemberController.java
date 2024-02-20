@@ -185,6 +185,7 @@ public class MemberController {
         	 // 필요한 경우 모델에 데이터를 추가
         	 mav.addObject("id", inputId);
         	 
+        	 
         	 return mav;
          }
          if(pwMatch == true) {
