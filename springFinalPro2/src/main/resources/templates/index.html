@@ -543,7 +543,8 @@
 				}
 				const clickpayment = () =>{
 					if(indexCk === true){
-						location.href = 'payment';					
+						let id = [[${session.loginId}]];
+						location.href = `payment?id=${id}`;					
 					}
 					else{
 						alert('로그인 하셈!!!');

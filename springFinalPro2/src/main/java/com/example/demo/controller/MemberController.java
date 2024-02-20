@@ -158,7 +158,7 @@ public class MemberController {
       boolean indexCk = false;
       Member dbMember = null;
       System.out.println("plz : "+mem);
-           
+       
       try {
          dbMember = jpaMember.getById(inputId);
         

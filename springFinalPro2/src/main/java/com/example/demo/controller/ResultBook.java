@@ -170,7 +170,7 @@ public class ResultBook {
 			examAnswer = "노력요함";
 		}
 		System.out.println(mypageInfo);
-		mypageInfo.setSubjecttitle("국어");
+		mypageInfo.setSubjecttitle("국어(저학년)");
 		mypageInfo.setSubjectlevel("가볍게 워밍업!!");
 		mypageInfo.setSubjectresult(examAnswer);
 		System.out.println("마이페이지 >> " + mypageInfo);
@@ -237,8 +237,8 @@ public class ResultBook {
 			examAnswer = "노력요함";
 		}
 		System.out.println(mypageInfo);
-		mypageInfo.setSubjecttitle("국어");
-		mypageInfo.setSubjectlevel("가볍게 워밍업!!");
+		mypageInfo.setSubjecttitle("국어(고학년)");
+		mypageInfo.setSubjectlevel("무겁게 워밍업!!");
 		mypageInfo.setSubjectresult(examAnswer);
 		System.out.println("마이페이지 >> " + mypageInfo);
 		jpaMypage.save(mypageInfo);
@@ -361,7 +361,7 @@ public class ResultBook {
 		else {
 			examAnswer = "노력요함";
 		}
-		mypageInfo.setSubjecttitle("수학");
+		mypageInfo.setSubjecttitle("수학(저학년)");
 		mypageInfo.setSubjectlevel("가볍게 워밍업!!");
 		mypageInfo.setSubjectresult(examAnswer);
 		System.out.println("마이페이지 >> " + mypageInfo);
@@ -427,7 +427,7 @@ public class ResultBook {
 		else {
 			examAnswer = "노력요함";
 		}
-		mypageInfo.setSubjecttitle("수학");
+		mypageInfo.setSubjecttitle("수학(고학년)");
 		mypageInfo.setSubjectlevel("무겁게 워밍업!!");
 		mypageInfo.setSubjectresult(examAnswer);
 		System.out.println("마이페이지 >> " + mypageInfo);
@@ -554,7 +554,7 @@ public class ResultBook {
 		else {
 			examAnswer = "노력요함";
 		}
-		mypageInfo.setSubjecttitle("영어");
+		mypageInfo.setSubjecttitle("영어(저학년)");
 		mypageInfo.setSubjectlevel("가볍게 워밍업!!");
 		mypageInfo.setSubjectresult(examAnswer);
 		System.out.println("마이페이지 >> " + mypageInfo);
@@ -624,7 +624,7 @@ public class ResultBook {
 		else {
 			examAnswer = "노력요함";
 		}
-		mypageInfo.setSubjecttitle("영어");
+		mypageInfo.setSubjecttitle("영어(고학년)");
 		mypageInfo.setSubjectlevel("무겁게 워밍업!!");
 		mypageInfo.setSubjectresult(examAnswer);
 		System.out.println("마이페이지 >> " + mypageInfo);
