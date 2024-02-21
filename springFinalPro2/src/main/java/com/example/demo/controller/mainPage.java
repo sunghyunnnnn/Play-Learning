@@ -329,25 +329,60 @@ public class mainPage {
 	@RequestMapping(value = "/levelup")
 	public ModelAndView levelup() {
 		ModelAndView mav = new ModelAndView();
+		List<Member> memberlist = jpaMember.findAll();
+		for(int i = 0; i<memberlist.size(); i++) {
+			if(memberlist.get(i).getUsers()==null) {
+				
+			}else if(memberlist.get(i).getUsers().equals("일반 유저 승인 대기 중")) {
+				
+			}else if(memberlist.get(i).getUsers().equals("프리미엄 유저 승인 대기 중")) {
+		}
+		}
+		mav.addObject("memberlist", memberlist);
+		System.out.println("member 는 " + memberlist);
 		mav.setViewName("admin/levelup");
 
 		return mav;
 	}
+	
+
 	@RequestMapping(value = "/levelupControl")
 	public ModelAndView levelupControl(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
-		String accept = request.getParameter("accept");
-		Member member = jpaMember.getById(accept);
-		if(member.getUsers().equals("일반 유저 승인 대기 중")) {
-			member.setUsers("일반유저");
-			
-		}else if(member.getUsers().equals("프리미엄 유저 승인 대기 중")) {
-			member.setUsers("프리미엄 유저");
+		List<Member> member = jpaMember.findAll();
+		System.out.println("member name : " + member.get(0).getUsers());
+		for(int i = 0; i<member.size(); i++) {
+			if(member.get(i).getUsers()==null) {
+				System.out.println("아무거나");
+			}else if(member.get(i).getUsers().equals("일반 유저 승인 대기 중")) {
+				member.get(i).setUsers("일반유저");
+				jpaMember.save(member.get(i));
+			}else if(member.get(i).getUsers().equals("프리미엄 유저 승인 대기 중")) {
+				member.get(i).setUsers("프리미엄");
+				jpaMember.save(member.get(i));
 		}
-		jpaMember.save(member);
+	}
 		System.out.println("memberrrrrrr:" + member);
-		mav.setViewName("index");
+		mav.setViewName("admin/admin");
 		return mav;
 		
 	}
+	@RequestMapping(value = "/allmember")
+	public ModelAndView allmember() {
+		ModelAndView mav = new ModelAndView();
+		List<Member> allmemberlist = jpaMember.findAll();
+		System.out.println("allmemberlist는" + allmemberlist);
+		mav.addObject("allmemberlist", allmemberlist);
+		mav.setViewName("admin/allmember");
+		return mav;
+	}
+	@RequestMapping(value = "/membership")
+	public ModelAndView membership() {
+		ModelAndView mav = new ModelAndView();
+		List<Member> membership = jpaMember.findAll();
+		mav.addObject("membership",membership);
+		mav.setViewName("admin/membership");
+		return mav;
+	}
 }
+

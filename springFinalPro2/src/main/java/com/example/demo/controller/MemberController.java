@@ -149,55 +149,71 @@ public class MemberController {
 		return mav;
 	}
 
-	@RequestMapping(value = "loginControl")
-	public ModelAndView login(Member mem, HttpSession session) {
-		String inputId = mem.getId();
-		boolean pwMatch = false;
-		boolean indexCk = false;
-		Member dbMember = null;
-		System.out.println("plz : " + mem);
+	@RequestMapping(value="loginControl")
+	   public ModelAndView login(Member mem, HttpSession session) {
+	      String inputId = mem.getId();
+	      System.out.println("inputId"+inputId);
+	      boolean pwMatch = false;
+	      boolean indexCk = false;
+	      Member dbMember = null;
+	      System.out.println("plz : "+mem);
+	       
+	      try {
+	         dbMember = jpaMember.getById(inputId);
+	        
+	         String dbPw = dbMember.getPw();
+	         
+	         String inputPW = mem.getPw();
+	        
+	         
+	         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+	         
+	         pwMatch = encoder.matches(inputPW, dbPw);
+	         
+	      } catch (Exception e) {
+	         e.printStackTrace();
+	            }
+	         ModelAndView mav = new ModelAndView();
+	         System.out.println("dbmember : " + dbMember);
+	         
+	         // 세션에 저장된 아이디가 관리자 아이디인지 확인
+	         if (inputId.equals("manager")) {
+	            // 관리자 페이지로 이동
+	            mav.setViewName("admin/admin");
+	            // 필요한 경우 모델에 데이터를 추가
+	            mav.addObject("id", inputId);
+	            
+	            
+	            return mav;
+	         }
+	         if(pwMatch == true) {
+	            indexCk = true;
+	            String login_id = dbMember.getId();
+	            
+	            String login_boyandgirl = dbMember.getSex();
+	            System.out.println(login_boyandgirl);
+	            session.setAttribute("login_number", dbMember);   
+	            mav.addObject("pwMatch", pwMatch);
+	            mav.addObject("login_boyandgirl", login_boyandgirl);
+	            session.setAttribute("indexCk", indexCk);
+	            session.setAttribute("loginId", login_id);
+	            mav.setViewName("index");
+	          
+	            
+	         }else {
+	            System.out.println("아이디틀림");
 
-		try {
-			dbMember = jpaMember.getById(inputId);
+	            indexCk = false;
+	            mav.addObject("msg", "로그인에 실패 했습니다. 다시 로그인 해 주세요.");
+	            session.setAttribute("indexCk", indexCk);
 
-			String dbPw = dbMember.getPw();
+	            mav.addObject("msg", "아이디 또는 비밀번호가 일치 하지 않습니다. 다시 로그인 해 주세요.");
 
-			String inputPW = mem.getPw();
-
-			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-
-			pwMatch = encoder.matches(inputPW, dbPw);
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		ModelAndView mav = new ModelAndView();
-		System.out.println("dbmember : " + dbMember);
-		if (pwMatch == true) {
-			indexCk = true;
-			String login_id = dbMember.getId();
-			String login_boyandgirl = dbMember.getSex();
-			System.out.println(login_boyandgirl);
-			session.setAttribute("login_number", dbMember);
-			mav.addObject("pwMatch", pwMatch);
-			mav.addObject("login_boyandgirl", login_boyandgirl);
-			session.setAttribute("indexCk", indexCk);
-			session.setAttribute("loginId", login_id);
-			mav.setViewName("index");
-
-		} else {
-			System.out.println("아이디틀림");
-
-			indexCk = false;
-			mav.addObject("msg", "로그인에 실패 했습니다. 다시 로그인 해 주세요.");
-			session.setAttribute("indexCk", indexCk);
-
-			mav.addObject("msg", "아이디 또는 비밀번호가 일치 하지 않습니다. 다시 로그인 해 주세요.");
-
-			mav.setViewName("member/login");
-		}
-		return mav;
-	}
+	            mav.setViewName("member/login");
+	         }
+	         return mav;
+	      }
+   
 
 	@RequestMapping(value = "/logoutControl")
 	public ModelAndView logoutControl(HttpSession session) {

@@ -37,7 +37,7 @@ public class ResultBook {
 	List<String> mathAnswer = new ArrayList<>(List.of("23", "73", "41", "1441", "1077", "354", "1689", "265", "553", "1147"));
 	List<String> mathUpperAnswer = new ArrayList<>(List.of("8", "12", "3,4,12,15", "5,10,15,20", "7,14,21,28", "13.64", "8.41", "200.96", "50.24", "254.34"));
 	List<String> engAnswer = new ArrayList<>(List.of("Good-bye", "teacher-삼촌", "What", "캐나다", "that", "kite", "Open", "Too bad", "three", "스키"));
-	List<String> engUpperAnswer = new ArrayList<>(List.of("Not so good", "7시", "I get up at six", "evening", "학교의 위치", "go to school", "여기", "store", "toy store", "I will visit my uncle in London"));
+	List<String> engUpperAnswer = new ArrayList<>(List.of("Nice to meet you", "7시", "I get up at six", "evening", "학교의 위치", "go to school", "여기", "store", "toy store", "I will visit my uncle in London"));
 	List<MypageInfo> mypageInfo = new ArrayList<>();
 	@Autowired
 	KorRepo jpaKor;
