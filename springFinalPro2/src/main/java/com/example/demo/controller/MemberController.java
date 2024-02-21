@@ -21,120 +21,117 @@ import jakarta.persistence.EntityNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
-
 @Controller
 public class MemberController {
 
+	@Autowired
+	JpaMemberRepository jpaMember;
 
-   @Autowired
-   JpaMemberRepository jpaMember;
-   
-   @RequestMapping(value="/deletememberControl")
-   public ModelAndView deletemember(Member mem, HttpSession session, HttpServletRequest request) {
-	   
-	   boolean pwMatch = false;
-	   Member dbMember = null;
-	   ModelAndView mav = new ModelAndView();
-	   String id = request.getParameter("id");
-	   System.out.println("id:" +id);
-	   try {
-	         dbMember = jpaMember.getById(id);
-	         System.out.println("id:"+id);
-	         System.out.println("dbmember:"+dbMember);
-	         String dbPw = dbMember.getPw();
-	         
-	         String inputPW = request.getParameter("pw");
-	         System.out.println("inputPW:" + inputPW);
-	         
-	         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-	         
-	         pwMatch = encoder.matches(inputPW, dbPw);
-	         
-	      } catch (Exception e) {
-	         e.printStackTrace();
-	         System.out.println("아이디또틀림");
-	            }
-	         
-	         if(pwMatch == true) {
-	          
-	            mav.addObject("user", mem.getId());
-	            mav.addObject("pwMatch", pwMatch);
-	            jpaMember.deleteById(id);
-	            session.removeAttribute("login_number");
-	            mav.setViewName("index");
-	            
-	         }else {
-	            System.out.println("아이디틀림");
-	            mav.addObject("pwMatch", pwMatch);
-	            System.out.println(pwMatch);
-	            mav.setViewName("member/deletemember");
-	         }
-	         return mav;
-	   
-   }
-   
-   @RequestMapping(value="/deletemember")
-   public ModelAndView deletemember() {
-	   
-	   ModelAndView mav = new ModelAndView();
-	   
-	   mav.setViewName("member/deletemember");
-	   return mav;
-   }
-   
-   @RequestMapping(value="/memberchangeControl")
-   public ModelAndView memberchange(@RequestParam(value = "id") String id) {
-	   Member member = jpaMember.getById(id);
-	   
-	   jpaMember.save(member);
-	   System.out.println(member);
-	   
-	   ModelAndView mav = new ModelAndView();
-	   mav.addObject(member);
-	   mav.setViewName("member/memberchange");
-	   return mav;
-   }
-   
-   @RequestMapping(value="memberchange")
-   public ModelAndView memberchange(Member member) {
-	   
-	   BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-	   
-	   String encode_pw = encoder.encode(member.getPw());
-	   member.setPw(encode_pw);
-	   System.out.println("zz:"+member);
-	   jpaMember.save(member);
-	   ModelAndView mav = new ModelAndView();
-	   
-	   mav.setViewName("index");
-	   return mav;
-   }
-   
-   @RequestMapping(value="signinControl")
-   public ModelAndView signin(Member member, HttpServletRequest request) {
-	
-	  String input_pw = member.getPw();
-      System.out.println("사용자 입력 비번="+input_pw);
-	  
-      BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-      String encode_pw = encoder.encode(input_pw);
-      System.out.println("암호화 비번="+encode_pw);
-      member.setPw(encode_pw);
-      
-      String sex = request.getParameter("gender");
-      member.setSex(sex);
-      System.out.println("성별: " + sex);
-      //세이브 하기 전에 중복 여부 검사
-      
-      
-      jpaMember.save(member);
-      
-      ModelAndView mav = new ModelAndView();
-      mav.setViewName("index");
-      return mav;
-   }
-   
-   @RequestMapping(value="/signin")
+	@RequestMapping(value = "/deletememberControl")
+	public ModelAndView deletemember(Member mem, HttpSession session, HttpServletRequest request) {
+
+		boolean pwMatch = false;
+		Member dbMember = null;
+		ModelAndView mav = new ModelAndView();
+		String id = request.getParameter("id");
+		System.out.println("id:" + id);
+		try {
+			dbMember = jpaMember.getById(id);
+			System.out.println("id:" + id);
+			System.out.println("dbmember:" + dbMember);
+			String dbPw = dbMember.getPw();
+
+			String inputPW = request.getParameter("pw");
+			System.out.println("inputPW:" + inputPW);
+
+			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
+			pwMatch = encoder.matches(inputPW, dbPw);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("아이디또틀림");
+		}
+
+		if (pwMatch == true) {
+
+			mav.addObject("user", mem.getId());
+			mav.addObject("pwMatch", pwMatch);
+			jpaMember.deleteById(id);
+			session.removeAttribute("login_number");
+			mav.setViewName("index");
+
+		} else {
+			System.out.println("아이디틀림");
+			mav.addObject("pwMatch", pwMatch);
+			System.out.println(pwMatch);
+			mav.setViewName("member/deletemember");
+		}
+		return mav;
+
+	}
+
+	@RequestMapping(value = "/deletemember")
+	public ModelAndView deletemember() {
+
+		ModelAndView mav = new ModelAndView();
+
+		mav.setViewName("member/deletemember");
+		return mav;
+	}
+
+	@RequestMapping(value = "/memberchangeControl")
+	public ModelAndView memberchange(@RequestParam(value = "id") String id) {
+		Member member = jpaMember.getById(id);
+
+		jpaMember.save(member);
+		System.out.println(member);
+
+		ModelAndView mav = new ModelAndView();
+		mav.addObject(member);
+		mav.setViewName("member/memberchange");
+		return mav;
+	}
+		
+	@RequestMapping(value = "memberchange")
+	public ModelAndView memberchange(Member member) {
+
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
+		String encode_pw = encoder.encode(member.getPw());
+		member.setPw(encode_pw);
+		System.out.println("zz:" + member);
+		jpaMember.save(member);
+		ModelAndView mav = new ModelAndView();
+
+		mav.setViewName("index");
+		return mav;
+	}
+
+	@RequestMapping(value = "signinControl")
+	public ModelAndView signin(Member member, HttpServletRequest request) {
+
+		String input_pw = member.getPw();
+		System.out.println("사용자 입력 비번=" + input_pw);
+
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		String encode_pw = encoder.encode(input_pw);
+		System.out.println("암호화 비번=" + encode_pw);
+		member.setPw(encode_pw);
+
+		String sex = request.getParameter("gender");
+		member.setSex(sex);
+		System.out.println("성별: " + sex);
+		// 세이브 하기 전에 중복 여부 검사
+
+		jpaMember.save(member);
+
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("index");
+		return mav;
+	}
+
+	@RequestMapping(value = "/signin")
 	public ModelAndView signin() {
 		ModelAndView mav = new ModelAndView();
 		List<String> memberIdArr = new ArrayList<String>();
@@ -143,14 +140,14 @@ public class MemberController {
 		mav.addObject("memberIdArr", memberIdArr);
 		mav.setViewName("member/signin");
 		return mav;
-	}   
-   @RequestMapping(value="/login")
+	}
+
+	@RequestMapping(value = "/login")
 	public ModelAndView login() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("member/login");
 		return mav;
 	}
-   
    @RequestMapping(value="loginControl")
    public ModelAndView login(Member mem, HttpSession session) {
       String inputId = mem.getId();
@@ -205,42 +202,34 @@ public class MemberController {
          }else {
             System.out.println("아이디틀림");
 
-            indexCk = false;
-            mav.addObject("msg", "로그인에 실패 했습니다. 다시 로그인 해 주세요.");
-            session.setAttribute("indexCk", indexCk);
-
-            mav.addObject("msg", "아이디 또는 비밀번호가 일치 하지 않습니다. 다시 로그인 해 주세요.");
-
-            mav.setViewName("member/login");
          }
-         return mav;
-      }
+		return mav;
+   }
+	@RequestMapping(value = "/logoutControl")
+	public ModelAndView logoutControl(HttpSession session) {
+		session.removeAttribute("login_number");
+		session.removeAttribute("indexCk");
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("index");
+		return mav;
+	}
 
-    @RequestMapping(value="/logoutControl")
-    public ModelAndView logoutControl(HttpSession session) {
-    	session.removeAttribute("login_number");
-    	session.removeAttribute("indexCk");
-    	ModelAndView mav = new ModelAndView();
-    	mav.setViewName("index");
-    	return mav;
-    }
-
-	
-	@RequestMapping(value="/memberFind")
+	@RequestMapping(value = "/memberFind")
 	public ModelAndView memberFind() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("member/memberFind");
 		return mav;
-		
+
 	}
-	@RequestMapping(value="/findname")
+
+	@RequestMapping(value = "/findname")
 	public ModelAndView findnameControl() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("member/findname");
 		return mav;
 	}
-	
-	@RequestMapping(value="/findnameControl")
+
+	@RequestMapping(value = "/findnameControl")
 	public ModelAndView findnameControl(HttpServletRequest request) {
 		String inputname = request.getParameter("name");
 		System.out.println(inputname);
@@ -249,17 +238,18 @@ public class MemberController {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("id", id);
 		mav.setViewName("member/nameresult");
-		
+
 		return mav;
 	}
-	
-	@RequestMapping(value="/findemail")
+
+	@RequestMapping(value = "/findemail")
 	public ModelAndView findmailControl() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("member/findemail");
 		return mav;
 	}
-	@RequestMapping(value="/findemailControl")
+
+	@RequestMapping(value = "/findemailControl")
 	public ModelAndView findmailControl(HttpServletRequest request) {
 		String inputemail = request.getParameter("email");
 		System.out.println(inputemail);
@@ -268,20 +258,21 @@ public class MemberController {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("id", id);
 		mav.setViewName("member/emailresult");
-		
+
 		return mav;
 	}
-	
-	@RequestMapping(value="/findphone")
+
+	@RequestMapping(value = "/findphone")
 	public ModelAndView findPhone() {
-		
+
 		ModelAndView mav = new ModelAndView();
-		
+
 		mav.setViewName("member/findphone");
-		
+
 		return mav;
 	}
-	@RequestMapping(value="/findphoneControl")
+
+	@RequestMapping(value = "/findphoneControl")
 	public ModelAndView findPhoneControl(HttpServletRequest request) {
 		String inputph = request.getParameter("phonenum");
 		System.out.println(inputph);
@@ -290,16 +281,37 @@ public class MemberController {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("id", id);
 		mav.setViewName("member/phoneresult");
-		
+
 		return mav;
 	}
-	@RequestMapping(value="/payment")
+
+	@RequestMapping(value = "/payment")
 	public ModelAndView payment() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("member/payment");
+
+		return mav;
+	}
+	@RequestMapping(value = "/paymentControl")
+	public ModelAndView paymentControl(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		String comple = request.getParameter("comple");
 		
+		String payment = request.getParameter("payment");
+		Member member = jpaMember.getById(payment);
+		
+		if(comple.equals("gen_user")) {
+			member.setUsers("일반 유저 승인 대기 중");
+			
+		}else if (comple.equals("pre_user")) {
+			member.setUsers("프리미엄 유저 승인 대기 중");
+		}
+		
+		jpaMember.save(member);
+		
+		mav.setViewName("index");
 		return mav;
 	}
 	
-}
 
+}

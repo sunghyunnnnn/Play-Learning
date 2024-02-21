@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
-<div class="div1">
+<div class="div01">
 <form>
 	<label for ="solve" class="label">오답 풀이</label>
 	<select name="solves" id="solve" class="select">
@@ -44,13 +44,43 @@
 	const submits = () => {
 		
 		if(select.value==="light_kor") {
-			kor_01.src = "./img/wrongimg/001.jpg"
-			kor_02.src = "./img/wrongimg/002.jpg"
-			kor_03.src = "./img/wrongimg/003.jpg"
-			kor_04.src = "./img/wrongimg/004.jpg"
-			kor_05.src = "./img/wrongimg/005.jpg"
+			kor_01.src = "./img/wrongimg/kor_001.jpg"
+			kor_02.src = "./img/wrongimg/kor_002.jpg"
+			kor_03.src = "./img/wrongimg/kor_003.jpg"
+			kor_04.src = "./img/wrongimg/kor_004.jpg"
+			kor_05.src = "./img/wrongimg/kor_005.jpg"
 			
-		}
+		}else if (select.value==="light_math") {
+			kor_01.src = "./img/wrongimg/math_001.jpg"
+			kor_02.src = "./img/wrongimg/math_002.jpg"
+			kor_03.src = "./img/wrongimg/math_003.jpg"
+			kor_04.src = "./img/wrongimg/math_004.jpg"
+			kor_05.src = "./img/wrongimg/math_005.jpg"
+		}else if (select.value==="light_eng") {
+			kor_01.src = "./img/wrongimg/eng_001.jpg"
+			kor_02.src = "./img/wrongimg/eng_002.jpg"
+			kor_03.src = "./img/wrongimg/eng_003.jpg"
+			kor_04.src = "./img/wrongimg/eng_004.jpg"
+			kor_05.src = "./img/wrongimg/eng_005.jpg"
+		}else if (select.value==="heavy_math") {
+			kor_01.src = "./img/wrongimg/heavy_math_001.jpg"
+			kor_02.src = "./img/wrongimg/heavy_math_002.jpg"
+			kor_03.src = "./img/wrongimg/heavy_math_003.jpg"
+			kor_04.src = "./img/wrongimg/heavy_math_004.jpg"
+			kor_05.src = "./img/wrongimg/heavy_math_005.jpg"
+		}else if (select.value==="heavy_kor") {
+			kor_01.src = "./img/wrongimg/heavy_kor_001.jpg"
+			kor_02.src = "./img/wrongimg/heavy_kor_002.jpg"
+			kor_03.src = "./img/wrongimg/heavy_kor_003.jpg"
+			kor_04.src = "./img/wrongimg/heavy_kor_004.jpg"
+			kor_05.src = "./img/wrongimg/heavy_kor_005.jpg"
+		}else if (select.value==="heavy_eng") {
+			kor_01.src = "./img/wrongimg/heavy_eng_001.jpg"
+			kor_02.src = "./img/wrongimg/heavy_eng_002.jpg"
+			kor_03.src = "./img/wrongimg/heavy_eng_003.jpg"
+			kor_04.src = "./img/wrongimg/heavy_eng_004.jpg"
+			kor_05.src = "./img/wrongimg/heavy_eng_005.jpg"
+			}
 	}
 	submit.addEventListener("click", submits);
 	
