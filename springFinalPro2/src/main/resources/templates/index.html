@@ -267,25 +267,25 @@
 										<article>
 											<a href="#" class="image"><img src="img/indexImg/kor_ad.jpg" alt="" /></a>
 											<h3>빡세게 워밍업!</h3>
-											<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
+											<p>국어</p>
 											<ul class="actions">
-												<li><a href="#" class="button">Q/A</a></li>
+												<li><a href="#" class="button problemKorMiddleBtn">solve Korean problem</a></li>
 											</ul>
 										</article>
 										<article>
 											<a href="#" class="image"><img src="img/indexImg/math_ad.jpg" alt="" /></a>
 											<h3>빡세게 워밍업!</h3>
-											<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
+											<p>수학</p>
 											<ul class="actions">
-												<li><a href="#" class="button">Q/A</a></li>
+												<li><a href="#" class="button problemMathMiddleBtn">solve math problem</a></li>
 											</ul>
 										</article>
 										<article>
 											<a href="#" class="image"><img src="img/indexImg/eng_ad.jpg" alt="" /></a>
 											<h3>빡세게 워밍업!</h3>
-											<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
+											<p>영어</p>
 											<ul class="actions">
-												<li><a href="#" class="button">Q/A</a></li>
+												<li><a href="#" class="button problemEngMiddleBtn">solve English problem</a></li>
 											</ul>
 										</article>
 									
@@ -364,7 +364,7 @@
 										<h2>해주세요</h2>
 									</header>
 									<div class="mini-posts">
-										<article>
+										<article >
 											<a href="#" class="image"><img src="img/indexImg/pic07.jpg" alt="" /></a>
 											<strong>문제를 풀어주세요</strong><br>
 											<p>국어/영어/수학</p>
@@ -435,6 +435,10 @@
 				const problemKorUpperBtn = document.querySelector(".problemKorUpperBtn");
 				const problemMathUpperBtn = document.querySelector(".problemMathUpperBtn");
 				const problemEngUpperBtn = document.querySelector(".problemEngUpperBtn");
+				
+				const problemKorMiddleBtn = document.querySelector(".problemKorMiddleBtn");
+				const problemMathMiddleBtn = document.querySelector(".problemMathMiddleBtn");
+				const problemEngMiddleBtn = document.querySelector(".problemEngMiddleBtn");
 				
 				const loginError = document.querySelector(".loginError");
 				const deleteError = document.querySelector(".deleteError");
@@ -541,6 +545,32 @@
 						alert('로그인 하셈!!!');
 					}
 				}
+				
+				const clickProblemKorMiddleBtn = () =>{
+					if(indexCk === true){
+						location.href = 'korMiddleBook';					
+					}
+					else{
+						alert('로그인 하셈!!!');
+					}
+				}
+				const clickProblemMathMiddleBtn = () =>{
+					if(indexCk === true){
+						location.href = 'mathMiddleBook';					
+					}
+					else{
+						alert('로그인 하셈!!!');
+					}
+				}
+				const clickProblemEngMiddleBtn = () =>{
+					if(indexCk === true){
+						location.href = 'engMiddleBook';					
+					}
+					else{
+						alert('로그인 하셈!!!');
+					}
+				}
+				
 				const clickpayment = () =>{
 					if(indexCk === true){
 						let id = [[${session.loginId}]];
@@ -585,9 +615,14 @@
 				problemKorBtn.addEventListener('click', clickProblemKorBtn);			
 				problemEngBtn.addEventListener('click', clickProblemEngBtn);			
 				problemMathBtn.addEventListener('click', clickProblemMathBtn);
+				
 				problemKorUpperBtn.addEventListener('click', clickProblemKorUpperBtn);
 				problemMathUpperBtn.addEventListener('click', clickProblemMathUpperBtn);
 				problemEngUpperBtn.addEventListener('click', clickProblemEngUpperBtn);
+				
+				problemKorMiddleBtn.addEventListener('click', clickProblemKorMiddleBtn);
+				problemMathMiddleBtn.addEventListener('click', clickProblemMathMiddleBtn);
+				problemEngMiddleBtn.addEventListener('click', clickProblemEngMiddleBtn);
 			  </script>
 	  
 	</body>

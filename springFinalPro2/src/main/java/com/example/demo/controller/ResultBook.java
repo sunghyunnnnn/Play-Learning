@@ -15,6 +15,7 @@ import com.example.demo.jpa.EngRepo;
 import com.example.demo.jpa.EngUpperRepo;
 import com.example.demo.jpa.KorRepo;
 import com.example.demo.jpa.KorUpperRepo;
+import com.example.demo.jpa.MathMiddleRepo;
 import com.example.demo.jpa.MathRepo;
 import com.example.demo.jpa.MathUpperRepo;
 import com.example.demo.jpa.MypageInfoRepo;
@@ -23,6 +24,7 @@ import com.example.demo.vo.EngUpperBookVo;
 import com.example.demo.vo.KorBookVo;
 import com.example.demo.vo.KorUpperBookVo;
 import com.example.demo.vo.MathBookVo;
+import com.example.demo.vo.MathMiddleBookVo;
 import com.example.demo.vo.MathUpperBookVo;
 import com.example.demo.vo.MypageInfo;
 
@@ -34,10 +36,14 @@ import jakarta.servlet.http.HttpSession;
 public class ResultBook {
 	List<String> korAnswer = new ArrayList<>(List.of("호떡", "제비", "열대어", "동화책", "쿠키", "꽃시장", "꼬리잡기", "책읽기", "책쌓기", "방망이 얻기"));
 	List<String> korUpperAnswer = new ArrayList<>(List.of("가는 날이 장날", "까마귀 날자 배 떨어진다", "도둑이 제 발 저리다", "겨 묻은 개가 똥 묻은 개를 나무란다.", "거미도 줄을 쳐야 벌레를 잡는다", "계란으로 바위 치기", "가재는 게 편", "가는 말이 고와야 오는 말이 곱다", "새해 못할 제사 있으랴", "달면 삼키고 쓰면 뱉는다"));
-	List<String> mathAnswer = new ArrayList<>(List.of("23", "73", "41", "1441", "1077", "354", "1689", "265", "553", "1147"));
+	
+	
+	List<String> mathAnswer = new ArrayList<>(List.of("23", "73", "41", "1441", "1077", "354", "1689", "265", "553", "1147"));	
 	List<String> mathUpperAnswer = new ArrayList<>(List.of("8", "12", "3,4,12,15", "5,10,15,20", "7,14,21,28", "13.64", "8.41", "200.96", "50.24", "254.34"));
+	List<String> mathMiddleAnswer = new ArrayList<>(List.of("6", "y=3/8x", "y=1/4x", "1", "-5", "y=3/2x", "제1사분면, 제2사분면을 지난다.", "9시간", "y=60/x", "21"));
+	
 	List<String> engAnswer = new ArrayList<>(List.of("Good-bye", "teacher-삼촌", "What", "캐나다", "that", "kite", "Open", "Too bad", "three", "스키"));
-	List<String> engUpperAnswer = new ArrayList<>(List.of("Not so good", "7시", "I get up at six", "evening", "학교의 위치", "go to school", "여기", "store", "toy store", "I will visit my uncle in London"));
+	List<String> engUpperAnswer = new ArrayList<>(List.of("Nice to meet you", "7시", "I get up at six", "evening", "학교의 위치", "go to school", "여기", "store", "toy store", "I will visit my uncle in London"));
 	List<MypageInfo> mypageInfo = new ArrayList<>();
 	@Autowired
 	KorRepo jpaKor;
@@ -49,6 +55,8 @@ public class ResultBook {
 	KorUpperRepo jpaKorUpper;
 	@Autowired
 	MathUpperRepo jpaMathUpper;
+	@Autowired
+	MathMiddleRepo jpaMathMiddle;
 	@Autowired
 	EngUpperRepo jpaEngUpper;
 	@Autowired
@@ -308,6 +316,35 @@ public class ResultBook {
 		mav.setViewName("book/wrongMathUpperPage");
 		return mav;
 	}
+	@RequestMapping(value = "/wrongMathMiddlePage")
+	public ModelAndView wrongMathMiddlePage(@RequestParam(name="wrong") List<String> values, HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+//		List<String> wrongAnswer = new ArrayList<>();
+		String[] wrongAnswer = new String[values.size()];
+		List<MathMiddleBookVo> mathList = new ArrayList<>();
+		
+		for(int i = 0; i < values.size(); i++) {
+			mathList.add(jpaMathMiddle.selectMathBookById(values.get(i)));
+		}
+		System.out.println("이건가 ?? " + values);
+		int index = 0;
+		int i = 0;
+		while(true) {
+			if(i > values.size() - 1) {
+				break;
+			}
+			index = Integer.parseInt(values.get(i));
+			wrongAnswer[i] = mathMiddleAnswer.get(index - 1);
+//			wrongAnswer.add(answer.get(index - 1));
+			i++;
+		}
+		
+//		System.out.println(wrongAnswer[0]);
+		session.setAttribute("wrongMathAnswer", wrongAnswer);
+		mav.addObject("mathList", mathList);
+		mav.setViewName("book/wrongMathMiddlePage");
+		return mav;
+	}
 	@RequestMapping(value = "resultMathBook")
 	public ModelAndView mahtResult(HttpServletRequest request, MypageInfo mypageInfo) {
 		ModelAndView mav = new ModelAndView();
@@ -438,6 +475,72 @@ public class ResultBook {
 		mav.addObject("success", success);
 		mav.addObject("fail", fail);
 		mav.setViewName("book/resultMathUpper");
+		return mav;
+	}
+	@RequestMapping(value = "resultMathMiddleBook")
+	public ModelAndView mahtMiddleResult(HttpServletRequest request, MypageInfo mypageInfo) {
+		ModelAndView mav = new ModelAndView();
+		List<String> result = new ArrayList<>();
+		
+		List<Integer> wrong = new ArrayList<>();
+		String result1 = request.getParameter("math1");
+		String result2 = request.getParameter("math2");
+		String result3 = request.getParameter("math3");
+		String result4 = request.getParameter("math4");
+		String result5 = request.getParameter("math5");
+		String result6 = request.getParameter("math6");
+		String result7 = request.getParameter("math7");
+		String result8 = request.getParameter("math8");
+		String result9 = request.getParameter("math9");
+		String result10 = request.getParameter("math10");
+		String examAnswer = "";
+		int mathNo;
+		result.add(result1);
+		result.add(result2);
+		result.add(result3);
+		result.add(result4);
+		result.add(result5);
+		result.add(result6);
+		result.add(result7);
+		result.add(result8);
+		result.add(result9);
+		result.add(result10);
+		int success = 0;
+		int fail = 0;
+		for (int i = 0; i < result.size(); i++) {
+			if (result.get(i).equals(mathMiddleAnswer.get(i))) {
+				success++;
+			}
+			else {
+				mathNo = i + 1;
+				wrong.add(mathNo);
+			}
+
+		}
+		fail = result.size() - success;
+		if(fail <= result.size() * 0.2) {
+			examAnswer = "매우 우수";
+		}
+		else if(fail <= result.size() * 0.4 && fail > result.size() * 0.2) {
+			examAnswer = "우수";
+		}
+		else if(fail <= result.size() / 2 && fail > result.size() * 0.4) {
+			examAnswer = "보통";
+		}
+		else {
+			examAnswer = "노력요함";
+		}
+		mypageInfo.setSubjecttitle("수학(중학교)");
+		mypageInfo.setSubjectlevel("빡세게 워밍업!!");
+		mypageInfo.setSubjectresult(examAnswer);
+		System.out.println("마이페이지 >> " + mypageInfo);
+		jpaMypage.save(mypageInfo);
+		mav.addObject("examAnswer", examAnswer);
+		mav.addObject("wrong", wrong);
+		mav.addObject("list", result);
+		mav.addObject("success", success);
+		mav.addObject("fail", fail);
+		mav.setViewName("book/resultMathMiddle");
 		return mav;
 	}
 	@RequestMapping(value = "/wrongEngPage")
