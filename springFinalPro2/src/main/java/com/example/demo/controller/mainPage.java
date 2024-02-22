@@ -417,5 +417,11 @@ public class mainPage {
 		mav.setViewName("admin/membership");
 		return mav;
 	}
+	@RequestMapping(value = "/customerQna")
+	public ModelAndView customerQna() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("admin/notice/customerQna");
+		return mav;
+	}
 }
 

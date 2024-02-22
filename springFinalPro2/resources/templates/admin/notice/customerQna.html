@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>공지사항</title>
+    <link rel="stylesheet" href="style/notice.css">
+</head>
+<body>
+<span class="teamTitle" onclick="location.href='index'">문제 뿌셔뿌셔!!</span>
+    <div class="board_wrap">
+        <div class="board_title">
+            <strong>공지 문의</strong>
+            <p>문의가 있으시면 글을 남겨주세요.</p>
+        </div>
+        <div id="board-search">
+            <div class="container">
+                <div class="search-window">
+                    <form action="">
+                        <div class="search-wrap">
+                       
+                            <input id="search" type="search" name="" placeholder="검색어를 입력해주세요." value="">
+                            <button type="submit" class="btn btn-dark">검색</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="board_list_wrap">
+            <div class="board_list">
+                <div class="top">
+                    <div class="num">번호</div>
+                    <div class="title">제목</div>
+                    <div class="writer">글쓴이</div>
+                    <div class="date">작성일</div>
+                    <div class="count">조회</div>
+                </div>
+                 <div th:each="list: ${noticelist}">
+                    <div class="num"></div>
+                    <div class="title"></div>
+                    <div class="writer"></div>
+                    <div class="date"></div>
+                    <div class="count"></div>
+                </div>
+            </div>
+            <div class="board_page">
+                <a href="#" class="bt first"><<</a>
+                <a href="#" class="bt prev"><</a>
+                <a href="#" class="num on">1</a>
+                <a href="#" class="num">2</a>
+                <a href="#" class="num">3</a>
+                <a href="#" class="num">4</a>
+                <a href="#" class="num">5</a>
+                <a href="#" class="bt next">></a>
+                <a href="#" class="bt last">>></a>
+            </div>
+            <div class="bt_wrap">
+               <button type = "submit"  class= "on" onclick =  "location.href='boardwrite'">등록</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 
