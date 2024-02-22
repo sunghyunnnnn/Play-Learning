@@ -23,7 +23,7 @@
 		</div>
 			
 	</div>
-	<h1 class="bookTitle etcTitle">수학 결과</h1>
+	<h1 class="bookTitle etcTitle">국어 결과</h1>
 	<hr class="pageLine">
 	<table class="resultTable">
 		<tr>
@@ -35,10 +35,10 @@
 		</tr>
 		<tr>
 			<td>중학생</td>
-			<td>수학</td>
+			<td>국어</td>
 			<td th:text = "${success} + ' / ' + ${list.size()}"></td>
 			<td>
-				<a th:href = "@{/wrongMathMiddlePage(wrong = ${wrong})}" th:text = "${wrong}"></a>
+				<a th:href = "@{/wrongKorMiddlePage(wrong = ${wrong})}" th:text = "${wrong}"></a>
 			</td>
 			<td th:text = "${examAnswer}"></td>
 		</tr>
