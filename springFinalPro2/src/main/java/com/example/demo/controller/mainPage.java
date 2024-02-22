@@ -12,9 +12,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.jpa.BoardRepo;
 import com.example.demo.jpa.CourseRepo;
+import com.example.demo.jpa.EngMiddleRepo;
 import com.example.demo.jpa.EngRepo;
 import com.example.demo.jpa.EngUpperRepo;
 import com.example.demo.jpa.JpaMemberRepository;
+import com.example.demo.jpa.KorMiddleRepo;
 import com.example.demo.jpa.KorRepo;
 import com.example.demo.jpa.KorUpperRepo;
 import com.example.demo.jpa.MathMiddleRepo;
@@ -30,9 +32,11 @@ import com.example.demo.jpa.freeTestRepo;
 
 import com.example.demo.vo.CourseVo;
 import com.example.demo.vo.EngBookVo;
+import com.example.demo.vo.EngMiddleBookVo;
 import com.example.demo.vo.EngUpperBookVo;
 import com.example.demo.vo.FreeBookVo;
 import com.example.demo.vo.KorBookVo;
+import com.example.demo.vo.KorMiddleBookVo;
 import com.example.demo.vo.KorUpperBookVo;
 import com.example.demo.vo.MathBookVo;
 import com.example.demo.vo.MathMiddleBookVo;
@@ -73,8 +77,11 @@ public class mainPage {
 	@Autowired
 	MathUpperRepo jpaMathUpper;
 	@Autowired
+	KorMiddleRepo jpaKorMiddle;
+	@Autowired
 	MathMiddleRepo jpaMathMiddle;
-	
+	@Autowired
+	EngMiddleRepo jpaEngMiddle;
 
 	
 	@RequestMapping(value="/index")
@@ -174,9 +181,9 @@ public class mainPage {
 	@RequestMapping(value="/korMiddleBook")
 	public ModelAndView korMiddleBook() {
 		ModelAndView mav = new ModelAndView();
-		List<KorUpperBookVo> korList = jpaKorUpper.findAll();
+		List<KorMiddleBookVo> korList = jpaKorMiddle.findAll();
 		mav.addObject("korList", korList);
-		mav.setViewName("book/korUpperBook");
+		mav.setViewName("book/korMiddleBook");
 		return mav;
 	}
 	@RequestMapping(value="/mathMiddleBook")
@@ -190,9 +197,9 @@ public class mainPage {
 	@RequestMapping(value="/engMiddleBook")
 	public ModelAndView engMiddleBook() {
 		ModelAndView mav = new ModelAndView();
-		List<KorUpperBookVo> korList = jpaKorUpper.findAll();
-		mav.addObject("korList", korList);
-		mav.setViewName("book/korUpperBook");
+		List<EngMiddleBookVo> engList = jpaEngMiddle.findAll();
+		mav.addObject("engList", engList);
+		mav.setViewName("book/engMiddleBook");
 		return mav;
 	}
 	
