@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>국어 문제 틀린 문제</title>
+<link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+	<div class="commonHederBar">
+		<span class="teamTitle indexTitle commonLogo" onclick="location.href='index'">문제 뿌셔뿌셔!!</span>
+		<div class="commonHederBar__info">
+				<div th:if="${session.login_number == null}" class="signin">
+					<span class = "signinBtn" style="margin-right: 50px" onclick="location.href='signin'">회원가입</span>
+					<span class = "signinBtn" style="margin-right: 30px" onclick="location.href='login'">로그인</span>
+					</div>
+			<div th:if ="${session.login_number != null}">
+				<span th:text = "${session.login_number.id} + ' 님 환영합니다.'"></span>
+				<span class="myPage" onclick="location.href='myPage'">마이페이지</span>
+				<a th:href="@{logoutControl}"
+				th:text=" '로그아웃' "></a>
+				<a th:if="${session.login_member != null}"></a>
+			</div>
+		</div>
+			
+	</div>
+	<h1 class="bookTitle etcTitle">영어 틀린 문제</h1>
+	<hr class="pageLine">
+	<form method="get" class="BookForm">
+		<div class="problemWrap" th:each="list : ${engList}">
+			<span class="listNo" th:text="${list.eng_no} + '. 글을 읽고 문제를 푸시오.'"></span>
+			<br>
+			<div class="problemSection">
+			<span class="listTitle"
+				  th:text="${list.eng_title}">
+			</span>
+			<span class="answerSection hiddenAnswer"></span>
+			<br>
+			
+			<label
+				th:for="${list.eng_inputname}">
+				<span class="no">1.</span>
+				<input type="radio"
+					   th:name="${list.eng_inputname}"
+					   th:value="${list.eng_items1}">
+				<span th:text="${list.eng_items1}"></span>
+			</label>
+			<br>
+			<label th:for="${list.eng_inputname}">
+				<span class="no">2.</span>
+				<input
+					type="radio" 
+					th:name="${list.eng_inputname}"
+					th:value="${list.eng_items2}">
+				<span th:text="${list.eng_items2}"></span>
+			</label>
+			<br>
+			<label th:for="${list.eng_inputname}">
+				<span class="no">3.</span>
+				<input
+					type="radio" 
+					th:name="${list.eng_inputname}"
+					th:value="${list.eng_items3}">
+				<span th:text="${list.eng_items3}"></span>
+			</label>
+			<br>
+			<label th:for="${list.eng_inputname}">
+				<span class="no">4.</span>
+				<input
+					type="radio" 
+					th:name="${list.eng_inputname}"
+					th:value="${list.eng_items4}">
+				<span th:text="${list.eng_items4}"></span>
+			</label>
+			<br>
+			<label th:for="${list.eng_inputname}">
+				<span class="no">5.</span>
+				<input
+					type="radio" 
+					th:name="${list.eng_inputname}"
+					th:value="${list.eng_items5}">
+				<span th:text="${list.eng_items5}"></span>
+			</label>
+			<br>
+			</div>
+		</div>
+		<div class="bookFormBtn">
+			<button class="sign_login_Button commonbtn book_commonBtn showAnswerBtn" type="button">정답보기</button>
+			<button class="sign_login_Button commonbtn book_commonBtn" type="button" onclick="location.href='index'">메인으로</button>
+		</div>
+	</form>
+	<script th:inline="javascript">
+		const answerSection = document.querySelectorAll('.answerSection');
+		const showAnswerBtn = document.querySelector('.showAnswerBtn');
+		console.log(answerSection);
+		let answerArr = [];
+		answerArr = [[${session.wrongEngAnswer}]];
+		
+		//console.log(wrongKorAnswer);
+		//querySelectorAll으로 접근할 시 배열로 접근해야한다.
+		const showAnswerFunc = () => {
+			for(let i = 0; i< answerSection.length; i++){
+				console.log('hello!!!');
+				answerSection[i].classList.toggle('hiddenAnswer');
+				answerSection[i].innerText = "정답 : " +answerArr[i];
+			}
+			if(showAnswerBtn.value === '정답보기'){
+				showAnswerBtn.value = '정답숨겨';
+			}
+			else{
+				showAnswerBtn.value = '정답보기';
+			}
+			
+		}
+		showAnswerBtn.addEventListener("click", showAnswerFunc);
+	</script>
+</body>
+</html>
