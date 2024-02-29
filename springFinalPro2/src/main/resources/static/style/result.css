@@ -1,0 +1,8 @@
+@charset "UTF-8";
+
+.resultTable{
+	display: flex;
+	justify-content: center;
+	border: none;
+	
+}

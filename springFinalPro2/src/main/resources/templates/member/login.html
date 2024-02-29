@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="ko">
+
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>로그인</title>
+<link rel="stylesheet" href="./style/login.css">
+<link rel="stylesheet" href="./style/signin.css" />
+</head>
+
+<body>
+	<div>
+	<span class="teamTitle" onclick="location.href='index'">문제
+			뿌셔뿌셔!!</span>
+		<div class="sign_login_wrap">
+			<h2 class="sign_login_Header">로그인 해주세요.</h2>
+
+
+            <!-- input도 inline요소중에 하나다. -->
+            <!-- inline이란 하나의 태그가 레코드(가로)방향을 모두 차지하는게 아니라, 자신이 속한 영역만 가지게 되는 것이다. -->
+     	<form action='loginControl' method='post'>
+            <label for="id">* 아이디<br>
+                <input type="text" name="id"><br><br>
+            </label>
+            <label for="pw">* 비밀번호<br>
+                <input class="pw" name="pw" type="password"><br><br>
+            </label>
+           <br><br><br><br>
+            
+
+			<button class="sign_login_Button commonbtn " type="submit">로그인 하기</button>
+            <br>
+            <br>
+            <button type="button" class="sign_login_Button commonbtn" onclick="location.href='memberFind'">계정 찾기</button>
+            <!-- 기능자체는 input의 타입을 button으로 하면 사용은 가능하지만, 굳이 button 태그를 사용하는 이유는 -->
+            <!-- 커스터마이징이 button 태그가 더 용이하기 때문이다. -->
+            <!-- <input type="button" value="가입하기"> -->
+	    </form>
+        </div>
+       
+
+    </div>
+        <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+        
+
+<script>
+function oninputPhone(target) {
+    target.value = target.value
+        .replace(/[^0-9]/g, '')
+        .replace(/(^02.{0}|^01.{1}|[0-9]{3,4})([0-9]{3,4})([0-9]{4})/g, "$1-$2-$3");
+}
+
+	$(document).ready(function() {
+		let message = "[[${msg}]]";
+		if (message != "") {
+			alert(message);
+		}else {
+			
+		}
+	})
+    
+</script>
+</body>
+
+</html>

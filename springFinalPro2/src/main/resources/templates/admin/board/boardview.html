@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시판</title>
+    <link rel="stylesheet" href="style/notice.css">
+</head>
+<body>
+    <div class="board_wrap">
+        <div class="board_title">
+            <strong>게시판</strong>
+             <p>​익명성을 기반으로 하는 인터넷 공간의 특성을 악용하여 타인에게 모욕을 주는 사이버 폭력은<br> 
+           			 상대방에게 깊은 정신적인 상처를 남길 수 있으며 이를 보는 다른 사람도 불쾌감을 느낄 수 있습니다.</p>
+        </div>
+        <div class="board_view_wrap">
+            <div class="board_view">
+                <div class="title">
+                     <dl>
+                       
+                        <dd th:text="${list.title}"></dd>
+                    </dl>
+                </div>
+                <div class="info">
+                    <dl>
+                        <dt>번호</dt>
+                        <dd th:text="${list.numbers}"></dd>
+                    </dl>
+                    
+                    <dl>
+                        <dt>글쓴이</dt>
+                        <dd th:text="${list.writer}"></dd>
+                    </dl>
+                    <dl>
+                        <dt>작성일</dt>
+                        <dd th:text="${list.writedate}"></dd>
+                    </dl>
+                    <dl>
+                        <dt>조회</dt>
+                        <dd th:text="${list.views}"></dd>
+                    </dl>
+                </div>
+                <div class="cont">
+                   
+                    <dd th:text="${list.writetext}"></dd>
+                </div>
+            </div>
+            <div class="bt_wrap">
+                <button type= "button" class="on" onclick =  "location.href='board'" >목록</button>
+                <button type= "button"  onclick =  "location.href='boardeit'" >수정</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="style/style.css"> 
+</head>
+<body style="text-align: center; margin-top: 100px;">
+
+	<h2>승인 페이지</h2>
+	<form action="allmemberControl" method="post">
+	<table >
+		<tr>
+			<th style="text-align: center">
+				이름
+			</th>
+			<th style="text-align: center">
+				아이디
+			</th>
+			<th style="text-align: center">
+				전화번호
+			</th>
+			<th style="text-align: center">
+				주소
+			</th>
+			<th style="text-align: center">
+				생년월일
+			</th>
+			<th style="text-align: center">
+				등급
+			</th>
+		
+		</tr>
+	<div th:each="list:${membership}">
+		<tr th:if="${list.users=='일반유저'||list.users=='프리미엄 유저'}">
+			<td>
+				
+					<span th:text="${list.name}">
+					</span>
+					
+			</td>
+			<td>
+				
+					<span th:text="${list.id}">
+					</span>
+					
+			</td>
+			<td>
+				
+					<span th:text="${list.phonenum}">
+					</span>
+					
+			</td>
+			<td>
+				
+					<span th:text="${list.birth}">
+					</span>
+					
+			</td>
+			<td>
+				
+					<span th:text="${list.address}">
+					</span>
+					
+			</td>
+			<td>
+					<span th:text="${list.users}">
+					</span>
+				
+			</td>
+		</tr>
+	</div>
+	</table>
+	
+		
+	</form>
+	<span class="teamTitle" onclick="location.href='admin' "style="position: fixed; left:1700px; top: 0px;">문제 뿌셔뿌셔!!</span>
+	
+
+</body>
+</html>

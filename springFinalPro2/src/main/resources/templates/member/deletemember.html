@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+
+<div>
+<span class="teamTitle" onclick="location.href='index'" style="position: fixed; left:1700px;">문제 뿌셔뿌셔!!</span>
+			<div id="sidebar" style="position: relative; bottom: 0px;">
+						<div class="inner" >
+
+							<!-- Search -->
+								<section id="search" class="alt">
+									<form method="get" action="searchPage">
+										<input type="text" id="search" name="search"
+										placeholder="검색어를 입력하세요">
+										<button class="searchBtn"></button>
+									</form>
+								</section>
+
+<div th:if ="${session.login_number != null}">
+	<span th:text = "${session.login_number.id} + ' 님 환영합니다.'"></span>
+	<span class="myPage">마이페이지</span>
+	<a th:href="@{logoutControl}"
+	th:text=" '로그아웃' "></a>
+	<a th:if="${session.login_member != null}"></a>
+	
+</div>
+							<!-- Menu -->
+								<nav id="menu">
+									<header class="major">
+										<h2>메뉴</h2>
+									</header>
+									<ul>
+										<li>
+											<span class="opener">내정보</span>
+											<ul>
+												<li><a href="#">정보 수정</a></li>
+												<li><a href="#">등업 신청</a></li>
+												<li><a href="#">내가 푼 문제</a></li>
+												<li><a href="#">회원 탈퇴</a></li>
+											
+											</ul>
+										</li>
+										<li>
+											<span class="opener">커뮤니티</span>
+											<ul>
+												<li><a href="#">게시판</a></li>
+												<li><a href="#">공지사항</a></li>
+                                               
+											
+											</ul>
+										</li>
+										<li>
+											<span class="opener">쉬우면 통계</span>
+											<ul>
+												<li><a href="#">성적 오름 현황</a></li>
+												<li><a href="#">출석 현황</a></li>
+											</ul>
+										</li>
+										<li>
+											<span class="opener">고객 지원</span>
+											<ul>
+												<li><a href="#">고객 문의</a></li>
+											</ul>
+										</li>
+								</nav>
+
+							<!-- Section -->
+								<section>
+									<header class="major">
+										<h2>해주세요</h2>
+									</header>
+									<div class="mini-posts">
+										<article>
+											<a href="#" class="image"><img src="img/indexImg/pic07.jpg" alt="" /></a>
+											<strong>문제를 풀어주세요</strong><br>
+											<p>국어/영어/수학</p>
+										</article>
+										<article>
+											<a href="#" class="image"><img src="img/indexImg/pic08.jpg" alt="" /></a>
+											<strong>소통왕이 되어주세요</strong><br>
+											<p>게시판으로 순간이동</p>
+										</article>
+										<article>
+											<a href="#" class="image"><img src="img/indexImg/pic09.jpg" alt="" /></a>
+											<strong>문제가 생겼어요</strong><br>
+											<p>문의 하러 가기</p>
+										</article>
+									</div>
+									<ul class="actions">
+										<li><a href="/adminlogin" class="button">admin</a></li>
+									</ul>
+								</section>
+
+							<!-- Section -->
+								<section>
+									<header class="major">
+										<h2>회사 소개</h2>
+									</header>
+									<p>안녕하세요. 이 사이트는 현기원 성현 김미정의 <strong>피, 땀, 눈물</strong>로 이루어진 학생 문제 제공 사이트입니다. 저희 생각보다 많이 힘들었습니다.....   귀엽게. 예쁘게 봐주세요. 아잉뿌잉뀨잉</p>
+									<ul class="contact">
+										<li class="icon solid fa-envelope"><a href="#">2303110239@office.kopo.ac.kr</a></li>
+										<li class="icon solid fa-envelope"><a href="#">2303110248@office.kopo.ac.kr</a></li>
+										<li class="icon solid fa-envelope"><a href="#">2303110266@office.kopo.ac.kr</a></li>
+										<li class="icon solid fa-phone">(031) 739-4000</li>
+										<li class="icon solid fa-home">경기도 성남시 수정구 수정로 398 드림관 2층 데이터 분석 실습실<br />
+										</li>
+									</ul>
+								</section>
+	<div class="sign_login_wrap" style="position: fixed; top: 480px; left: 1050px;">
+		<div class="signForm" style="position:fixed; bottom: 300px; left: 100px;">
+			<h2 class="sign_login_Header">회원 탈퇴를 위해<br>비밀번호를 입력해 주세요.</h2>
+			
+			<form class="sign_login_form" action="deletememberControl" method="post" > 
+			<p>
+			<input type="hidden" th:value="${session.login_number.id}" name="id">
+			<input class="pw" type="password" name="pw" placeholder="Password" required="required">
+			</p>
+			<p>
+			<input class="pw2" type="password" name="pw2" placeholder="Check Password" required="required">
+			<span class = "check"></span>
+			</p>
+			<br>
+			<br>
+			<button class="delete_btn" type="submit">회원 탈퇴 완료</button>
+			
+			</form>
+		</div>
+	</div>
+</div>
+<script th:inline="javascript">
+
+	const pw = document.querySelector(".pw");
+	const pw2 = document.querySelector(".pw2");
+	const delete_btn = document.querySelector(".delete_btn");
+	console.log(delete_btn)
+	const funcChange = () => {
+		if(pw.value===pw2.value) {
+			alert("탈퇴 성공")
+			
+		}else {
+			
+			alert("비밀번호가 다릅니다.")
+			pw.value = "";
+			pw2.value = "";
+		}
+				
+	}
+	delete_btn.addEventListener("click", funcChange);
+
+</script>
+<script src="https://kit.fontawesome.com/86bc6866a5.js"
+			crossorigin="anonymous"></script>
+			<script src="js/jquery.min.js"></script>
+			<script src="js/browser.min.js"></script>
+			<script src="js/breakpoints.min.js"></script>
+			<script src="js/util.js"></script>
+			<script src="js/main.js"></script>
+</body>
+</html>

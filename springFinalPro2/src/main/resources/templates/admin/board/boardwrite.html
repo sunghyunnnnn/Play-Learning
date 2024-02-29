@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시판</title>
+    <link rel="stylesheet" href="style/notice.css">
+</head>
+<body>
+<span class="teamTitle" onclick="location.href='index'">문제 뿌셔뿌셔!!</span>
+    <div class="board_wrap">
+        <div class="board_title">
+            <strong>게시판</strong>
+            <p>​익명성을 기반으로 하는 인터넷 공간의 특성을 악용하여 타인에게 모욕을 주는 사이버 폭력은<br> 
+            상대방에게 깊은 정신적인 상처를 남길 수 있으며 이를 보는 다른 사람도 불쾌감을 느낄 수 있습니다.</p>
+        </div>
+        <form method="post" action="boardregister">
+        <div class="board_write_wrap">
+            <div class="board_write">
+                <div class="title">
+                 <dl>
+                 
+                        <dt>번호</dt>
+                        <dd><input type="text" name = "numbers" placeholder="번호"></dd>
+                    </dl>
+                    <dl>
+                        <dt>제목</dt>
+                        <dd><input type="text" name = "title" placeholder="제목 입력"></dd>
+                    </dl>
+                </div>
+                <div class="info">
+                    <dl>
+                        <dt>글쓴이</dt>
+                        <dd><input type="text" name = "writer" placeholder="글쓴이"></dd>
+                    </dl>
+                    <dl>
+                        <dt>날짜</dt>
+                        <dd><input name = "writedate" type="date"></dd>
+                    </dl>
+                </div>
+                <div class="cont">
+                    <textarea name = "writetext" placeholder="내용 입력"></textarea>
+                </div>
+            </div>
+          
+             <div class="bt_wrap">
+                <button type = "submit"  class= "on">등록</button>
+                <button type= "button" onclick =  "location.href='board'" >목록</button>
+            </div>
+            
+        </div>
+    </div>
+    </form>
+
+</body>
+</html>
