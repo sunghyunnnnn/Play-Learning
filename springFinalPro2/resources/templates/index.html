@@ -324,8 +324,8 @@
 												 <a class="loginError" th:if="${session.indexCk == null}">정보 수정</a>
 											</li>
 											<li><a class="payError">결제 하기</a></li>
-											<li><a href="wrongsolve">오답 풀이</a></li>
-											<li><a href="levelup">임시 관리자 승인 페이지</a></li>
+											<li><a class="wrongError" th:if="${session.indexCk == true}" th:href = "@{./wrongsolve(id = ${session.login_number.id})}">오답 풀이</a></li>
+												<a class="wrongError" th:if="${session.indexCk == null}">오답 풀이</a>
 											 <li>
                                        <a th:if="${session.indexCk == true}" th:href = "@{./deletememberControl(id = ${session.login_number.id})}">회원 탈퇴</a>
                                        <a class="deleteError" th:if="${session.indexCk == null}">회원 탈퇴</a>
@@ -335,7 +335,7 @@
 										</ul>
 										</li>
 										<li>
-											<span class="opener">커뮤니티!</span>
+											<span class="opener">커뮤니티</span>
 											<ul>
 												<li><a href="board">게시판</a></li>
 												<li><a href="usernotice">공지사항</a></li>
@@ -343,13 +343,7 @@
 											
 											</ul>
 										</li>
-										<li>
-											<span class="opener">통계</span>
-											<ul>
-												<li><a href="#">성적 오름 현황</a></li>
-												<li><a href="#">출석 현황</a></li>
-											</ul>
-										</li>
+										
 										<li>
 											<span class="opener">고객 지원</span>
 											<ul>
@@ -441,6 +435,7 @@
 				const problemMathMiddleBtn = document.querySelector(".problemMathMiddleBtn");
 				const problemEngMiddleBtn = document.querySelector(".problemEngMiddleBtn");
 				
+				const wrongError = document.querySelector(".wrongError");
 				const loginError = document.querySelector(".loginError");
 				const deleteError = document.querySelector(".deleteError");
 				const mypage = document.querySelector(".myPage");
@@ -555,6 +550,7 @@
 						alert('로그인 하셈!!!');
 					}
 				}
+				
 				const clickProblemMathMiddleBtn = () =>{
 					if(indexCk === true){
 						location.href = 'mathMiddleBook';					
@@ -612,7 +608,12 @@
 					}
 					pay.addEventListener('click', clickpayError);
 				}
-				
+				if(!indexCk){
+					const clickwrongError = () => {
+						alert('서비스를 이용하고 싶으시면 로그인 해주세요.');
+					}					
+					wrongError.addEventListener('click', clickwrongError);
+				} 
 				problemKorBtn.addEventListener('click', clickProblemKorBtn);			
 				problemEngBtn.addEventListener('click', clickProblemEngBtn);			
 				problemMathBtn.addEventListener('click', clickProblemMathBtn);
@@ -624,6 +625,7 @@
 				problemKorMiddleBtn.addEventListener('click', clickProblemKorMiddleBtn);
 				problemMathMiddleBtn.addEventListener('click', clickProblemMathMiddleBtn);
 				problemEngMiddleBtn.addEventListener('click', clickProblemEngMiddleBtn);
+				
 			  </script>
 	  
 	</body>
