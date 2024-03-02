@@ -320,8 +320,7 @@
 										<ul>
 											<li>
 												<a th:if="${session.indexCk == true}" th:href = "@{./memberchangeControl(id = ${session.login_number.id})}">정보 수정</a>
-												
-												 <a class="loginError" th:if="${session.indexCk == null}">정보 수정</a>
+												<a class="loginError" th:if="${session.indexCk == null}">정보 수정</a>
 											</li>
 											<li><a class="payError">결제 하기</a></li>
 											<li><a href="wrongsolve">오답 풀이</a></li>
@@ -366,17 +365,17 @@
 									</header>
 									<div class="mini-posts">
 										<article >
-											<a href="#" class="image"><img src="img/indexImg/pic07.jpg" alt="" /></a>
+											<a href="#" class="image"><img src="img/indexImg/boardimg.jpg" alt="" /></a>
 											<strong>문제를 풀어주세요</strong><br>
 											<p>국어/영어/수학</p>
 										</article>
 										<article>
-											<a href="#" class="image"><img src="img/indexImg/pic08.jpg" alt="" /></a>
+											<a href="#" class="image"><img src="img/indexImg/godimg.jpg" alt="" /></a>
 											<strong>소통왕이 되어주세요</strong><br>
 											<p>게시판으로 순간이동</p>
 										</article>
 										<article>
-											<a href="#" class="image"><img src="img/indexImg/pic09.jpg" alt="" /></a>
+											<a href="#" class="image"><img src="img/indexImg/questionimg.jpg" alt="" /></a>
 											<strong>문제가 생겼어요</strong><br>
 											<p>문의 하러 가기</p>
 										</article>
@@ -444,6 +443,7 @@
 				const loginError = document.querySelector(".loginError");
 				const deleteError = document.querySelector(".deleteError");
 				const mypage = document.querySelector(".myPage");
+				
 				const bestTxtSwiper = new Swiper(".best-txt-slider", {
 				  autoplay: {
 					delay: 4000,
@@ -596,16 +596,19 @@
 					}					
 					loginError.addEventListener('click', clickloginError);
 				}
+				
 				if(!indexCk){
 					const clickdeleteError = () => {
 						alert('서비스를 이용하고 싶으시면 로그인 해주세요.');
 					}					
 					deleteError.addEventListener('click', clickdeleteError);
 				}
+				
 				if(indexCk){
 					mypage.addEventListener('click', clickFunc);
 					pay.addEventListener('click', clickpayment);
 				}
+				
 				if(!indexCk) {
 					const clickpayError = () => {
 						alert('서비스를 이용하고 싶으시면 로그인 해주세요.');
