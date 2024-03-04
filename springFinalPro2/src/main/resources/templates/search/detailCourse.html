@@ -1,18 +1,370 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" href="style/style.css">
-</head>
-<body>
-<span class="teamTitle" onclick="location.href='index'">문제 뿌셔뿌셔</span>
-	<div class="detailSection">
-		<video th:src="${item.videosrc}" controls="controls"></video>
-		<span th:text = "'제목 : '+${item.title}"></span>
-		<span th:text = "'강의대상 : ' + ${item.target}"></span>
-		<span th:text = "'강의난이도 : ' + ${item.courselevel}"></span>
-		<span th:text = "'설명 : ' + ${item.description}"></span>
-	</div>
+	<head>
+		<title>검색디테일</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="style/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a href="index.html" class="logo"><strong>검색</strong> 뿌셔뿌셔</a>
+									<ul class="icons">
+										<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+										<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+										<li><a href="#" class="icon brands fa-snapchat-ghost"><span class="label">Snapchat</span></a></li>
+										<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+									
+									</ul>
+								</header>
+
+							<!-- Content -->
+								<section>
+									<header class="main">
+										<h1>검색 결과</h1>
+									</header>
+
+									<span class="image main"><video th:src="${item.videosrc}" controls="controls"></video></span>
+
+									
+									<hr class="major" />
+									<h2>제목</h2>
+									<p><span th:text = "${item.title}"></span></p>
+									
+
+									<hr class="major" />
+									<h2>강의대상</h2>
+									<p><span th:text = "${item.target}"></span></p>
+
+									<hr class="major" />
+									<h2>강의 난의도</h2>
+									<p><span th:text = "${item.courselevel}"></span></p>
+									
+									<hr class="major" />
+									<h2>설명</h2>
+									<p><span th:text = "${item.description}"></span></p>
+								</section>
+
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+				<div id="sidebar">
+					<div class="inner">
+
+						<!-- Search -->
+							<section id="search" class="alt">
+								<form method="get" action="searchPage">
+									<input type="text" id="search" name="search"
+									placeholder="검색어를 입력하세요">
+									<button class="searchBtn"></button>
+								</form>
+							</section>
+
+							<!-- Search -->
+								
+							<!-- Menu -->
+								<nav id="menu">
+									<header class="major">
+										<h2>비슷한 강의</h2>
+									</header>
+									<div class="mini-posts">
+										<article >
+											<a href="#" class="image"><img src="img/indexImg/boardimg.jpg" alt="" /></a>
+											<strong>문제를 풀어주세요</strong><br>
+											<p>국어</p>
+										</article>
+										<article>
+											<a href="#" class="image"><img src="img/indexImg/godimg.jpg" alt="" /></a>
+											<strong>소통왕이 되어주세요</strong><br>
+											<p>영어</p>
+										</article>
+										<article>
+											<a href="#" class="image"><img src="img/indexImg/questionimg.jpg" alt="" /></a>
+											<strong>문제가 생겼어요</strong><br>
+											<p>수학</p>
+										</article>
+									</div>
+								</section>
+
+							
+							<!-- Section -->
+							<section>
+								<header class="major">
+									<h2>추천 강의</h2>
+								</header>
+								<div class="mini-posts">
+									<article >
+										<a href="#" class="image"><img src="img/indexImg/boardimg.jpg" alt="" /></a>
+										<strong>문제를 풀어주세요</strong><br>
+										<p>국어</p>
+									</article>
+									<article>
+										<a href="#" class="image"><img src="img/indexImg/godimg.jpg" alt="" /></a>
+										<strong>소통왕이 되어주세요</strong><br>
+										<p>영어</p>
+									</article>
+									<article>
+										<a href="#" class="image"><img src="img/indexImg/questionimg.jpg" alt="" /></a>
+										<strong>문제가 생겼어요</strong><br>
+										<p>수학</p>
+									</article>
+								</div>
+								
+							</section>
+
+						<!-- Section -->
+							<section>
+								<header class="major">
+									<h2>회사 소개</h2>
+								</header>
+								<p>안녕하세요. 이 사이트는 현기원 성현 김미정의 <strong>피, 땀, 눈물</strong>로 이루어진 학생 문제 제공 사이트입니다. 저희 생각보다 많이 힘들었습니다.....   귀엽게. 예쁘게 봐주세요. 아잉뿌잉뀨잉</p>
+								<ul class="contact">
+									<li class="icon solid fa-envelope"><a href="#">2303110239@office.kopo.ac.kr</a></li>
+									<li class="icon solid fa-envelope"><a href="#">2303110248@office.kopo.ac.kr</a></li>
+									<li class="icon solid fa-envelope"><a href="#">2303110266@office.kopo.ac.kr</a></li>
+									<li class="icon solid fa-phone">(031) 739-4000</li>
+									<li class="icon solid fa-home">경기도 성남시 수정구 수정로 398 드림관 2층 데이터 분석 실습실<br />
+									</li>
+								</ul>
+							</section>
+
+						<!-- Footer -->
+							<footer id="footer">
+								<p class="copyright">&copy; (주) 뿌셔뿌셔 Corp. All rights reserved. <br>Design: <a href="https://html5up.net">성현 & HTML5UP</a>.</p>
+							</footer>
+
+					</div>
+				</div>
+
+		</div>
+		<!-- Scripts -->
+		<script src="https://kit.fontawesome.com/86bc6866a5.js"
+		crossorigin="anonymous"></script>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/browser.min.js"></script>
+		<script src="js/breakpoints.min.js"></script>
+		<script src="js/util.js"></script>
+		<script src="js/main.js"></script>
+		
+		<script th:inline="javascript">
+			let indexCk = false;
+			indexCk = [[${session.indexCk}]];
+			console.log(indexCk);
+			
+			const pay = document.querySelector(".payError");
+			const gender = document.querySelector(".girlandboy");
+			
+			const problemKorBtn = document.querySelector(".problemKorBtn");
+			const problemMathBtn = document.querySelector(".problemMathBtn");
+			const problemEngBtn = document.querySelector(".problemEngBtn");
+			
+			const problemKorUpperBtn = document.querySelector(".problemKorUpperBtn");
+			const problemMathUpperBtn = document.querySelector(".problemMathUpperBtn");
+			const problemEngUpperBtn = document.querySelector(".problemEngUpperBtn");
+			
+			const problemKorMiddleBtn = document.querySelector(".problemKorMiddleBtn");
+			const problemMathMiddleBtn = document.querySelector(".problemMathMiddleBtn");
+			const problemEngMiddleBtn = document.querySelector(".problemEngMiddleBtn");
+			
+			const loginError = document.querySelector(".loginError");
+			const deleteError = document.querySelector(".deleteError");
+			const mypage = document.querySelector(".myPage");
+			const bestTxtSwiper = new Swiper(".best-txt-slider", {
+			  autoplay: {
+				delay: 4000,
+				disableOnInteraction: false,
+			  },
+			  effect: "fade",
+			  loop: true,
+			  allowTouchMove: false,
+			});
+		
+
+			const bestSwiper = new Swiper(".best-slider", {
+			  autoplay: {
+				delay: 4000, // bestTxtSwiper와 동일하게 설정
+				disableOnInteraction: false,
+			  },
+			  slidesPerView: 1.4,
+			  loop: true,
+			  navigation: {
+				nextEl: ".best-slider .swiper-button-next",
+				prevEl: ".best-slider .swiper-button-prev",
+			  },
+			  on: {
+				slideChangeTransitionStart: function () {
+				  const realIndex = bestSwiper.realIndex;
+				  let targetIndex = realIndex;
+		
+				  bestTxtSwiper.slideTo(targetIndex);
+				  bestTxtSwiper.update(); // swiper 업데이트
+				},
+				slideNextTransitionStart: function () {
+				  bestTxtSwiper.autoplay.stop();
+				},
+				slidePrevTransitionStart: function () {
+				  bestTxtSwiper.autoplay.stop();
+				},
+				slideChangeTransitionEnd: function () {
+				  bestTxtSwiper.autoplay.start();
+				},
+			  },
+			});
+			
+			const clickFunc = () => {
+				
+				
+				if(indexCk){
+					let id = [[${session.loginId}]];
+					location.href = `/myPage?id=${id}`
+				}
+				else{
+					console.log('마이페이지 안가짐');
+				}
+			}
+			
+			const clickProblemKorBtn = () =>{
+				if(indexCk === true){
+					location.href = 'korBook';					
+				}
+				else{
+					alert('로그인 하셈!!!');
+				}
+			}
+			const clickProblemEngBtn = () =>{
+				if(indexCk === true){
+					location.href = 'engBook';					
+				}
+				else{
+					alert('로그인 하셈!!!');
+				}
+			}
+			const clickProblemMathBtn = () =>{
+				if(indexCk === true){
+					location.href = 'mathBook';					
+				}
+				else{
+					alert('로그인 하셈!!!');
+				}
+			}
+			const clickProblemKorUpperBtn = () =>{
+				if(indexCk === true){
+					location.href = 'korUpperBook';					
+				}
+				else{
+					alert('로그인 하셈!!!');
+				}
+			}
+			const clickProblemMathUpperBtn = () =>{
+				if(indexCk === true){
+					location.href = 'mathUpperBook';					
+				}
+				else{
+					alert('로그인 하셈!!!');
+				}
+			}
+			const clickProblemEngUpperBtn = () =>{
+				if(indexCk === true){
+					location.href = 'engUpperBook';					
+				}
+				else{
+					alert('로그인 하셈!!!');
+				}
+			}
+			
+			const clickProblemKorMiddleBtn = () =>{
+				if(indexCk === true){
+					location.href = 'korMiddleBook';					
+				}
+				else{
+					alert('로그인 하셈!!!');
+				}
+			}
+			const clickProblemMathMiddleBtn = () =>{
+				if(indexCk === true){
+					location.href = 'mathMiddleBook';					
+				}
+				else{
+					alert('로그인 하셈!!!');
+				}
+			}
+			const clickProblemEngMiddleBtn = () =>{
+				if(indexCk === true){
+					location.href = 'engMiddleBook';					
+				}
+				else{
+					alert('로그인 하셈!!!');
+				}
+			}
+			
+			const clickpayment = () =>{
+				if(indexCk === true){
+					let id = [[${session.loginId}]];
+					location.href = `payment?id=${id}`;					
+				}
+				else{
+					alert('로그인 하셈!!!');
+				}
+			}
+			let sex = [[${login_boyandgirl}]]
+			
+			if(sex==="여") {
+				gender.src = "./img/indexImg/girl.png"
+			}else if(sex==="남") {
+				gender.src = "./img/indexImg/boy.png"
+			}
+			
+			
+			if(!indexCk){
+				const clickloginError = () => {
+					alert('서비스를 이용하고 싶으시면 로그인 해주세요.');
+				}					
+				loginError.addEventListener('click', clickloginError);
+			}
+			if(!indexCk){
+				const clickdeleteError = () => {
+					alert('서비스를 이용하고 싶으시면 로그인 해주세요.');
+				}					
+				deleteError.addEventListener('click', clickdeleteError);
+			}
+			if(indexCk){
+				mypage.addEventListener('click', clickFunc);
+				pay.addEventListener('click', clickpayment);
+			}
+			if(!indexCk) {
+				const clickpayError = () => {
+					alert('서비스를 이용하고 싶으시면 로그인 해주세요.');
+				}
+				pay.addEventListener('click', clickpayError);
+			}
+			
+			problemKorBtn.addEventListener('click', clickProblemKorBtn);			
+			problemEngBtn.addEventListener('click', clickProblemEngBtn);			
+			problemMathBtn.addEventListener('click', clickProblemMathBtn);
+			
+			problemKorUpperBtn.addEventListener('click', clickProblemKorUpperBtn);
+			problemMathUpperBtn.addEventListener('click', clickProblemMathUpperBtn);
+			problemEngUpperBtn.addEventListener('click', clickProblemEngUpperBtn);
+			
+			problemKorMiddleBtn.addEventListener('click', clickProblemKorMiddleBtn);
+			problemMathMiddleBtn.addEventListener('click', clickProblemMathMiddleBtn);
+			problemEngMiddleBtn.addEventListener('click', clickProblemEngMiddleBtn);
+		  </script>
+  
 </body>
 </html>
