@@ -129,12 +129,12 @@ section {
 }
 
 .searchBtn{
+
 	
-	width: 2px;
 	heigth: 5px;
 	position: relative;
-	left: 274px;
-	bottom: 43px;
+	left: 140px;
+	bottom: 45.5px;
 }
 ol,
 ul {
@@ -2154,6 +2154,7 @@ button.large,
   height: 3.65em;
   line-height: 3.65em;
 }
+
 input[type="submit"].primary,
 input[type="reset"].primary,
 input[type="button"].primary,
@@ -2190,7 +2191,6 @@ button:disabled,
   pointer-events: none;
   opacity: 0.25;
 }
-
 /* Mini Posts */
 .mini-posts article {
   border-top: solid 1px rgba(210, 215, 217, 0.75);
@@ -2969,13 +2969,13 @@ button:disabled,
 }
 #menu ul a,
 #menu ul span {
-  border-bottom: 0;	
+  border-bottom: 0;
+  color: inherit;
   cursor: pointer;
   display: block;
-  font-size: 1.2em;
-  font-family: "Black Han Sans", sans-serif;
-  font-style: normal;
+  font-size: 0.9em;
   padding: 0.625em 0;
+  font-family: "Black Han Sans", sans-serif;
 }
 #menu ul a:hover,
 #menu ul span:hover {
@@ -3000,7 +3000,7 @@ button:disabled,
   font-variant: normal;
   text-rendering: auto;
   line-height: 1;
-  text-transform: none;
+  text-transform: none !important;
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
 }
@@ -3044,7 +3044,7 @@ button:disabled,
 }
 #menu > ul > li > ul a,
 #menu > ul > li > ul span {
-  font-size: 1.2em;
+  font-size: 0.8em;
 }
 #menu > ul > li > ul > li {
   margin: 0.125em 0 0 0;
@@ -3056,6 +3056,4 @@ button:disabled,
   padding-top: 0;
 }
 
-.button{
-	box-shadow: inset 0 0 0 2px #f56a6a;
-}
+
