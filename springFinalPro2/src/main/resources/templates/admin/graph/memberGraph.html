@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="style/style.css">
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+    	let total = [[${total}]];
+    	let man = [[${manCnt}]];
+    	let girl = [[${girlCnt}]];
+        // 어떤 그래프를 사용할지 지정 ------ (※2)  
+        google.load('visualization', '1.0', {
+            'packages': ['corechart']
+        });
+        // 그래프API로드가 완료되면 실행할 수 있도록 이벤트를 지정 ---- (※3)  
+        google.setOnLoadCallback(drawChart1);
+
+        // 차트 그리기를 실행 --- (※4)  
+        function drawChart1() {
+            // 데이터오브젝트를 작성 --- (※5)    
+            var data = new google.visualization.DataTable();
+
+            // 데이터의 컬럼을 지정 -------- (※6)    
+            data.addColumn('string', '인물');
+            data.addColumn('number', '현황');
+
+            // 실제 데이터를 지정 ------------- (※7)    
+            data.addRows([
+                ['총원', total],
+                ['남자', man],
+                ['여자', girl],
+            ]);
+
+            // 그래픽의 옵션을 지정 ------- (※8)    
+            var opt = {
+                
+                'width': 1200,
+                'height': 900,
+            };
+            // 그래프를 표시 ------------- (※9)    
+            var chart = new google.visualization.BarChart( // ***Chart
+                document.getElementById('chart_div'));
+            chart.draw(data, opt);
+        }
+        google.load('visualization', '1.0', {
+            'packages': ['corechart']
+        });
+        
+        // 그래프API로드가 완료되면 실행할 수 있도록 이벤트를 지정 ---- (※3)  
+        google.setOnLoadCallback(drawChart2);
+
+        // 차트 그리기를 실행 --- (※4)  
+        function drawChart2() {
+            // 데이터오브젝트를 작성 --- (※5)    
+            var data = new google.visualization.DataTable();
+            // 데이터의 컬럼을 지정 -------- (※6)    
+            data.addColumn('string', '인물');
+            data.addColumn('number', '매출 현황');
+            // 실제 데이터를 지정 ------------- (※7)    
+            data.addRows([
+                ['총매출', total],
+                ['프리미엄 매출', man],
+                ['일반 매출', girl],
+            ]);
+
+            // 그래픽의 옵션을 지정 ------- (※8)    
+            var opt = {
+                'width': 1200,
+                'height': 900,
+            };
+            // 그래프를 표시 ------------- (※9)    
+            var chart = new google.visualization.BarChart( // ***Chart
+                document.getElementById('chart_div2'));
+            chart.draw(data, opt);
+        }
+    </script>
+</head>
+<body>
+<div class="commonHederBar">
+	<span class="teamTitle indexTitle commonLogo" onclick="location.href='index'">문제 뿌셔뿌셔!!</span>
+</div>
+<h1 class="memberGraph">회원 가입 현황</h1>
+<div id="chart_div"></div>
+<h1 class="memberGraph">매출 현황</h1>
+<div id="chart_div2"></div>
+</body>
+</html>
