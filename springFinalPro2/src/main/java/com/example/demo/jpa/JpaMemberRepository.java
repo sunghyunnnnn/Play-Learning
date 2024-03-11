@@ -20,4 +20,10 @@ public String selectMemberId2(@Param(value = "na") String name);
 public String selectMemberId3(@Param(value = "na") String email);
 @Query(value = "select id from member")
 public List<String> selectMemberId();
+@Query(value = "select count(id) from member")
+public int selectCountById();
+@Query(value = "select count(id) from member where sex = '남'")
+public int selectCountByman();
+@Query(value = "select count(id) from member where sex = '여'")
+public int selectCountBygirl();
 }

@@ -10,9 +10,8 @@
 @import "analyze.css";
 @import "light_korea.css";
 @import "book.css";
-
-
 @import "payment.css";
+@import "graph.css";
 
 :root {
     --bg: #fff;

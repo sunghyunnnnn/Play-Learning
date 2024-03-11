@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+.memberGraph{
+	display: flex;
+	justify-content: center;
+	position: relative;
+	top: 50px;
+}
+#chart_div, #chart_div2{
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-content: center;
+
+}
