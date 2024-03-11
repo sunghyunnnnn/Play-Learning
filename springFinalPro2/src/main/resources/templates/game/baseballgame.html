@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    </head>
+<style>
+@charset "UTF-8";
+
+#game_title {
+	font-size: 30px;
+	text-align: center;  
+	margin: auto;
+	width: 50%;
+	border: 3px solid green;
+	padding: 10px;
+	margin: auto;
+	text-align: center;
+}
+
+#game_rule {
+	width: 50%;
+	border: 3px solid green;
+	padding: 10px;
+	margin: auto;
+	width: 50%;
+}
+
+#game_rule .rule{
+	font-size: 25px;
+	
+}
+
+#game_board {
+	text-align: center;
+	width: 50%;
+	border: 3px solid green;
+	padding: 10px;
+	margin: auto;
+	width: 50%;
+}
+
+#game_board input {
+	margin-top: 20px;
+	padding: auto;
+	width: 40px; 
+	text-align: center;
+}
+
+#game_board button {
+	margin-top: 30px;
+}
+
+#game_board small {
+	color: silver;
+}
+
+#game_correct {
+	font-size: 20px;
+	text-align: center;
+	margin: auto;
+	width: 50%;
+	border: 3px solid green;
+	padding: 10px;
+	margin: auto;
+	text-align: center;
+}
+</style>
+    
+	<script>
+        let numCheck = function(i) {
+            if (i - i == 0) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        let check = function() {
+            let nullCount = 0;
+            let notNumCount = 0;
+            let playerArray = [];
+            let playerInputValue = 0;
+
+            for (let i = 1; i <= 4; i++) {
+                numId = "#bb" + i;
+                playerInputValue = parseInt($(numId).val())
+
+                if ($(numId).val() == '') {
+                    nullCount++;
+                } else {
+                    if (numCheck($(numId).val()) == true) {
+                        if (playerArray.indexOf(playerInputValue) != -1) {
+                            return 3;
+                        }
+                        playerArray.push(parseInt($(numId).val()));
+                    } else {
+                        notNumCount++;
+                    }
+                }
+            }
+
+            if (nullCount != 0) {
+                return 1;
+            } else if (notNumCount != 0) {
+                return 2;
+            } else {
+                return playerArray;
+            }
+        }
+
+        let init = function() {
+            let number = [];
+            let bbgNum = 4;
+            let min = 0;
+            let max = 9;
+
+            while (1) {
+                let index = Math.floor((Math.random() * (max - min + 1)) + min);
+
+                if (number.indexOf(index) != -1) {
+                    continue;
+                }
+                number.push(index);
+
+                if (number.length == bbgNum) {
+                    break;
+                }
+            }
+            $('#game_count').html('');
+
+            return number;
+        }
+
+        let sbCheck = function(i, j) {
+            let cArray = i;
+            let pArray = j;
+            let sCount = 0;
+            let bCount = 0;
+            let sbString = '';
+            let playerInputVal = '';
+
+            for (let i = 0; i < 4; i++) {
+                playerInputVal += ' ' + pArray[i] + ' ';
+
+                if (cArray.indexOf(pArray[i]) != -1) {
+                    if (cArray[i] == pArray[i]) {
+                        sCount++;
+                    } else {
+                        bCount++;
+                    }
+                }
+            }
+
+            if (sCount == 0 && bCount != 0) {
+                sbString = bCount + 'B';
+            } else if (sCount != 0 && bCount == 0) {
+                sbString = sCount + 'S';
+            } else {
+                sbString = sCount + 'S ' + bCount + 'B';
+            }
+
+            return {
+                sbString: sbString,
+                playerInputVal: playerInputVal
+            }
+        }
+
+        let reset = function() {
+            location.reload();
+        }
+
+        $(document).ready(function() {
+            let numId;
+            let initArray = init();
+            let playCount = 0;
+
+            $('#confirm').click(function() {
+                let checkVal = check();
+
+                if (checkVal == 1) {
+                    alert('빈칸을 채워주세요!');
+                } else if (checkVal == 2) {
+                    alert('숫자를 입력해주세요!');
+                } else if (checkVal == 3) {
+                    alert('중복된 숫자가 있어요! 확인해주세요!');
+                } else {
+                    playCount++;
+                    let sb = sbCheck(initArray, checkVal);
+
+                    if (sb.sbString == '4S') {
+                        $('#confirm').remove();
+                        $('#game_count').append('<span>' + playCount + '회차 ( ' + sb.sbString + ' ) - ' + sb.playerInputVal + '</span> - <span style="color:red">정답</span><br>');
+                    } else {
+                        $('#game_count').append('<span>' + playCount + '회차 ( ' + sb.sbString + ' ) - ' + sb.playerInputVal + '</span><br>');
+                    }
+                }
+            })
+        })
+    </script>
+
+<body>
+    <div id="game_title">
+        <b3>숫자 야구 게임</b3>
+    </div>
+    <br>
+    <div id="game_rule">
+        ※ 게임 규칙 ※
+        <br> <span class="rule">1.</span> 사용되는 숫자는 0 ~ 9이며, 서로 다른 숫자로 이루어져 있습니다.
+        <br> <span class="rule">2.</span> 숫자와 위치가 일치하는 경우 스트라이크(S), 숫자만 일치하는경우 볼(B)로 표기됩니다.
+        <br> <span class="rule">3.</span> 4개의 스트라이크를 만들어야 게임에서 승리합니다.
+        <br> <span class="rule">4.</span> 초기화 버튼을 클릭하면, 게임이 새롭게 시작되니 주의해서 눌러주세요!!
+    </div>
+    <br>
+
+    <div id="game_board">
+        <input type="text" id="bb1" maxlength="1">
+        <input type="text" id="bb2" maxlength="1">
+        <input type="text" id="bb3" maxlength="1">
+        <input type="text" id="bb4" maxlength="1">
+        &ensp;<button id="confirm" type="button">제출</button>
+    <br> 
+        <small> - 숫자를 적은 후 제출버튼을 클릭해주세요! - </small>
+    <br>
+        <button id="reset" type="button" onclick="reset()">초기화</button>
+    </div>
+    <br>
+    <div id="game_correct">
+        ↓ 회차 표시 ↓
+        <div id="game_count">
+       </div>
+    </div>
+</body>
+</html>
