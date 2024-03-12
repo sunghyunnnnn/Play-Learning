@@ -24,6 +24,7 @@ public class Admin {
 		mav.addObject("manCnt", manCnt);
 		mav.addObject("girlCnt", girlCnt);
 		
+		
 		mav.setViewName("/admin/graph/memberGraph");
 		return mav;
 	}

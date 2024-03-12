@@ -58,10 +58,18 @@
     	<ul id="commentList">
     		<!-- comment list -->
     	</ul>
-    	<form id="commentForm">
-    		<textarea id="commentText" placeholder="댓글을 입력하세요."></textarea><br><br><br>
-    		<button type="submit" onclick="'#'" class="commentsubmit">댓글 작성</button>
+    	<form id="commentForm" action='comm' method="post">
+    		<input type="hidden" name="id" th:value="${session.loginId}">
+    		<input type="text" name="num">
+    		<textarea name="comm" placeholder="댓글을 입력하세요."></textarea><br><br><br>
+    		<button type="submit" class="commentsubmit">댓글 작성</button>
     	</form>
+    	<span th:text="${commvo.id}">
+    			
+    	</span>
+    	<span th:text="${commvo.comm}">
+    	
+    	</span>
     </div>
     
     
