@@ -7,7 +7,7 @@
 </head>
 <body>
 	<div class="title_login_search">
-		<span class="teamTitle indexTitle" onclick="location.href='index'">문제 뿌셔뿌셔!!</span>
+		<span style="font-size: 50px;" class="teamTitle indexTitle" onclick="location.href='index'">문제 뿌셔뿌셔!!</span>
 		<form class="searchForm" method="get" action="searchPage">
 			<input type="text" id="search" name="search" placeholder="검색어를 입력하세요">
 			<button>
@@ -18,10 +18,10 @@
 	<h1 class="bookTitle etcTitle">검색 결과</h1>
 	<hr class="pageLine">
 	<div class="searchResult">
-		<p th:if="${list == null}" th:text="'검색된 내용이 없습니다.'">
+		<p style="font-size: 35px;  padding: 0;" th:if="${list == null}" th:text="'검색된 내용이 없습니다.'">
 		<table th:if="${list != null}">
 			<tr>
-				<th>제목</th>
+				<th style="font-size: 30px; ">제목</th>
 				<th>수강대상</th>
 				<th>강좌수준</th>
 				<th>강좌설명</th>
