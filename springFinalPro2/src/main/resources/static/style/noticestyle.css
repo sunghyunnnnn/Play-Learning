@@ -287,7 +287,7 @@ a {
     border: 0;
     resize: vertical;
 }
-/* 검색바 */
+/* 寃��깋諛� */
 #board-search .search-window {
     padding: 15px 0;
     background-color: #fff;
@@ -341,3 +341,23 @@ a {
     border-color:#f56a6a;
     color: #fff;
   }
+
+#commentText {
+    	width: 990px;
+    	height: 100px;
+    	margin-left: 460px;
+    	border: 1px solid  #f56a6a;
+    	font-size: 1.4rem;
+    	}
+    	
+h2 {
+margin-left: 460px;
+}
+.commentsubmit{
+	position: relative;
+	left: 930px;
+	border: 1px solid  #f56a6a;
+    border-radius: 2px;
+    font-size: 1.4rem;
+    background-color: #fff;
+}

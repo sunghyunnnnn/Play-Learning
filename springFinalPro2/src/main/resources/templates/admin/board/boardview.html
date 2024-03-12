@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>게시판</title>
     <link rel="stylesheet" href="style/notice.css">
+  
 </head>
 <body>
     <div class="board_wrap">
@@ -51,5 +52,31 @@
             </div>
         </div>
     </div>
+    <dt>
+    <div class="comment_section">
+    	<h2>댓글</h2>
+    	<ul id="commentList">
+    		<!-- comment list -->
+    	</ul>
+    	<form id="commentForm" action='comm' method="post">
+    		<input type="hidden" name="id" th:value="${session.loginId}">
+    		<input type="text" name="num">
+    		<textarea name="comm" placeholder="댓글을 입력하세요."></textarea><br><br><br>
+    		<button type="submit" class="commentsubmit">댓글 작성</button>
+    	</form>
+    	<span th:text="${commvo.id}">
+    			
+    	</span>
+    	<span th:text="${commvo.comm}">
+    	
+    	</span>
+    </div>
+    
+    
+    
+    
+    </dt>	
+    
+   
 </body>
 </html>
