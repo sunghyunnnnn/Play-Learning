@@ -1,73 +1,64 @@
 <!DOCTYPE html>
 <html>
 <head>
-  
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="style/baseballgame.css" >
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <title>ì•¼êµ¬ê»˜ì—ì„</title>
     </head>
-<style>
-@charset "UTF-8";
-
-#game_title {
-	font-size: 30px;
-	text-align: center;  
-	margin: auto;
-	width: 50%;
-	border: 3px solid green;
-	padding: 10px;
-	margin: auto;
-	text-align: center;
-}
-
-#game_rule {
-	width: 50%;
-	border: 3px solid green;
-	padding: 10px;
-	margin: auto;
-	width: 50%;
-}
-
-#game_rule .rule{
-	font-size: 25px;
 	
-}
 
-#game_board {
-	text-align: center;
-	width: 50%;
-	border: 3px solid green;
-	padding: 10px;
-	margin: auto;
-	width: 50%;
-}
+<body>
+    <div id="game_title">
+        <b3>ìˆ«ì ì•¼êµ¬ ê²Œì„</b3>
+    </div>
+    <br>
+    <div id="game_rule">
+        â€» ê²Œì„ ê·œì¹™ â€»
+        <br> <span class="rule">1.</span> ì‚¬ìš©ë˜ëŠ” ìˆ«ìëŠ” 0 ~ 9ì´ë©°, ì„œë¡œ ë‹¤ë¥¸ ìˆ«ìë¡œ ì´ë£¨ì–´ì ¸ ìˆìŠµë‹ˆë‹¤.
+        <br> <span class="rule">2.</span> ìˆ«ìì™€ ìœ„ì¹˜ê°€ ì¼ì¹˜í•˜ëŠ” ê²½ìš° ìŠ¤íŠ¸ë¼ì´í¬(S), ìˆ«ìë§Œ ì¼ì¹˜í•˜ëŠ”ê²½ìš° ë³¼(B)ë¡œ í‘œê¸°ë©ë‹ˆë‹¤.
+        <br> <span class="rule">3.</span> 4ê°œì˜ ìŠ¤íŠ¸ë¼ì´í¬ë¥¼ ë§Œë“¤ì–´ì•¼ ê²Œì„ì—ì„œ ìŠ¹ë¦¬í•©ë‹ˆë‹¤.
+        <br> <span class="rule">4.</span> ì´ˆê¸°í™” ë²„íŠ¼ì„ í´ë¦­í•˜ë©´, ê²Œì„ì´ ìƒˆë¡­ê²Œ ì‹œì‘ë˜ë‹ˆ ì£¼ì˜í•´ì„œ ëˆŒëŸ¬ì£¼ì„¸ìš”!!
+    </div>
+    <br>
+   
+    <div id="game_board">
+        <input type="text" id="bb1" maxlength="1">
+        <input type="text" id="bb2" maxlength="1">
+        <input type="text" id="bb3" maxlength="1">
+        <input type="text" id="bb4" maxlength="1">
+        
+        <div id="holder">
 
-#game_board input {
-	margin-top: 20px;
-	padding: auto;
-	width: 40px; 
-	text-align: center;
-}
+            <div class="button">
+                
+                <button id="confirm"  type="button" class="btnText">ì œì¶œ?</button>
+                <div class="btnTwo">
+                  <p class="btnText2">GO!</p>
+                </div>
+             </div>
+    <br> 
+        <small> - ìˆ«ìë¥¼ ì ì€ í›„ ì œì¶œë²„íŠ¼ì„ í´ë¦­í•´ì£¼ì„¸ìš”! - </small>
+    <br>
 
-#game_board button {
-	margin-top: 30px;
-}
-
-#game_board small {
-	color: silver;
-}
-
-#game_correct {
-	font-size: 20px;
-	text-align: center;
-	margin: auto;
-	width: 50%;
-	border: 3px solid green;
-	padding: 10px;
-	margin: auto;
-	text-align: center;
-}
-</style>
+    <div class="button">
+        <button id="reset" type="button" onclick="reset()" class="btnText">CANCEL</button>
+        <div class="btnTwo">
+          <p class="btnText2">X</p>
+        </div>
+     </div>
     
-	<script>
+    </div>
+
+
+    <br>
+    <div id="game_correct">
+        â†“ íšŒì°¨ í‘œì‹œ â†“
+        <div id="game_count">
+       </div>
+    </div>
+    <script>
         let numCheck = function(i) {
             if (i - i == 0) {
                 return true;
@@ -179,56 +170,24 @@
                 let checkVal = check();
 
                 if (checkVal == 1) {
-                    alert('ºóÄ­À» Ã¤¿öÁÖ¼¼¿ä!');
+                    alert('ë¹ˆì¹¸ì„ ì±„ì›Œì£¼ì„¸ìš”!');
                 } else if (checkVal == 2) {
-                    alert('¼ıÀÚ¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä!');
+                    alert('ìˆ«ìë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”!');
                 } else if (checkVal == 3) {
-                    alert('Áßº¹µÈ ¼ıÀÚ°¡ ÀÖ¾î¿ä! È®ÀÎÇØÁÖ¼¼¿ä!');
+                    alert('ì¤‘ë³µëœ ìˆ«ìê°€ ìˆì–´ìš”! í™•ì¸í•´ì£¼ì„¸ìš”!');
                 } else {
                     playCount++;
                     let sb = sbCheck(initArray, checkVal);
 
                     if (sb.sbString == '4S') {
                         $('#confirm').remove();
-                        $('#game_count').append('<span>' + playCount + 'È¸Â÷ ( ' + sb.sbString + ' ) - ' + sb.playerInputVal + '</span> - <span style="color:red">Á¤´ä</span><br>');
+                        $('#game_count').append('<span>' + playCount + 'íšŒì°¨ ( ' + sb.sbString + ' ) - ' + sb.playerInputVal + '</span> - <span style="color:red">ì •ë‹µ</span><br>');
                     } else {
-                        $('#game_count').append('<span>' + playCount + 'È¸Â÷ ( ' + sb.sbString + ' ) - ' + sb.playerInputVal + '</span><br>');
+                        $('#game_count').append('<span>' + playCount + 'íšŒì°¨ ( ' + sb.sbString + ' ) - ' + sb.playerInputVal + '</span><br>');
                     }
                 }
             })
         })
     </script>
-
-<body>
-    <div id="game_title">
-        <b3>¼ıÀÚ ¾ß±¸ °ÔÀÓ</b3>
-    </div>
-    <br>
-    <div id="game_rule">
-        ¡Ø °ÔÀÓ ±ÔÄ¢ ¡Ø
-        <br> <span class="rule">1.</span> »ç¿ëµÇ´Â ¼ıÀÚ´Â 0 ~ 9ÀÌ¸ç, ¼­·Î ´Ù¸¥ ¼ıÀÚ·Î ÀÌ·ç¾îÁ® ÀÖ½À´Ï´Ù.
-        <br> <span class="rule">2.</span> ¼ıÀÚ¿Í À§Ä¡°¡ ÀÏÄ¡ÇÏ´Â °æ¿ì ½ºÆ®¶óÀÌÅ©(S), ¼ıÀÚ¸¸ ÀÏÄ¡ÇÏ´Â°æ¿ì º¼(B)·Î Ç¥±âµË´Ï´Ù.
-        <br> <span class="rule">3.</span> 4°³ÀÇ ½ºÆ®¶óÀÌÅ©¸¦ ¸¸µé¾î¾ß °ÔÀÓ¿¡¼­ ½Â¸®ÇÕ´Ï´Ù.
-        <br> <span class="rule">4.</span> ÃÊ±âÈ­ ¹öÆ°À» Å¬¸¯ÇÏ¸é, °ÔÀÓÀÌ »õ·Ó°Ô ½ÃÀÛµÇ´Ï ÁÖÀÇÇØ¼­ ´­·¯ÁÖ¼¼¿ä!!
-    </div>
-    <br>
-
-    <div id="game_board">
-        <input type="text" id="bb1" maxlength="1">
-        <input type="text" id="bb2" maxlength="1">
-        <input type="text" id="bb3" maxlength="1">
-        <input type="text" id="bb4" maxlength="1">
-        &ensp;<button id="confirm" type="button">Á¦Ãâ</button>
-    <br> 
-        <small> - ¼ıÀÚ¸¦ ÀûÀº ÈÄ Á¦Ãâ¹öÆ°À» Å¬¸¯ÇØÁÖ¼¼¿ä! - </small>
-    <br>
-        <button id="reset" type="button" onclick="reset()">ÃÊ±âÈ­</button>
-    </div>
-    <br>
-    <div id="game_correct">
-        ¡é È¸Â÷ Ç¥½Ã ¡é
-        <div id="game_count">
-       </div>
-    </div>
 </body>
 </html>

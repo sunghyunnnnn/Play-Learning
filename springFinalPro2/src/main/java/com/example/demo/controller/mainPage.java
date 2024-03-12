@@ -432,5 +432,17 @@ public class mainPage {
 		mav.setViewName("admin/notice/customerQna");
 		return mav;
 	}
+	@RequestMapping(value = "/baseballgame")
+	public ModelAndView baseballgame() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("game/baseballgame");
+		return mav;
+	}
+	@RequestMapping(value = "/wordreplay")
+	public ModelAndView wordreplay() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("game/wordreplay");
+		return mav;
+	}
 }
 
