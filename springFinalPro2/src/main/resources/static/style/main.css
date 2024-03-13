@@ -133,7 +133,7 @@ section {
 	
 	heigth: 5px;
 	position: relative;
-	left: 140px;
+	left: 280px;
 	bottom: 45.5px;
 }
 ol,
@@ -283,7 +283,7 @@ a:hover strong {
 strong,
 b {
   color: #3d4449;
-  font-weight: 600;
+  
 }
 
 em,
