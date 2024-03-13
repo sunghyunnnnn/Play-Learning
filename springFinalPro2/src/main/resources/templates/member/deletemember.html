@@ -21,14 +21,7 @@
 									</form>
 								</section>
 
-<div th:if ="${session.login_number != null}">
-	<span th:text = "${session.login_number.id} + ' 님 환영합니다.'"></span>
-	<span class="myPage">마이페이지</span>
-	<a th:href="@{logoutControl}"
-	th:text=" '로그아웃' "></a>
-	<a th:if="${session.login_member != null}"></a>
-	
-</div>
+
 							<!-- Menu -->
 								<nav id="menu">
 									<header class="major">
@@ -111,6 +104,15 @@
 										</li>
 									</ul>
 								</section>
+									<!-- Footer -->
+								<footer id="footer">
+									<p class="copyright">&copy; (주) 뿌셔뿌셔 Corp. All rights reserved. <br>Design: <a href="https://html5up.net">성현 & HTML5UP</a>.</p>
+								</footer>
+
+						</div>
+					</div>
+
+			</div>
 	<div class="sign_login_wrap" style="position: fixed; top: 480px; left: 1050px;">
 		<div class="signForm" style="position:fixed; bottom: 300px; left: 100px;">
 			<h2 class="sign_login_Header">회원 탈퇴를 위해<br>비밀번호를 입력해 주세요.</h2>

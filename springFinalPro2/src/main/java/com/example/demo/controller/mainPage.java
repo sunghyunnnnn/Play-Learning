@@ -215,11 +215,11 @@ public class mainPage {
 		
 		System.out.println("mypageInfo >> " + mypageArr.size());
 		if(mypageArr.size() == 0) {
-			System.out.println("�뫜 臾몄젣 �뾾�떎.");
-			mav.addObject("mypage", "�엫留� 臾몄젣 ���뼱!!!");
+			
+			mav.addObject("mypage", "임마 문제풀어!!!");
 		}
 		mav.addObject("mypageArr", mypageArr);
-		//臾몄젣 �뿬�윭媛� 諛곗뿴濡� 諛쏆븘�빞�븿
+		
 		mav.setViewName("member/myPage");
 		return mav;
 	}
