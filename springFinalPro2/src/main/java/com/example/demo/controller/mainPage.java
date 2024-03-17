@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,7 @@ import com.example.demo.jpa.CourseRepo;
 import com.example.demo.jpa.EngMiddleRepo;
 import com.example.demo.jpa.EngRepo;
 import com.example.demo.jpa.EngUpperRepo;
+import com.example.demo.jpa.GradeBankRepo;
 import com.example.demo.jpa.JpaMemberRepository;
 import com.example.demo.jpa.KorMiddleRepo;
 import com.example.demo.jpa.KorRepo;
@@ -35,6 +37,7 @@ import com.example.demo.vo.EngBookVo;
 import com.example.demo.vo.EngMiddleBookVo;
 import com.example.demo.vo.EngUpperBookVo;
 import com.example.demo.vo.FreeBookVo;
+import com.example.demo.vo.GradeBankVo;
 import com.example.demo.vo.KorBookVo;
 import com.example.demo.vo.KorMiddleBookVo;
 import com.example.demo.vo.KorUpperBookVo;
@@ -82,7 +85,8 @@ public class mainPage {
 	MathMiddleRepo jpaMathMiddle;
 	@Autowired
 	EngMiddleRepo jpaEngMiddle;
-
+	@Autowired
+	GradeBankRepo jpaGradeBank;
 	
 	@RequestMapping(value="/index")
 	public ModelAndView indexPage(HttpSession session) {
@@ -301,12 +305,8 @@ public class mainPage {
 	@RequestMapping(value = "/boardwrite")
 	public ModelAndView boardview() {
 		
-		ModelAndView mav = new ModelAndView();
-		
-		
-		
+		ModelAndView mav = new ModelAndView();	
 		mav.setViewName("admin/board/boardwrite");
-
 		return mav;
 	}
 	@RequestMapping(value = "/noticewrite")
@@ -389,19 +389,34 @@ public class mainPage {
 	@RequestMapping(value = "/levelupControl")
 	public ModelAndView levelupControl(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
+		GradeBankVo gradeBank = new GradeBankVo();
 		List<Member> member = jpaMember.findAll();
-		System.out.println("member name : " + member.get(0).getUsers());
+		final int genMoney = 10000;
+		final int preMoney = 15000;
+		double id = 0.0;
 		for(int i = 0; i<member.size(); i++) {
 			if(member.get(i).getUsers()==null) {
 				System.out.println("아무거나");
 			}else if(member.get(i).getUsers().equals("일반 유저 승인 대기 중")) {
 				member.get(i).setUsers("일반유저");
+				id = Math.round(Math.random() * 1000);
+				gradeBank.setId(id);
+				gradeBank.setGenmoney(genMoney);
+				gradeBank.setPremoney(0);
+				jpaGradeBank.save(gradeBank);
 				jpaMember.save(member.get(i));
+				
 			}else if(member.get(i).getUsers().equals("프리미엄 유저 승인 대기 중")) {
 				member.get(i).setUsers("프리미엄");
+				id = Math.round(Math.random() * 1000);
+				gradeBank.setId(id);
+				gradeBank.setGenmoney(0);
+				gradeBank.setPremoney(preMoney);
+				jpaGradeBank.save(gradeBank);
 				jpaMember.save(member.get(i));
+			}
+			
 		}
-	}
 		System.out.println("memberrrrrrr:" + member);
 		mav.setViewName("admin/admin");
 		return mav;
@@ -420,6 +435,7 @@ public class mainPage {
 	public ModelAndView membership() {
 		ModelAndView mav = new ModelAndView();
 		List<Member> membership = jpaMember.findAll();
+		System.out.println("membership : " + membership);
 		mav.addObject("membership",membership);
 		mav.setViewName("admin/membership");
 		return mav;

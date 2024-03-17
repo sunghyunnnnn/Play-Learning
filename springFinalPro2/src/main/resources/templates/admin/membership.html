@@ -32,7 +32,7 @@
 		
 		</tr>
 	<div th:each="list:${membership}">
-		<tr th:if="${list.users=='일반유저'||list.users=='프리미엄 유저'}">
+		<tr th:if="${list.users=='프리미엄 유저'||list.users=='일반유저'}">
 			<td>
 				
 					<span th:text="${list.name}">
@@ -76,6 +76,8 @@
 	</form>
 	<span class="teamTitle" onclick="location.href='admin' "style="position: fixed; left:1700px; top: 0px;">문제 뿌셔뿌셔!!</span>
 	
-
+	<script th:inline="javascript">
+		console.log([[${membership}]]);
+	</script>
 </body>
 </html>
