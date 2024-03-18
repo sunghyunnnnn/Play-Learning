@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,7 @@ import com.example.demo.jpa.CourseRepo;
 import com.example.demo.jpa.EngMiddleRepo;
 import com.example.demo.jpa.EngRepo;
 import com.example.demo.jpa.EngUpperRepo;
+import com.example.demo.jpa.GradeBankRepo;
 import com.example.demo.jpa.JpaMemberRepository;
 import com.example.demo.jpa.KorMiddleRepo;
 import com.example.demo.jpa.KorRepo;
@@ -36,6 +38,7 @@ import com.example.demo.vo.EngBookVo;
 import com.example.demo.vo.EngMiddleBookVo;
 import com.example.demo.vo.EngUpperBookVo;
 import com.example.demo.vo.FreeBookVo;
+import com.example.demo.vo.GradeBankVo;
 import com.example.demo.vo.KorBookVo;
 import com.example.demo.vo.KorMiddleBookVo;
 import com.example.demo.vo.KorUpperBookVo;
@@ -85,6 +88,10 @@ public class mainPage {
 	EngMiddleRepo jpaEngMiddle;
 	@Autowired 
 	CommRepo commrepo;
+
+
+	@Autowired
+	GradeBankRepo jpaGradeBank;
 
 	
 	@RequestMapping(value="/index")
@@ -218,11 +225,16 @@ public class mainPage {
 		
 		System.out.println("mypageInfo >> " + mypageArr.size());
 		if(mypageArr.size() == 0) {
+
 			System.out.println("�뫜 臾몄젣 �뾾�떎.");
 			mav.addObject("mypage", "문제 푸세요!!!");
+
+			
+			mav.addObject("mypage", "임마 문제풀어!!!");
+
 		}
 		mav.addObject("mypageArr", mypageArr);
-		//臾몄젣 �뿬�윭媛� 諛곗뿴濡� 諛쏆븘�빞�븿
+		
 		mav.setViewName("member/myPage");
 		return mav;
 	}
@@ -304,12 +316,8 @@ public class mainPage {
 	@RequestMapping(value = "/boardwrite")
 	public ModelAndView boardview() {
 		
-		ModelAndView mav = new ModelAndView();
-		
-		
-		
+		ModelAndView mav = new ModelAndView();	
 		mav.setViewName("admin/board/boardwrite");
-
 		return mav;
 	}
 	@RequestMapping(value = "/noticewrite")
@@ -380,13 +388,13 @@ public class mainPage {
 		for(int i = 0; i<memberlist.size(); i++) {
 			if(memberlist.get(i).getUsers()==null) {
 				
-			}else if(memberlist.get(i).getUsers().equals("�씪諛� �쑀�� �듅�씤 ��湲� 以�")) {
+			}else if(memberlist.get(i).getUsers().equals("일반 유저 승인 대기 중")) {
 				
-			}else if(memberlist.get(i).getUsers().equals("�봽由щ�몄뾼 �쑀�� �듅�씤 ��湲� 以�")) {
+			}else if(memberlist.get(i).getUsers().equals("프리미엄 유저 승인 대기 중")) {
 		}
 		}
 		mav.addObject("memberlist", memberlist);
-		System.out.println("member �뒗 " + memberlist);
+		System.out.println("member 는 " + memberlist);
 		mav.setViewName("admin/levelup");
 
 		return mav;
@@ -400,12 +408,12 @@ public class mainPage {
 		System.out.println("member name : " + member.get(0).getUsers());
 		for(int i = 0; i<member.size(); i++) {
 			if(member.get(i).getUsers()==null) {
-				System.out.println("�븘臾닿굅�굹");
-			}else if(member.get(i).getUsers().equals("�씪諛� �쑀�� �듅�씤 ��湲� 以�")) {
-				member.get(i).setUsers("�씪諛섏쑀��");
+				System.out.println("아무거나");
+			}else if(member.get(i).getUsers().equals("일반 유저 승인 대기 중")) {
+				member.get(i).setUsers("일반유저");
 				jpaMember.save(member.get(i));
-			}else if(member.get(i).getUsers().equals("�봽由щ�몄뾼 �쑀�� �듅�씤 ��湲� 以�")) {
-				member.get(i).setUsers("�봽由щ�몄뾼");
+			}else if(member.get(i).getUsers().equals("프리미엄 유저 승인 대기 중")) {
+				member.get(i).setUsers("프리미엄");
 				jpaMember.save(member.get(i));
 		}
 	}
@@ -427,6 +435,7 @@ public class mainPage {
 	public ModelAndView membership() {
 		ModelAndView mav = new ModelAndView();
 		List<Member> membership = jpaMember.findAll();
+		System.out.println("membership : " + membership);
 		mav.addObject("membership",membership);
 		mav.setViewName("admin/membership");
 		return mav;

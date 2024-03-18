@@ -18,7 +18,7 @@ public class CommController {
 	
 	@RequestMapping(value="/comm")
 	public ModelAndView comm(CommVo commvo) {
-		System.out.println("제발되게해주세요:"+commvo.getComm());
+		
 		String input_id = commvo.getId();
 		String input_comm = commvo.getComm();
 		int input_num = commvo.getNum();
@@ -28,9 +28,6 @@ public class CommController {
 		commrepo.save(commvo);
 		CommVo comvo = commrepo.getById(input_id);
 
-		System.out.println("comvo는요:" + comvo);
-		
-		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("list", board);
 		 
@@ -41,3 +38,5 @@ public class CommController {
 	}
 
 }
+
+

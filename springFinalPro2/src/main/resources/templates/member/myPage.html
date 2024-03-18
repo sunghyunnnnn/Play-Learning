@@ -1,6 +1,5 @@
-
 <!DOCTYPE html>
-<html>
+<html >
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,10 +7,11 @@
 <title>마이 페이지</title>
 <link rel="stylesheet" href="style/style.css">
 </head>
-<body style="text-align: center; margin-top: 100px;">
-<span class="teamTitle" onclick="location.href='index'" style="position: fixed; left:1700px; top: 0px;">문제 뿌셔뿌셔!!</span>
-<div id="sidebar" style="position: relative; bottom: 100px;">
-						<div class="inner" >
+<body>
+
+	<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
 
 							<!-- Search -->
 								<section id="search" class="alt">
@@ -21,16 +21,8 @@
 										<button class="searchBtn"></button>
 									</form>
 								</section>
-								
-<div th:if ="${session.login_number != null}">
-	<span th:text = "${session.login_number.id} + ' 님 환영합니다.'"></span>
-	<span class="myPage">마이페이지</span>
-	<a th:href="@{logoutControl}"
-	th:text=" '로그아웃' "></a>
-	<a th:if="${session.login_member != null}"></a>
-	
-</div>
 
+							<span class="teamTitle" onclick="location.href='index'">문제 뿌셔뿌셔!!</span>
 							<!-- Menu -->
 								<nav id="menu">
 									<header class="major">
@@ -39,36 +31,51 @@
 									<ul>
 										<li>
 											<span class="opener">내정보</span>
-											<ul>
-												<li><a href="#">정보 수정</a></li>
-												<li><a href="#">등업 신청</a></li>
-												<li><a href="#">내가 푼 문제</a></li>
-												<li><a href="#">회원 탈퇴</a></li>
+										<ul>
+											<li>
+												<a th:if="${session.indexCk == true}" th:href = "@{./memberchangeControl(id = ${session.login_number.id})}">정보 수정</a>
+												<a class="loginError" th:if="${session.indexCk == null}">정보 수정</a>
+											</li>
+											<li><a class="payError">결제 하기</a></li>
+											<li><a th:if="${session.indexCk == true}" th:href = "@{./wrongsolve(id = ${session.login_number.id})}">오답 풀이</a></li>
+												<a class="wrongError" th:if="${session.indexCk == null}">오답풀이</a>
 											
-											</ul>
+											 <li>
+                                       <a th:if="${session.indexCk == true}" th:href = "@{./deletememberControl(id = ${session.login_number.id})}">회원 탈퇴</a>
+                                       <a class="deleteError" th:if="${session.indexCk == null}">회원 탈퇴</a>
+                                    </li>
+									
+											
+										</ul>
 										</li>
 										<li>
 											<span class="opener">커뮤니티</span>
 											<ul>
-												<li><a href="#">게시판</a></li>
-												<li><a href="#">공지사항</a></li>
+												<li><a th:if="${session.indexCk == true}" th:href = "@{./board(id = ${session.login_number.id})}">게시판</a></li>
+													<a class="boardError" th:if="${session.indexCk == null}">게시판</a>
+												<li><a href="usernotice">공지사항</a></li>
                                                
 											
 											</ul>
 										</li>
 										<li>
-											<span class="opener">쉬우면 통계</span>
+											<span class="opener">우리 한 번 놀아보자</span>
 											<ul>
-												<li><a href="#">성적 오름 현황</a></li>
-												<li><a href="#">출석 현황</a></li>
+												<li><a th:if="${session.indexCk == true}" th:href = "@{./wordreplay(id = ${session.login_number.id})}">다같이 붙어보자 끝말잇기</a></li>
+													<a class="wordError" th:if="${session.indexCk == null}">다같이 붙어보자 끝말잇기</a>
+												<li><a th:if="${session.indexCk == true}" th:href = "@{./baseballgame(id = ${session.login_number.id})}">머리가 말랑해지는 숫자 야구</a></li>
+													<a class="ballError" th:if="${session.indexCk == null}">머리가 말랑해지는 숫자 야구</a>
+												<li><a href="#">사과는 애플 영단어 맞추기</a></li>
 											</ul>
 										</li>
 										<li>
 											<span class="opener">고객 지원</span>
 											<ul>
-												<li><a href="#">고객 문의</a></li>
+												<li><a th:if="${session.indexCk == true}" th:href = "@{./customerQna(id = ${session.login_number.id})}">고객 문의</a></li>
+													<a class="QnaError" th:if="${session.indexCk == null}">고객 문의</a>
 											</ul>
 										</li>
+									
 								</nav>
 
 							<!-- Section -->
@@ -77,25 +84,23 @@
 										<h2>해주세요</h2>
 									</header>
 									<div class="mini-posts">
-										<article>
-											<a href="#" class="image"><img src="img/indexImg/pic07.jpg" alt="" /></a>
+										<article >
+											<a href="#" class="image"><img src="img/indexImg/godimg.jpg" alt="" /></a>
 											<strong>문제를 풀어주세요</strong><br>
 											<p>국어/영어/수학</p>
 										</article>
 										<article>
-											<a href="#" class="image"><img src="img/indexImg/pic08.jpg" alt="" /></a>
+											<a href="#" class="image"><img src="img/indexImg/boardimg.jpg" alt="" /></a>
 											<strong>소통왕이 되어주세요</strong><br>
 											<p>게시판으로 순간이동</p>
 										</article>
 										<article>
-											<a href="#" class="image"><img src="img/indexImg/pic09.jpg" alt="" /></a>
+											<a href="#" class="image"><img src="img/indexImg/questionimg.jpg" alt="" /></a>
 											<strong>문제가 생겼어요</strong><br>
 											<p>문의 하러 가기</p>
 										</article>
 									</div>
-									<ul class="actions">
-										<li><a href="/adminlogin" class="button">admin</a></li>
-									</ul>
+									
 								</section>
 
 							<!-- Section -->
@@ -113,12 +118,21 @@
 										</li>
 									</ul>
 								</section>
+
+							<!-- Footer -->
+								<footer id="footer">
+									<p class="copyright">&copy; (주) 뿌셔뿌셔 Corp. All rights reserved. <br>Design: <a href="https://html5up.net">성현 & HTML5UP</a>.</p>
+								</footer>
+
+						</div>
+					</div>
+
+			</div>
 	<div>
-	<span class="teamTitle" onclick="location.href='index'">문제
-			뿌셔뿌셔!!</span>
+	
 		<div class="sign_login_wrap" style="position: fixed; top: 480px; left: 1050px;">
 			<h2 class="sign_login_Header">마이 페이지</h2>
-			<table style="margin-left: auto; margin-right: auto;">
+			<table>
 				<tr>
 					<th style="font-weight:bold" scope="col">이름</th>
 					<td scope="col" th:text="${session.login_number.name}"></td>
@@ -135,10 +149,13 @@
 					<th style="font-weight:bold" scope="col">내가 쓴 글</th>
 					<td scope="col">내가 쓴 글 나올 것임</td>
 				</tr>
+				<tr>
+					<th style="font-weight:bold" scope="col">등급</th>
+					<td scope="col" th:text="${session.login_number.users}"></td>
+				</tr>
 			</table>
 			<br>
-			<hr>
-			문제 푼 정보 <br> <br> <br>
+			<hr>문제 푼 정보 <br> <br> <br>
 			<span th:if = "${mypageArr.size() == 0}" th:text = "${mypage}"></span>
 			<table th:if = "${mypageArr.size() != 0}">
 				<tr>
@@ -166,14 +183,268 @@
 		</div>
 		<br> <br>
 	</div>
-	<script src="https://kit.fontawesome.com/86bc6866a5.js"
+	<!-- Scripts -->
+			<script src="https://kit.fontawesome.com/86bc6866a5.js"
 			crossorigin="anonymous"></script>
 			<script src="js/jquery.min.js"></script>
 			<script src="js/browser.min.js"></script>
 			<script src="js/breakpoints.min.js"></script>
 			<script src="js/util.js"></script>
+			<script src="js/main.js"></script>	
+</body>
+
 			<script src="js/main.js"></script>
 			
+			<script th:inline="javascript">
+				let indexCk = false;
+				indexCk = [[${session.indexCk}]];
+				console.log(indexCk);
+				
+				const word = document.querySelector(".wordError");
+				const ball = document.querySelector(".ballError");
+				const wrong = document.querySelector(".wrongError");
+				const qna = document.querySelector(".QnaError");
+				const board = document.querySelector(".boardError");
+				
+				const pay = document.querySelector(".payError");
+				const gender = document.querySelector(".girlandboy");
+				
+				const problemKorBtn = document.querySelector(".problemKorBtn");
+				const problemMathBtn = document.querySelector(".problemMathBtn");
+				const problemEngBtn = document.querySelector(".problemEngBtn");
+				
+				const problemKorUpperBtn = document.querySelector(".problemKorUpperBtn");
+				const problemMathUpperBtn = document.querySelector(".problemMathUpperBtn");
+				const problemEngUpperBtn = document.querySelector(".problemEngUpperBtn");
+				
+				const problemKorMiddleBtn = document.querySelector(".problemKorMiddleBtn");
+				const problemMathMiddleBtn = document.querySelector(".problemMathMiddleBtn");
+				const problemEngMiddleBtn = document.querySelector(".problemEngMiddleBtn");
+				
+				const loginError = document.querySelector(".loginError");
+				const deleteError = document.querySelector(".deleteError");
+				const mypage = document.querySelector(".myPage");
+				
+				const bestTxtSwiper = new Swiper(".best-txt-slider", {
+				  autoplay: {
+					delay: 4000,
+					disableOnInteraction: false,
+				  },
+				  effect: "fade",
+				  loop: true,
+				  allowTouchMove: false,
+				});
 			
-</body>
+
+				const bestSwiper = new Swiper(".best-slider", {
+				  autoplay: {
+					delay: 4000, // bestTxtSwiper와 동일하게 설정
+					disableOnInteraction: false,
+				  },
+				  slidesPerView: 1.4,
+				  loop: true,
+				  navigation: {
+					nextEl: ".best-slider .swiper-button-next",
+					prevEl: ".best-slider .swiper-button-prev",
+				  },
+				  on: {
+					slideChangeTransitionStart: function () {
+					  const realIndex = bestSwiper.realIndex;
+					  let targetIndex = realIndex;
+			
+					  bestTxtSwiper.slideTo(targetIndex);
+					  bestTxtSwiper.update(); // swiper 업데이트
+					},
+					slideNextTransitionStart: function () {
+					  bestTxtSwiper.autoplay.stop();
+					},
+					slidePrevTransitionStart: function () {
+					  bestTxtSwiper.autoplay.stop();
+					},
+					slideChangeTransitionEnd: function () {
+					  bestTxtSwiper.autoplay.start();
+					},
+				  },
+				});
+				
+				const clickFunc = () => {
+					
+					
+					if(indexCk){
+						let id = [[${session.loginId}]];
+						location.href = `/myPage?id=${id}`
+					}
+					else{
+						console.log('마이페이지 안가짐');
+					}
+				}
+				
+				const clickProblemKorBtn = () =>{
+					if(indexCk === true){
+						location.href = 'korBook';					
+					}
+					else{
+						alert('로그인 하셈!!!');
+					}
+				}
+				const clickProblemEngBtn = () =>{
+					if(indexCk === true){
+						location.href = 'engBook';					
+					}
+					else{
+						alert('로그인 하셈!!!');
+					}
+				}
+				const clickProblemMathBtn = () =>{
+					if(indexCk === true){
+						location.href = 'mathBook';					
+					}
+					else{
+						alert('로그인 하셈!!!');
+					}
+				}
+				const clickProblemKorUpperBtn = () =>{
+					if(indexCk === true){
+						location.href = 'korUpperBook';					
+					}
+					else{
+						alert('로그인 하셈!!!');
+					}
+				}
+				const clickProblemMathUpperBtn = () =>{
+					if(indexCk === true){
+						location.href = 'mathUpperBook';					
+					}
+					else{
+						alert('로그인 하셈!!!');
+					}
+				}
+				const clickProblemEngUpperBtn = () =>{
+					if(indexCk === true){
+						location.href = 'engUpperBook';					
+					}
+					else{
+						alert('로그인 하셈!!!');
+					}
+				}
+				
+				const clickProblemKorMiddleBtn = () =>{
+					if(indexCk === true){
+						location.href = 'korMiddleBook';					
+					}
+					else{
+						alert('로그인 하셈!!!');
+					}
+				}
+				const clickProblemMathMiddleBtn = () =>{
+					if(indexCk === true){
+						location.href = 'mathMiddleBook';					
+					}
+					else{
+						alert('로그인 하셈!!!');
+					}
+				}
+				const clickProblemEngMiddleBtn = () =>{
+					if(indexCk === true){
+						location.href = 'engMiddleBook';					
+					}
+					else{
+						alert('로그인 하셈!!!');
+					}
+				}
+				
+				const clickpayment = () =>{
+					if(indexCk === true){
+						let id = [[${session.loginId}]];
+						location.href = `payment?id=${id}`;					
+					}
+					else{
+						alert('로그인 하셈!!!');
+					}
+				}
+				let sex = [[${login_boyandgirl}]]
+				
+				if(sex==="여") {
+					gender.src = "./img/indexImg/girl.png"
+				}else if(sex==="남") {
+					gender.src = "./img/indexImg/boy.png"
+				}
+				
+				
+				if(!indexCk){
+					const clickloginError = () => {
+						alert('서비스를 이용하고 싶으시면 로그인 해주세요.');
+					}					
+					loginError.addEventListener('click', clickloginError);
+				}
+				
+				if(!indexCk){
+					const clickdeleteError = () => {
+						alert('서비스를 이용하고 싶으시면 로그인 해주세요.');
+					}					
+					deleteError.addEventListener('click', clickdeleteError);
+				}
+				
+				if(indexCk){
+					mypage.addEventListener('click', clickFunc);
+					pay.addEventListener('click', clickpayment);
+				}
+				
+				if(!indexCk) {
+					const clickpayError = () => {
+						alert('서비스를 이용하고 싶으시면 로그인 해주세요.');
+					}
+					pay.addEventListener('click', clickpayError);
+				}
+				
+				if(!indexCk) {
+					const clickboardError = () => {
+						alert('서비스를 이용하고 싶으시면 로그인 해주세요.');
+					}
+					board.addEventListener('click', clickboardError);
+				}
+				
+				if(!indexCk) {
+					const clickQnaError = () => {
+						alert('서비스를 이용하고 싶으시면 로그인 해주세요.');
+					}
+					qna.addEventListener('click', clickQnaError);
+				}
+				
+				if(!indexCk) {
+					const clickwrongError = () => {
+						alert('서비스를 이용하고 싶으시면 로그인 해주세요.');
+					}
+					wrong.addEventListener('click', clickwrongError);
+				}
+				
+				if(!indexCk) {
+					const clickwordError = () => {
+						alert('서비스를 이용하고 싶으시면 로그인 해주세요.');
+					}
+					word.addEventListener('click', clickwordError);
+				}
+				
+				if(!indexCk) {
+					const clickballError = () => {
+						alert('서비스를 이용하고 싶으시면 로그인 해주세요.');
+					}
+					ball.addEventListener('click', clickballError);
+				}
+				
+				
+				problemKorBtn.addEventListener('click', clickProblemKorBtn);			
+				problemEngBtn.addEventListener('click', clickProblemEngBtn);			
+				problemMathBtn.addEventListener('click', clickProblemMathBtn);
+				
+				problemKorUpperBtn.addEventListener('click', clickProblemKorUpperBtn);
+				problemMathUpperBtn.addEventListener('click', clickProblemMathUpperBtn);
+				problemEngUpperBtn.addEventListener('click', clickProblemEngUpperBtn);
+				
+				problemKorMiddleBtn.addEventListener('click', clickProblemKorMiddleBtn);
+				problemMathMiddleBtn.addEventListener('click', clickProblemMathMiddleBtn);
+				problemEngMiddleBtn.addEventListener('click', clickProblemEngMiddleBtn);
+			  </script>
+	  
+	</body>
 </html>

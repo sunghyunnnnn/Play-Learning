@@ -9,6 +9,9 @@
     	let total = [[${total}]];
     	let man = [[${manCnt}]];
     	let girl = [[${girlCnt}]];
+    	let totalMoney = [[${totalMoney}]];
+    	let preMoney = [[${preMoney}]];
+    	let genMoney = [[${genMoney}]];
         // 어떤 그래프를 사용할지 지정 ------ (※2)  
         google.load('visualization', '1.0', {
             'packages': ['corechart']
@@ -59,9 +62,9 @@
             data.addColumn('number', '매출 현황');
             // 실제 데이터를 지정 ------------- (※7)    
             data.addRows([
-                ['총매출', total],
-                ['프리미엄 매출', man],
-                ['일반 매출', girl],
+                ['총매출', totalMoney],
+                ['프리미엄 매출', preMoney],
+                ['일반 매출', genMoney],
             ]);
 
             // 그래픽의 옵션을 지정 ------- (※8)    
