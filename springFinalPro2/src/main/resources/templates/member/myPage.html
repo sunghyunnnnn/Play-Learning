@@ -8,8 +8,12 @@
 <link rel="stylesheet" href="style/login.css">
 </head>
 <body>
+					
 	
-				<!-- Sidebar -->
+				
+
+	<!-- Sidebar -->
+
 					<div id="sidebar">
 						<div class="inner">
 
@@ -147,6 +151,10 @@
 					<th style="font-weight:bold" scope="col">내가 쓴 글</th>
 					<td scope="col">내가 쓴 글 나올 것임</td>
 				</tr>
+				<tr>
+					<th style="font-weight:bold" scope="col">등급</th>
+					<td scope="col" th:text="${session.login_number.users}"></td>
+				</tr>
 			</table>
 			<br>
 			<hr>문제 푼 정보 <br> <br> <br>
@@ -167,7 +175,7 @@
 			</table>
 			<hr>
 			<div class="btn">
-				<a class="sign_login_Button"
+				<a  class="sign_login_Button"
 					th:href="@{/memberchangeControl(id = ${session.login_number.id})}">회원 정보 변경</a>
 				<br> <br>
 				<a class="sign_login_Button"

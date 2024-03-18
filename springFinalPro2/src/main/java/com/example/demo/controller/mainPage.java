@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 import com.example.demo.jpa.BoardRepo;
+import com.example.demo.jpa.CommRepo;
 import com.example.demo.jpa.CourseRepo;
 import com.example.demo.jpa.EngMiddleRepo;
 import com.example.demo.jpa.EngRepo;
@@ -29,7 +30,7 @@ import com.example.demo.jpa.MypageInfoRepo;
 import com.example.demo.jpa.NoticeRepo;
 
 import com.example.demo.vo.Board;
-
+import com.example.demo.vo.CommVo;
 import com.example.demo.jpa.freeTestRepo;
 
 import com.example.demo.vo.CourseVo;
@@ -85,8 +86,13 @@ public class mainPage {
 	MathMiddleRepo jpaMathMiddle;
 	@Autowired
 	EngMiddleRepo jpaEngMiddle;
+	@Autowired 
+	CommRepo commrepo;
+
+
 	@Autowired
 	GradeBankRepo jpaGradeBank;
+
 	
 	@RequestMapping(value="/index")
 	public ModelAndView indexPage(HttpSession session) {
@@ -219,8 +225,13 @@ public class mainPage {
 		
 		System.out.println("mypageInfo >> " + mypageArr.size());
 		if(mypageArr.size() == 0) {
+
+			System.out.println("�뫜 臾몄젣 �뾾�떎.");
+			mav.addObject("mypage", "문제 푸세요!!!");
+
 			
 			mav.addObject("mypage", "임마 문제풀어!!!");
+
 		}
 		mav.addObject("mypageArr", mypageArr);
 		
@@ -321,10 +332,12 @@ public class mainPage {
 	@RequestMapping(value = "/boardview")
 	   public ModelAndView boardview(HttpServletRequest request) {
 	      String numbers = request.getParameter("numbers");
+	      List<CommVo> commvo = commrepo.findAll();
 	      int num = Integer.parseInt(numbers);
 	      System.out.println("numbers입니다"+numbers);
 	      System.out.println(numbers);
 	      ModelAndView mav = new ModelAndView();
+	      mav.addObject("commvo", commvo);
 	      Board course = jpaBoard.getById(num);
 	      System.out.println(course);
 	      mav.addObject("list", course);
@@ -368,6 +381,7 @@ public class mainPage {
 		return mav;
 	}
 	@RequestMapping(value = "/levelup")
+
 	   public ModelAndView levelup() {
 	      ModelAndView mav = new ModelAndView();
 	      List<Member> memberlist = jpaMember.findAll();
@@ -383,31 +397,49 @@ public class mainPage {
 	      System.out.println("member 는 " + memberlist);
 	      mav.setViewName("admin/levelup");
 
+
+
 	      return mav;
 	   }
 	
 
 	@RequestMapping(value = "/levelupControl")
-    public ModelAndView levelupControl(HttpServletRequest request) {
-       ModelAndView mav = new ModelAndView();
-       List<Member> member = jpaMember.findAll();
-       System.out.println("member name : " + member.get(0).getUsers());
-       for(int i = 0; i<member.size(); i++) {
-          if(member.get(i).getUsers()==null) {
-             System.out.println(" 븘臾닿굅 굹");
-          }else if(member.get(i).getUsers().equals("일반 유저 승인 대기 중")) {
-             member.get(i).setUsers("일반 유저");
-             jpaMember.save(member.get(i));
-          }else if(member.get(i).getUsers().equals("프리미엄 유저 승인 대기 중")) {
-             member.get(i).setUsers("프리미엄");
-             jpaMember.save(member.get(i));
-       }
-    }
-       System.out.println("memberrrrrrr:" + member);
-       mav.setViewName("admin/admin");
-       return mav;
-       
-    }
+	   public ModelAndView levelupControl(HttpServletRequest request) {
+	      ModelAndView mav = new ModelAndView();
+	      GradeBankVo gradeBank = new GradeBankVo();
+	      List<Member> member = jpaMember.findAll();
+	      final int genMoney = 10000;
+	      final int preMoney = 15000;
+	      double id = 0.0;
+	      for(int i = 0; i<member.size(); i++) {
+	         if(member.get(i).getUsers()==null) {
+	            System.out.println("아무거나");
+	         }else if(member.get(i).getUsers().equals("일반 유저 승인 대기 중")) {
+	            member.get(i).setUsers("일반유저");
+	            id = Math.round(Math.random() * 1000);
+	            gradeBank.setId(id);
+	            gradeBank.setGenmoney(genMoney);
+	            gradeBank.setPremoney(0);
+	            jpaGradeBank.save(gradeBank);
+	            jpaMember.save(member.get(i));
+	            
+	         }else if(member.get(i).getUsers().equals("프리미엄 유저 승인 대기 중")) {
+	            member.get(i).setUsers("프리미엄");
+	            id = Math.round(Math.random() * 1000);
+	            gradeBank.setId(id);
+	            gradeBank.setGenmoney(0);
+	            gradeBank.setPremoney(preMoney);
+	            jpaGradeBank.save(gradeBank);
+	            jpaMember.save(member.get(i));
+	         }
+	         
+	      }
+	      System.out.println("memberrrrrrr:" + member);
+	      mav.setViewName("admin/admin");
+	      return mav;
+	      
+	   }
+
 	@RequestMapping(value = "/allmember")
 	public ModelAndView allmember() {
 		ModelAndView mav = new ModelAndView();
