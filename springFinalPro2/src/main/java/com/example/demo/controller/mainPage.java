@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 import com.example.demo.jpa.BoardRepo;
+import com.example.demo.jpa.CommRepo;
 import com.example.demo.jpa.CourseRepo;
 import com.example.demo.jpa.EngMiddleRepo;
 import com.example.demo.jpa.EngRepo;
@@ -27,7 +28,7 @@ import com.example.demo.jpa.MypageInfoRepo;
 import com.example.demo.jpa.NoticeRepo;
 
 import com.example.demo.vo.Board;
-
+import com.example.demo.vo.CommVo;
 import com.example.demo.jpa.freeTestRepo;
 
 import com.example.demo.vo.CourseVo;
@@ -82,6 +83,8 @@ public class mainPage {
 	MathMiddleRepo jpaMathMiddle;
 	@Autowired
 	EngMiddleRepo jpaEngMiddle;
+	@Autowired 
+	CommRepo commrepo;
 
 	
 	@RequestMapping(value="/index")
@@ -216,7 +219,7 @@ public class mainPage {
 		System.out.println("mypageInfo >> " + mypageArr.size());
 		if(mypageArr.size() == 0) {
 			System.out.println("�뫜 臾몄젣 �뾾�떎.");
-			mav.addObject("mypage", "�엫留� 臾몄젣 ���뼱!!!");
+			mav.addObject("mypage", "문제 푸세요!!!");
 		}
 		mav.addObject("mypageArr", mypageArr);
 		//臾몄젣 �뿬�윭媛� 諛곗뿴濡� 諛쏆븘�빞�븿
@@ -321,10 +324,12 @@ public class mainPage {
 	@RequestMapping(value = "/boardview")
 	   public ModelAndView boardview(HttpServletRequest request) {
 	      String numbers = request.getParameter("numbers");
+	      List<CommVo> commvo = commrepo.findAll();
 	      int num = Integer.parseInt(numbers);
 	      System.out.println("numbers입니다"+numbers);
 	      System.out.println(numbers);
 	      ModelAndView mav = new ModelAndView();
+	      mav.addObject("commvo", commvo);
 	      Board course = jpaBoard.getById(num);
 	      System.out.println(course);
 	      mav.addObject("list", course);

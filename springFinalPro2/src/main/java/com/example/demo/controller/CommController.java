@@ -33,6 +33,7 @@ public class CommController {
 		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("list", board);
+		 
 		mav.addObject("commvo", comvo);
 		mav.setViewName("admin/board/boardview");
 		
