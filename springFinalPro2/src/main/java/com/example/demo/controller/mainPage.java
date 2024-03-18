@@ -367,48 +367,47 @@ public class mainPage {
 		
 		return mav;
 	}
-
 	@RequestMapping(value = "/levelup")
-	public ModelAndView levelup() {
-		ModelAndView mav = new ModelAndView();
-		List<Member> memberlist = jpaMember.findAll();
-		for(int i = 0; i<memberlist.size(); i++) {
-			if(memberlist.get(i).getUsers()==null) {
-				
-			}else if(memberlist.get(i).getUsers().equals("�씪諛� �쑀�� �듅�씤 ��湲� 以�")) {
-				
-			}else if(memberlist.get(i).getUsers().equals("�봽由щ�몄뾼 �쑀�� �듅�씤 ��湲� 以�")) {
-		}
-		}
-		mav.addObject("memberlist", memberlist);
-		System.out.println("member �뒗 " + memberlist);
-		mav.setViewName("admin/levelup");
+	   public ModelAndView levelup() {
+	      ModelAndView mav = new ModelAndView();
+	      List<Member> memberlist = jpaMember.findAll();
+	      for(int i = 0; i<memberlist.size(); i++) {
+	         if(memberlist.get(i).getUsers()==null) {
+	            
+	         }else if(memberlist.get(i).getUsers().equals("일반 유저 승인 대기 중")) {
+	            
+	         }else if(memberlist.get(i).getUsers().equals("프리미엄 유저 승인 대기 중")) {
+	      }
+	      }
+	      mav.addObject("memberlist", memberlist);
+	      System.out.println("member 는 " + memberlist);
+	      mav.setViewName("admin/levelup");
 
-		return mav;
-	}
+	      return mav;
+	   }
 	
 
 	@RequestMapping(value = "/levelupControl")
-	   public ModelAndView levelupControl(HttpServletRequest request) {
-	      ModelAndView mav = new ModelAndView();
-	      List<Member> member = jpaMember.findAll();
-	      System.out.println("member name : " + member.get(0).getUsers());
-	      for(int i = 0; i<member.size(); i++) {
-	         if(member.get(i).getUsers()==null) {
-	            System.out.println(" 븘臾닿굅 굹");
-	         }else if(member.get(i).getUsers().equals(" 씪諛   쑀    듅 씤   湲  以 ")) {
-	            member.get(i).setUsers(" 씪諛섏쑀  ");
-	            jpaMember.save(member.get(i));
-	         }else if(member.get(i).getUsers().equals(" 봽由щ 몄뾼  쑀    듅 씤   湲  以 ")) {
-	            member.get(i).setUsers(" 봽由щ 몄뾼");
-	            jpaMember.save(member.get(i));
-	      }
-	   }
-	      System.out.println("memberrrrrrr:" + member);
-	      mav.setViewName("admin/admin");
-	      return mav;
-	      
-	   }
+    public ModelAndView levelupControl(HttpServletRequest request) {
+       ModelAndView mav = new ModelAndView();
+       List<Member> member = jpaMember.findAll();
+       System.out.println("member name : " + member.get(0).getUsers());
+       for(int i = 0; i<member.size(); i++) {
+          if(member.get(i).getUsers()==null) {
+             System.out.println(" 븘臾닿굅 굹");
+          }else if(member.get(i).getUsers().equals("일반 유저 승인 대기 중")) {
+             member.get(i).setUsers("일반 유저");
+             jpaMember.save(member.get(i));
+          }else if(member.get(i).getUsers().equals("프리미엄 유저 승인 대기 중")) {
+             member.get(i).setUsers("프리미엄");
+             jpaMember.save(member.get(i));
+       }
+    }
+       System.out.println("memberrrrrrr:" + member);
+       mav.setViewName("admin/admin");
+       return mav;
+       
+    }
 	@RequestMapping(value = "/allmember")
 	public ModelAndView allmember() {
 		ModelAndView mav = new ModelAndView();
