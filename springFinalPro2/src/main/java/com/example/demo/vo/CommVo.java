@@ -5,15 +5,15 @@ import jakarta.persistence.Id;
 
 @Entity(name="comm")
 public class CommVo {
-	
 	@Id
-	private String id;
+	private int id;
 	private String comm;
 	private int num;
-	public String getId() {
+	private String writer;
+	public int getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public String getComm() {
@@ -28,11 +28,15 @@ public class CommVo {
 	public void setNum(int num) {
 		this.num = num;
 	}
+	public String getWriter() {
+		return writer;
+	}
+	public void setWriter(String writer) {
+		this.writer = writer;
+	}
 	@Override
 	public String toString() {
-		return "comm [id=" + id + ", comm=" + comm + ", num=" + num + "]";
+		return "CommVo [id=" + id + ", comm=" + comm + ", num=" + num + ", writer=" + writer + "]";
 	}
 	
-	
-
 }

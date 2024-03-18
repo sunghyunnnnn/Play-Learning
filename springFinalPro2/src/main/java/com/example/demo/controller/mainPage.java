@@ -332,18 +332,18 @@ public class mainPage {
 	@RequestMapping(value = "/boardview")
 	   public ModelAndView boardview(HttpServletRequest request) {
 	      String numbers = request.getParameter("numbers");
-	      List<CommVo> commvo = commrepo.findAll();
 	      int num = Integer.parseInt(numbers);
-	      System.out.println("numbers입니다"+numbers);
-	      System.out.println(numbers);
+	      List<CommVo> commvo = commrepo.selectbynum(num);
+	     
 	      ModelAndView mav = new ModelAndView();
-	      mav.addObject("commvo", commvo);
+	      mav.addObject("commvolist", commvo);
+	     
 	      Board course = jpaBoard.getById(num);
-	      System.out.println(course);
+	    
 	      mav.addObject("list", course);
-	      System.out.println("dkanrjsk");
+	     
 	      mav.setViewName("admin/board/boardview");
-	      System.out.println("apfhdapfhd");
+	    
 	      return mav;
 	   }
 	@RequestMapping(value = "/noticeview")
@@ -402,26 +402,41 @@ public class mainPage {
 	
 
 	@RequestMapping(value = "/levelupControl")
-	public ModelAndView levelupControl(HttpServletRequest request) {
-		ModelAndView mav = new ModelAndView();
-		List<Member> member = jpaMember.findAll();
-		System.out.println("member name : " + member.get(0).getUsers());
-		for(int i = 0; i<member.size(); i++) {
-			if(member.get(i).getUsers()==null) {
-				System.out.println("아무거나");
-			}else if(member.get(i).getUsers().equals("일반 유저 승인 대기 중")) {
-				member.get(i).setUsers("일반유저");
-				jpaMember.save(member.get(i));
-			}else if(member.get(i).getUsers().equals("프리미엄 유저 승인 대기 중")) {
-				member.get(i).setUsers("프리미엄");
-				jpaMember.save(member.get(i));
-		}
-	}
-		System.out.println("memberrrrrrr:" + member);
-		mav.setViewName("admin/admin");
-		return mav;
-		
-	}
+	   public ModelAndView levelupControl(HttpServletRequest request) {
+	      ModelAndView mav = new ModelAndView();
+	      GradeBankVo gradeBank = new GradeBankVo();
+	      List<Member> member = jpaMember.findAll();
+	      final int genMoney = 10000;
+	      final int preMoney = 15000;
+	      double id = 0.0;
+	      for(int i = 0; i<member.size(); i++) {
+	         if(member.get(i).getUsers()==null) {
+	            System.out.println("아무거나");
+	         }else if(member.get(i).getUsers().equals("일반 유저 승인 대기 중")) {
+	            member.get(i).setUsers("일반유저");
+	            id = Math.round(Math.random() * 1000);
+	            gradeBank.setId(id);
+	            gradeBank.setGenmoney(genMoney);
+	            gradeBank.setPremoney(0);
+	            jpaGradeBank.save(gradeBank);
+	            jpaMember.save(member.get(i));
+	            
+	         }else if(member.get(i).getUsers().equals("프리미엄 유저 승인 대기 중")) {
+	            member.get(i).setUsers("프리미엄");
+	            id = Math.round(Math.random() * 1000);
+	            gradeBank.setId(id);
+	            gradeBank.setGenmoney(0);
+	            gradeBank.setPremoney(preMoney);
+	            jpaGradeBank.save(gradeBank);
+	            jpaMember.save(member.get(i));
+	         }
+	         
+	      }
+	      System.out.println("memberrrrrrr:" + member);
+	      mav.setViewName("admin/admin");
+	      return mav;
+	      
+	   }
 	@RequestMapping(value = "/allmember")
 	public ModelAndView allmember() {
 		ModelAndView mav = new ModelAndView();
