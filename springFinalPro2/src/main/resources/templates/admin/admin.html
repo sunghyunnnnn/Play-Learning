@@ -18,10 +18,7 @@
 
 	</head>
 	<body class="is-preload">
-						<a style = "text-align: right" th:href="@{logoutControl}"
-							th:text=" '로그아웃' "></a>
-							<a th:if="${session.login_member != null}"></a>
-
+						
 		<!-- Wrapper -->
 			<div id="wrapper">
 
@@ -29,20 +26,27 @@
 					<div id="main">
 						<div class="inner">
 
+							
 							<!-- Header -->
+							
 								<header id="header">
-									<a href="index.html" class="logo"><strong>뿌셔뿌셔</strong> by 김미정 성현 현기원</a>
+								
+									<strong>뿌셔뿌셔 by 김미정 성현 현기원</strong><a style = "text-align:right;" th:href="@{logoutControl}"
+							th:text=" '로그아웃' "></a>
+							<a th:if="${session.login_member != null}"></a>
 								</header>
 
 							<!-- Banner -->
 								<section id="banner">
 									<div class="content">
 										<header>
+										
 											<h1>반갑습니다, <br>관리자님</h1><br />
 											</h1>
 											
 										</header>
-										<p>안녕하세요. 관리자님. 관리자 페이지 입니다.</p>
+										
+										<p>안녕하세요 관리자님. 관리자 페이지 입니다.</p>
 										<ul class="actions">
 											<li><a href="#" class="button big">MORE</a></li>
 										</ul>

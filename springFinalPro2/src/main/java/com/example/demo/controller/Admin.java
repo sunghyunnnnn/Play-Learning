@@ -32,9 +32,11 @@ public class Admin {
 		mav.addObject("total", totalCnt);
 		mav.addObject("manCnt", manCnt);
 		mav.addObject("girlCnt", girlCnt);
+
 		mav.addObject("totalMoney", totalMoney);
 		mav.addObject("preMoney", preMoney);
 		mav.addObject("genMoney", genMoney);
+		
 		mav.setViewName("/admin/graph/memberGraph");
 		return mav;
 	}

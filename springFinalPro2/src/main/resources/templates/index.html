@@ -4,7 +4,7 @@
 		<title>뿌셔뿌셔 css적용</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="style/style.css" />
+		<link rel="stylesheet" href="style/main.css" />
 		<link
       rel="stylesheet"
       href="https://unpkg.com/swiper/swiper-bundle.min.css"
@@ -35,7 +35,7 @@
 							<div class="backgroundimg"></div>
 							<!-- Header -->
 								<header id="header">
-									<a href="index.html" class="logo"><strong>뿌셔뿌셔</strong> by 김미정 성현 현기원</a>
+									<a href="index" class="logo"><strong>뿌셔뿌셔</strong> by 김미정 성현 현기원</a>
 								</header>
 
 							<!-- Banner -->
@@ -58,7 +58,7 @@
 										<img class="girlandboy" src="img/indexImg/boyandgirl.jpg" alt="" />
 									</span>
 								</section>
-								
+									<!-- 광고 배너 -->
 								<div class="slider__wrapper">
 									<div class="swiper best-txt-slider">
 									  <div class="swiper-wrapper">
@@ -323,8 +323,9 @@
 												<a class="loginError" th:if="${session.indexCk == null}">정보 수정</a>
 											</li>
 											<li><a class="payError">결제 하기</a></li>
-											<li><a href="wrongsolve">오답 풀이</a></li>
-											<li><a href="levelup">임시 관리자 승인 페이지</a></li>
+											<li><a th:if="${session.indexCk == true}" th:href = "@{./wrongsolve(id = ${session.login_number.id})}">오답 풀이</a></li>
+												<a class="wrongError" th:if="${session.indexCk == null}">오답풀이</a>
+											
 											 <li>
                                        <a th:if="${session.indexCk == true}" th:href = "@{./deletememberControl(id = ${session.login_number.id})}">회원 탈퇴</a>
                                        <a class="deleteError" th:if="${session.indexCk == null}">회원 탈퇴</a>
@@ -336,24 +337,28 @@
 										<li>
 											<span class="opener">커뮤니티</span>
 											<ul>
-												<li><a href="board">게시판</a></li>
+												<li><a th:if="${session.indexCk == true}" th:href = "@{./board(id = ${session.login_number.id})}">게시판</a></li>
+													<a class="boardError" th:if="${session.indexCk == null}">게시판</a>
 												<li><a href="usernotice">공지사항</a></li>
                                                
 											
 											</ul>
 										</li>
 										<li>
-											<span class="opener">우리 같이 놀자 재밌겠다</span>
+											<span class="opener">우리 한 번 놀아보자</span>
 											<ul>
-												<li><a href="#">알쏭달쏭 단어 십자 말풀이</a></li>
-												<li><a href="baseballgame">머리가 말랑해지는 숫자 야구</a></li>
+												<li><a th:if="${session.indexCk == true}" th:href = "@{./wordreplay(id = ${session.login_number.id})}">다같이 붙어보자 끝말잇기</a></li>
+													<a class="wordError" th:if="${session.indexCk == null}">다같이 붙어보자 끝말잇기</a>
+												<li><a th:if="${session.indexCk == true}" th:href = "@{./baseballgame(id = ${session.login_number.id})}">머리가 말랑해지는 숫자 야구</a></li>
+													<a class="ballError" th:if="${session.indexCk == null}">머리가 말랑해지는 숫자 야구</a>
 												<li><a href="#">사과는 애플 영단어 맞추기</a></li>
 											</ul>
 										</li>
 										<li>
 											<span class="opener">고객 지원</span>
 											<ul>
-												<li><a href="customerQna">고객 문의</a></li>
+												<li><a th:if="${session.indexCk == true}" th:href = "@{./customerQna(id = ${session.login_number.id})}">고객 문의</a></li>
+													<a class="QnaError" th:if="${session.indexCk == null}">고객 문의</a>
 											</ul>
 										</li>
 									
@@ -366,12 +371,12 @@
 									</header>
 									<div class="mini-posts">
 										<article >
-											<a href="#" class="image"><img src="img/indexImg/boardimg.jpg" alt="" /></a>
+											<a href="#" class="image"><img src="img/indexImg/godimg.jpg" alt="" /></a>
 											<strong>문제를 풀어주세요</strong><br>
 											<p>국어/영어/수학</p>
 										</article>
 										<article>
-											<a href="#" class="image"><img src="img/indexImg/godimg.jpg" alt="" /></a>
+											<a href="#" class="image"><img src="img/indexImg/boardimg.jpg" alt="" /></a>
 											<strong>소통왕이 되어주세요</strong><br>
 											<p>게시판으로 순간이동</p>
 										</article>
@@ -423,6 +428,12 @@
 				let indexCk = false;
 				indexCk = [[${session.indexCk}]];
 				console.log(indexCk);
+				
+				const word = document.querySelector(".wordError");
+				const ball = document.querySelector(".ballError");
+				const wrong = document.querySelector(".wrongError");
+				const qna = document.querySelector(".QnaError");
+				const board = document.querySelector(".boardError");
 				
 				const pay = document.querySelector(".payError");
 				const gender = document.querySelector(".girlandboy");
@@ -614,6 +625,42 @@
 					}
 					pay.addEventListener('click', clickpayError);
 				}
+				
+				if(!indexCk) {
+					const clickboardError = () => {
+						alert('서비스를 이용하고 싶으시면 로그인 해주세요.');
+					}
+					board.addEventListener('click', clickboardError);
+				}
+				
+				if(!indexCk) {
+					const clickQnaError = () => {
+						alert('서비스를 이용하고 싶으시면 로그인 해주세요.');
+					}
+					qna.addEventListener('click', clickQnaError);
+				}
+				
+				if(!indexCk) {
+					const clickwrongError = () => {
+						alert('서비스를 이용하고 싶으시면 로그인 해주세요.');
+					}
+					wrong.addEventListener('click', clickwrongError);
+				}
+				
+				if(!indexCk) {
+					const clickwordError = () => {
+						alert('서비스를 이용하고 싶으시면 로그인 해주세요.');
+					}
+					word.addEventListener('click', clickwordError);
+				}
+				
+				if(!indexCk) {
+					const clickballError = () => {
+						alert('서비스를 이용하고 싶으시면 로그인 해주세요.');
+					}
+					ball.addEventListener('click', clickballError);
+				}
+				
 				
 				problemKorBtn.addEventListener('click', clickProblemKorBtn);			
 				problemEngBtn.addEventListener('click', clickProblemEngBtn);			

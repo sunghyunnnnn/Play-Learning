@@ -6,32 +6,47 @@
 -->
 <html>
 	<head>
-		<title>검색디테일</title>
-		<meta charset="utf-8" />
+		<title>검색 디테일 페이지</title>
+	<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="style/main.css" />
+		<link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper/swiper-bundle.min.css"
+    />
+	<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 	</head>
 	<body class="is-preload">
-
+		
 		<!-- Wrapper -->
-			<div id="wrapper">
-
+					<div id="wrapper">
+						<div class="login_search_section">
+							<div th:if="${session.login_number == null}" class="signin">
+								<span class = "signinBtn" style="margin-right: 50px" onclick="location.href='signin'">회원가입</span>
+								<span class = "signinBtn" style="margin-right: 30px" onclick="location.href='login'">로그인</span>
+								</div>
+						<div th:if ="${session.login_number != null}">
+							<span th:text = "${session.login_number.id} + ' 님 환영합니다.'"></span>
+							<span class="myPage">마이페이지</span>
+							<a th:href="@{logoutControl}"
+							th:text=" '로그아웃' "></a>
+							<a th:if="${session.login_member != null}"></a>
+							
+						</div>
+					</div>
 				<!-- Main -->
 					<div id="main">
 						<div class="inner">
-
+							<div class="backgroundimg"></div>
 							<!-- Header -->
-							<header id="header">
-									<h2><a href="index" class="logo"><strong>뿌셔뿌셔</strong></a></h2>
+								<header id="header">
+									<a href="index" class="logo"><strong>뿌셔뿌셔</strong> by 김미정 성현 현기원</a>
 								</header>
-								
-							
-								
 
 							<!-- Content -->
 								<section>
 									<header class="main">
-										<h2>검색 결과</h2>
+										<h1>검색 상세</h1>
 								
 									<span class="image main"><video th:src="${item.videosrc}" controls="controls"></video></span>
 
@@ -58,69 +73,99 @@
 					</div>
 
 				<!-- Sidebar -->
-				<div id="sidebar">
-					<div class="inner">
-
-						<!-- Search -->
-							<section id="search" class="alt">
-								<form method="get" action="searchPage">
-									<input type="text" id="search" name="search"
-									placeholder="검색어를 입력하세요">
-									<button class="searchBtn"></button>
-								</form>
-							</section>
+					<div id="sidebar">
+						<div class="inner">
 
 							<!-- Search -->
-								
+								<section id="search" class="alt">
+									<form method="get" action="searchPage">
+										<input type="text" id="search" name="search"
+										placeholder="검색어를 입력하세요">
+										<button class="searchBtn"></button>
+									</form>
+								</section>
+
 							<!-- Menu -->
 								<nav id="menu">
 									<header class="major">
-										<h2>비슷한 강의</h2>
+										<h2>메뉴</h2>
+									</header>
+									<ul>
+										<li>
+											<span class="opener">내정보</span>
+										<ul>
+											<li>
+												<a th:if="${session.indexCk == true}" th:href = "@{./memberchangeControl(id = ${session.login_number.id})}">정보 수정</a>
+												<a class="loginError" th:if="${session.indexCk == null}">정보 수정</a>
+											</li>
+											<li><a class="payError">결제 하기</a></li>
+											<li><a th:if="${session.indexCk == true}" th:href = "@{./wrongsolve(id = ${session.login_number.id})}">오답 풀이</a></li>
+												<a class="wrongError" th:if="${session.indexCk == null}">오답풀이</a>
+											
+											 <li>
+                                       <a th:if="${session.indexCk == true}" th:href = "@{./deletememberControl(id = ${session.login_number.id})}">회원 탈퇴</a>
+                                       <a class="deleteError" th:if="${session.indexCk == null}">회원 탈퇴</a>
+                                    </li>
+									
+											
+										</ul>
+										</li>
+										<li>
+											<span class="opener">커뮤니티</span>
+											<ul>
+												<li><a th:if="${session.indexCk == true}" th:href = "@{./board(id = ${session.login_number.id})}">게시판</a></li>
+													<a class="boardError" th:if="${session.indexCk == null}">게시판</a>
+												<li><a href="usernotice">공지사항</a></li>
+                                               
+											
+											</ul>
+										</li>
+										<li>
+											<span class="opener">우리 한 번 놀아보자</span>
+											<ul>
+												<li><a th:if="${session.indexCk == true}" th:href = "@{./wordreplay(id = ${session.login_number.id})}">다같이 붙어보자 끝말잇기</a></li>
+													<a class="wordError" th:if="${session.indexCk == null}">다같이 붙어보자 끝말잇기</a>
+												<li><a th:if="${session.indexCk == true}" th:href = "@{./baseballgame(id = ${session.login_number.id})}">머리가 말랑해지는 숫자 야구</a></li>
+													<a class="ballError" th:if="${session.indexCk == null}">머리가 말랑해지는 숫자 야구</a>
+												<li><a href="#">사과는 애플 영단어 맞추기</a></li>
+											</ul>
+										</li>
+										<li>
+											<span class="opener">고객 지원</span>
+											<ul>
+												<li><a th:if="${session.indexCk == true}" th:href = "@{./customerQna(id = ${session.login_number.id})}">고객 문의</a></li>
+													<a class="QnaError" th:if="${session.indexCk == null}">고객 문의</a>
+											</ul>
+										</li>
+									
+								</nav>
+
+							
+						<!-- Section -->
+								<section>
+									<header class="major">
+										<h2>해주세요</h2>
 									</header>
 									<div class="mini-posts">
 										<article >
-											<a href="#" class="image"><img src="img/indexImg/boardimg.jpg" alt="" /></a>
+										<a href="#" class="image"><img src="img/indexImg/godimg.jpg" alt="" /></a>
 											<strong>문제를 풀어주세요</strong><br>
-											<p>국어</p>
+											<p>국어/영어/수학</p>
 										</article>
 										<article>
-											<a href="#" class="image"><img src="img/indexImg/godimg.jpg" alt="" /></a>
+											<a href="#" class="image"><img src="img/indexImg/boardimg.jpg" alt="" /></a>
 											<strong>소통왕이 되어주세요</strong><br>
-											<p>영어</p>
+											<p>게시판으로 순간이동</p>
 										</article>
 										<article>
 											<a href="#" class="image"><img src="img/indexImg/questionimg.jpg" alt="" /></a>
 											<strong>문제가 생겼어요</strong><br>
-											<p>수학</p>
+											<p>문의 하러 가기</p>
 										</article>
 									</div>
+									
 								</section>
 
-							
-							<!-- Section -->
-							<section>
-								<header class="major">
-									<h2>추천 강의</h2>
-								</header>
-								<div class="mini-posts">
-									<article >
-										<a href="#" class="image"><img src="img/indexImg/boardimg.jpg" alt="" /></a>
-										<strong>문제를 풀어주세요</strong><br>
-										<p>국어</p>
-									</article>
-									<article>
-										<a href="#" class="image"><img src="img/indexImg/godimg.jpg" alt="" /></a>
-										<strong>소통왕이 되어주세요</strong><br>
-										<p>영어</p>
-									</article>
-									<article>
-										<a href="#" class="image"><img src="img/indexImg/questionimg.jpg" alt="" /></a>
-										<strong>문제가 생겼어요</strong><br>
-										<p>수학</p>
-									</article>
-								</div>
-								
-							</section>
 
 						<!-- Section -->
 							<section>
@@ -129,9 +174,9 @@
 								</header>
 								<p>안녕하세요. 이 사이트는 현기원 성현 김미정의 <strong>피, 땀, 눈물</strong>로 이루어진 학생 문제 제공 사이트입니다. 저희 생각보다 많이 힘들었습니다.....   귀엽게. 예쁘게 봐주세요. 아잉뿌잉뀨잉</p>
 								<ul class="contact">
-									<li class="icon solid fa-envelope"><a href="#">2303110239@office.kopo.ac.kr</a></li>
-									<li class="icon solid fa-envelope"><a href="#">2303110248@office.kopo.ac.kr</a></li>
-									<li class="icon solid fa-envelope"><a href="#">2303110266@office.kopo.ac.kr</a></li>
+									<li class="icon solid fa-envelope"><a href="#" style="font-size: 15px;">2303110239@office.kopo.ac.kr</a></li>
+									<li class="icon solid fa-envelope"><a href="#" style="font-size: 15px;">2303110248@office.kopo.ac.kr</a></li>
+									<li class="icon solid fa-envelope"><a href="#" style="font-size: 15px;">2303110266@office.kopo.ac.kr</a></li>
 									<li class="icon solid fa-phone">(031) 739-4000</li>
 									<li class="icon solid fa-home">경기도 성남시 수정구 수정로 398 드림관 2층 데이터 분석 실습실<br />
 									</li>
@@ -147,219 +192,265 @@
 				</div>
 
 		</div>
-		<!-- Scripts -->
-		<script src="https://kit.fontawesome.com/86bc6866a5.js"
-		crossorigin="anonymous"></script>
-		<script src="js/jquery.min.js"></script>
-		<script src="js/browser.min.js"></script>
-		<script src="js/breakpoints.min.js"></script>
-		<script src="js/util.js"></script>
-		<script src="js/main.js"></script>
-		
-		<script th:inline="javascript">
-			let indexCk = false;
-			indexCk = [[${session.indexCk}]];
-			console.log(indexCk);
+<!-- Scripts -->
+			<script src="https://kit.fontawesome.com/86bc6866a5.js"
+			crossorigin="anonymous"></script>
+			<script src="js/jquery.min.js"></script>
+			<script src="js/browser.min.js"></script>
+			<script src="js/breakpoints.min.js"></script>
+			<script src="js/util.js"></script>
+			<script src="js/main.js"></script>
 			
-			const pay = document.querySelector(".payError");
-			const gender = document.querySelector(".girlandboy");
-			
-			const problemKorBtn = document.querySelector(".problemKorBtn");
-			const problemMathBtn = document.querySelector(".problemMathBtn");
-			const problemEngBtn = document.querySelector(".problemEngBtn");
-			
-			const problemKorUpperBtn = document.querySelector(".problemKorUpperBtn");
-			const problemMathUpperBtn = document.querySelector(".problemMathUpperBtn");
-			const problemEngUpperBtn = document.querySelector(".problemEngUpperBtn");
-			
-			const problemKorMiddleBtn = document.querySelector(".problemKorMiddleBtn");
-			const problemMathMiddleBtn = document.querySelector(".problemMathMiddleBtn");
-			const problemEngMiddleBtn = document.querySelector(".problemEngMiddleBtn");
-			
-			const loginError = document.querySelector(".loginError");
-			const deleteError = document.querySelector(".deleteError");
-			const mypage = document.querySelector(".myPage");
-			const bestTxtSwiper = new Swiper(".best-txt-slider", {
-			  autoplay: {
-				delay: 4000,
-				disableOnInteraction: false,
-			  },
-			  effect: "fade",
-			  loop: true,
-			  allowTouchMove: false,
-			});
-		
-
-			const bestSwiper = new Swiper(".best-slider", {
-			  autoplay: {
-				delay: 4000, // bestTxtSwiper와 동일하게 설정
-				disableOnInteraction: false,
-			  },
-			  slidesPerView: 1.4,
-			  loop: true,
-			  navigation: {
-				nextEl: ".best-slider .swiper-button-next",
-				prevEl: ".best-slider .swiper-button-prev",
-			  },
-			  on: {
-				slideChangeTransitionStart: function () {
-				  const realIndex = bestSwiper.realIndex;
-				  let targetIndex = realIndex;
-		
-				  bestTxtSwiper.slideTo(targetIndex);
-				  bestTxtSwiper.update(); // swiper 업데이트
-				},
-				slideNextTransitionStart: function () {
-				  bestTxtSwiper.autoplay.stop();
-				},
-				slidePrevTransitionStart: function () {
-				  bestTxtSwiper.autoplay.stop();
-				},
-				slideChangeTransitionEnd: function () {
-				  bestTxtSwiper.autoplay.start();
-				},
-			  },
-			});
-			
-			const clickFunc = () => {
+			<script th:inline="javascript">
+				let indexCk = false;
+				indexCk = [[${session.indexCk}]];
+				console.log(indexCk);
 				
+				const word = document.querySelector(".wordError");
+				const ball = document.querySelector(".ballError");
+				const wrong = document.querySelector(".wrongError");
+				const qna = document.querySelector(".QnaError");
+				const board = document.querySelector(".boardError");
+				
+				const pay = document.querySelector(".payError");
+				const gender = document.querySelector(".girlandboy");
+				
+				const problemKorBtn = document.querySelector(".problemKorBtn");
+				const problemMathBtn = document.querySelector(".problemMathBtn");
+				const problemEngBtn = document.querySelector(".problemEngBtn");
+				
+				const problemKorUpperBtn = document.querySelector(".problemKorUpperBtn");
+				const problemMathUpperBtn = document.querySelector(".problemMathUpperBtn");
+				const problemEngUpperBtn = document.querySelector(".problemEngUpperBtn");
+				
+				const problemKorMiddleBtn = document.querySelector(".problemKorMiddleBtn");
+				const problemMathMiddleBtn = document.querySelector(".problemMathMiddleBtn");
+				const problemEngMiddleBtn = document.querySelector(".problemEngMiddleBtn");
+				
+				const loginError = document.querySelector(".loginError");
+				const deleteError = document.querySelector(".deleteError");
+				const mypage = document.querySelector(".myPage");
+				
+				const bestTxtSwiper = new Swiper(".best-txt-slider", {
+				  autoplay: {
+					delay: 4000,
+					disableOnInteraction: false,
+				  },
+				  effect: "fade",
+				  loop: true,
+				  allowTouchMove: false,
+				});
+			
+
+				const bestSwiper = new Swiper(".best-slider", {
+				  autoplay: {
+					delay: 4000, // bestTxtSwiper와 동일하게 설정
+					disableOnInteraction: false,
+				  },
+				  slidesPerView: 1.4,
+				  loop: true,
+				  navigation: {
+					nextEl: ".best-slider .swiper-button-next",
+					prevEl: ".best-slider .swiper-button-prev",
+				  },
+				  on: {
+					slideChangeTransitionStart: function () {
+					  const realIndex = bestSwiper.realIndex;
+					  let targetIndex = realIndex;
+			
+					  bestTxtSwiper.slideTo(targetIndex);
+					  bestTxtSwiper.update(); // swiper 업데이트
+					},
+					slideNextTransitionStart: function () {
+					  bestTxtSwiper.autoplay.stop();
+					},
+					slidePrevTransitionStart: function () {
+					  bestTxtSwiper.autoplay.stop();
+					},
+					slideChangeTransitionEnd: function () {
+					  bestTxtSwiper.autoplay.start();
+					},
+				  },
+				});
+				
+				const clickFunc = () => {
+					
+					
+					if(indexCk){
+						let id = [[${session.loginId}]];
+						location.href = `/myPage?id=${id}`
+					}
+					else{
+						console.log('마이페이지 안가짐');
+					}
+				}
+				
+				const clickProblemKorBtn = () =>{
+					if(indexCk === true){
+						location.href = 'korBook';					
+					}
+					else{
+						alert('로그인 하셈!!!');
+					}
+				}
+				const clickProblemEngBtn = () =>{
+					if(indexCk === true){
+						location.href = 'engBook';					
+					}
+					else{
+						alert('로그인 하셈!!!');
+					}
+				}
+				const clickProblemMathBtn = () =>{
+					if(indexCk === true){
+						location.href = 'mathBook';					
+					}
+					else{
+						alert('로그인 하셈!!!');
+					}
+				}
+				const clickProblemKorUpperBtn = () =>{
+					if(indexCk === true){
+						location.href = 'korUpperBook';					
+					}
+					else{
+						alert('로그인 하셈!!!');
+					}
+				}
+				const clickProblemMathUpperBtn = () =>{
+					if(indexCk === true){
+						location.href = 'mathUpperBook';					
+					}
+					else{
+						alert('로그인 하셈!!!');
+					}
+				}
+				const clickProblemEngUpperBtn = () =>{
+					if(indexCk === true){
+						location.href = 'engUpperBook';					
+					}
+					else{
+						alert('로그인 하셈!!!');
+					}
+				}
+				
+				const clickProblemKorMiddleBtn = () =>{
+					if(indexCk === true){
+						location.href = 'korMiddleBook';					
+					}
+					else{
+						alert('로그인 하셈!!!');
+					}
+				}
+				const clickProblemMathMiddleBtn = () =>{
+					if(indexCk === true){
+						location.href = 'mathMiddleBook';					
+					}
+					else{
+						alert('로그인 하셈!!!');
+					}
+				}
+				const clickProblemEngMiddleBtn = () =>{
+					if(indexCk === true){
+						location.href = 'engMiddleBook';					
+					}
+					else{
+						alert('로그인 하셈!!!');
+					}
+				}
+				
+				const clickpayment = () =>{
+					if(indexCk === true){
+						let id = [[${session.loginId}]];
+						location.href = `payment?id=${id}`;					
+					}
+					else{
+						alert('로그인 하셈!!!');
+					}
+				}
+				let sex = [[${login_boyandgirl}]]
+				
+				if(sex==="여") {
+					gender.src = "./img/indexImg/girl.png"
+				}else if(sex==="남") {
+					gender.src = "./img/indexImg/boy.png"
+				}
+				
+				
+				if(!indexCk){
+					const clickloginError = () => {
+						alert('서비스를 이용하고 싶으시면 로그인 해주세요.');
+					}					
+					loginError.addEventListener('click', clickloginError);
+				}
+				
+				if(!indexCk){
+					const clickdeleteError = () => {
+						alert('서비스를 이용하고 싶으시면 로그인 해주세요.');
+					}					
+					deleteError.addEventListener('click', clickdeleteError);
+				}
 				
 				if(indexCk){
-					let id = [[${session.loginId}]];
-					location.href = `/myPage?id=${id}`
+					mypage.addEventListener('click', clickFunc);
+					pay.addEventListener('click', clickpayment);
 				}
-				else{
-					console.log('마이페이지 안가짐');
+				
+				if(!indexCk) {
+					const clickpayError = () => {
+						alert('서비스를 이용하고 싶으시면 로그인 해주세요.');
+					}
+					pay.addEventListener('click', clickpayError);
 				}
-			}
-			
-			const clickProblemKorBtn = () =>{
-				if(indexCk === true){
-					location.href = 'korBook';					
+				
+				if(!indexCk) {
+					const clickboardError = () => {
+						alert('서비스를 이용하고 싶으시면 로그인 해주세요.');
+					}
+					board.addEventListener('click', clickboardError);
 				}
-				else{
-					alert('로그인 하셈!!!');
+				
+				if(!indexCk) {
+					const clickQnaError = () => {
+						alert('서비스를 이용하고 싶으시면 로그인 해주세요.');
+					}
+					qna.addEventListener('click', clickQnaError);
 				}
-			}
-			const clickProblemEngBtn = () =>{
-				if(indexCk === true){
-					location.href = 'engBook';					
+				
+				if(!indexCk) {
+					const clickwrongError = () => {
+						alert('서비스를 이용하고 싶으시면 로그인 해주세요.');
+					}
+					wrong.addEventListener('click', clickwrongError);
 				}
-				else{
-					alert('로그인 하셈!!!');
+				
+				if(!indexCk) {
+					const clickwordError = () => {
+						alert('서비스를 이용하고 싶으시면 로그인 해주세요.');
+					}
+					word.addEventListener('click', clickwordError);
 				}
-			}
-			const clickProblemMathBtn = () =>{
-				if(indexCk === true){
-					location.href = 'mathBook';					
+				
+				if(!indexCk) {
+					const clickballError = () => {
+						alert('서비스를 이용하고 싶으시면 로그인 해주세요.');
+					}
+					ball.addEventListener('click', clickballError);
 				}
-				else{
-					alert('로그인 하셈!!!');
-				}
-			}
-			const clickProblemKorUpperBtn = () =>{
-				if(indexCk === true){
-					location.href = 'korUpperBook';					
-				}
-				else{
-					alert('로그인 하셈!!!');
-				}
-			}
-			const clickProblemMathUpperBtn = () =>{
-				if(indexCk === true){
-					location.href = 'mathUpperBook';					
-				}
-				else{
-					alert('로그인 하셈!!!');
-				}
-			}
-			const clickProblemEngUpperBtn = () =>{
-				if(indexCk === true){
-					location.href = 'engUpperBook';					
-				}
-				else{
-					alert('로그인 하셈!!!');
-				}
-			}
-			
-			const clickProblemKorMiddleBtn = () =>{
-				if(indexCk === true){
-					location.href = 'korMiddleBook';					
-				}
-				else{
-					alert('로그인 하셈!!!');
-				}
-			}
-			const clickProblemMathMiddleBtn = () =>{
-				if(indexCk === true){
-					location.href = 'mathMiddleBook';					
-				}
-				else{
-					alert('로그인 하셈!!!');
-				}
-			}
-			const clickProblemEngMiddleBtn = () =>{
-				if(indexCk === true){
-					location.href = 'engMiddleBook';					
-				}
-				else{
-					alert('로그인 하셈!!!');
-				}
-			}
-			
-			const clickpayment = () =>{
-				if(indexCk === true){
-					let id = [[${session.loginId}]];
-					location.href = `payment?id=${id}`;					
-				}
-				else{
-					alert('로그인 하셈!!!');
-				}
-			}
-			let sex = [[${login_boyandgirl}]]
-			
-			if(sex==="여") {
-				gender.src = "./img/indexImg/girl.png"
-			}else if(sex==="남") {
-				gender.src = "./img/indexImg/boy.png"
-			}
-			
-			
-			if(!indexCk){
-				const clickloginError = () => {
-					alert('서비스를 이용하고 싶으시면 로그인 해주세요.');
-				}					
-				loginError.addEventListener('click', clickloginError);
-			}
-			if(!indexCk){
-				const clickdeleteError = () => {
-					alert('서비스를 이용하고 싶으시면 로그인 해주세요.');
-				}					
-				deleteError.addEventListener('click', clickdeleteError);
-			}
-			if(indexCk){
-				mypage.addEventListener('click', clickFunc);
-				pay.addEventListener('click', clickpayment);
-			}
-			if(!indexCk) {
-				const clickpayError = () => {
-					alert('서비스를 이용하고 싶으시면 로그인 해주세요.');
-				}
-				pay.addEventListener('click', clickpayError);
-			}
-			
-			problemKorBtn.addEventListener('click', clickProblemKorBtn);			
-			problemEngBtn.addEventListener('click', clickProblemEngBtn);			
-			problemMathBtn.addEventListener('click', clickProblemMathBtn);
-			
-			problemKorUpperBtn.addEventListener('click', clickProblemKorUpperBtn);
-			problemMathUpperBtn.addEventListener('click', clickProblemMathUpperBtn);
-			problemEngUpperBtn.addEventListener('click', clickProblemEngUpperBtn);
-			
-			problemKorMiddleBtn.addEventListener('click', clickProblemKorMiddleBtn);
-			problemMathMiddleBtn.addEventListener('click', clickProblemMathMiddleBtn);
-			problemEngMiddleBtn.addEventListener('click', clickProblemEngMiddleBtn);
-		  </script>
-  
-</body>
+				
+				
+				problemKorBtn.addEventListener('click', clickProblemKorBtn);			
+				problemEngBtn.addEventListener('click', clickProblemEngBtn);			
+				problemMathBtn.addEventListener('click', clickProblemMathBtn);
+				
+				problemKorUpperBtn.addEventListener('click', clickProblemKorUpperBtn);
+				problemMathUpperBtn.addEventListener('click', clickProblemMathUpperBtn);
+				problemEngUpperBtn.addEventListener('click', clickProblemEngUpperBtn);
+				
+				problemKorMiddleBtn.addEventListener('click', clickProblemKorMiddleBtn);
+				problemMathMiddleBtn.addEventListener('click', clickProblemMathMiddleBtn);
+				problemEngMiddleBtn.addEventListener('click', clickProblemEngMiddleBtn);
+			  </script>
+	  
+	</body>
 </html>

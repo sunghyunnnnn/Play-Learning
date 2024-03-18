@@ -14,7 +14,7 @@
 @import "graph.css";
 
 :root {
-    --bg: #fff;
+    --bg: white;
     --text: #382b22;
     --light-pink: #fff0f0;
     --pink: #ffe9e9;

@@ -52,7 +52,7 @@ import jakarta.security.auth.message.callback.PrivateKeyCallback.Request;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
-//변경테스트!!!
+//蹂�寃쏀뀒�뒪�듃!!!
 @Controller
 public class mainPage {
 	@Autowired
@@ -219,11 +219,11 @@ public class mainPage {
 		
 		System.out.println("mypageInfo >> " + mypageArr.size());
 		if(mypageArr.size() == 0) {
-			System.out.println("푼 문제 없다.");
-			mav.addObject("mypage", "임마 문제 풀어!!!");
+			
+			mav.addObject("mypage", "임마 문제풀어!!!");
 		}
 		mav.addObject("mypageArr", mypageArr);
-		//문제 여러개 배열로 받아야함
+		
 		mav.setViewName("member/myPage");
 		return mav;
 	}
@@ -322,19 +322,21 @@ public class mainPage {
 	   public ModelAndView boardview(HttpServletRequest request) {
 	      String numbers = request.getParameter("numbers");
 	      int num = Integer.parseInt(numbers);
+	      System.out.println("numbers입니다"+numbers);
 	      System.out.println(numbers);
 	      ModelAndView mav = new ModelAndView();
 	      Board course = jpaBoard.getById(num);
 	      System.out.println(course);
 	      mav.addObject("list", course);
+	      System.out.println("dkanrjsk");
 	      mav.setViewName("admin/board/boardview");
+	      System.out.println("apfhdapfhd");
 	      return mav;
 	   }
 	@RequestMapping(value = "/noticeview")
-	   public ModelAndView noticeview(HttpServletRequest request) {
+	   public ModelAndView noticeview(HttpServletRequest request) { 
 	      String numbers = request.getParameter("numbers");
 	      int num = Integer.parseInt(numbers);
-	      System.out.println(numbers);
 	      ModelAndView mav = new ModelAndView();
 	      Notice course = jpaNotice.getById(num);
 	      System.out.println(course);
@@ -373,13 +375,13 @@ public class mainPage {
 		for(int i = 0; i<memberlist.size(); i++) {
 			if(memberlist.get(i).getUsers()==null) {
 				
-			}else if(memberlist.get(i).getUsers().equals("일반 유저 승인 대기 중")) {
+			}else if(memberlist.get(i).getUsers().equals("�씪諛� �쑀�� �듅�씤 ��湲� 以�")) {
 				
-			}else if(memberlist.get(i).getUsers().equals("프리미엄 유저 승인 대기 중")) {
+			}else if(memberlist.get(i).getUsers().equals("�봽由щ�몄뾼 �쑀�� �듅�씤 ��湲� 以�")) {
 		}
 		}
 		mav.addObject("memberlist", memberlist);
-		System.out.println("member 는 " + memberlist);
+		System.out.println("member �뒗 " + memberlist);
 		mav.setViewName("admin/levelup");
 
 		return mav;
@@ -387,46 +389,31 @@ public class mainPage {
 	
 
 	@RequestMapping(value = "/levelupControl")
-	public ModelAndView levelupControl(HttpServletRequest request) {
-		ModelAndView mav = new ModelAndView();
-		GradeBankVo gradeBank = new GradeBankVo();
-		List<Member> member = jpaMember.findAll();
-		final int genMoney = 10000;
-		final int preMoney = 15000;
-		double id = 0.0;
-		for(int i = 0; i<member.size(); i++) {
-			if(member.get(i).getUsers()==null) {
-				System.out.println("아무거나");
-			}else if(member.get(i).getUsers().equals("일반 유저 승인 대기 중")) {
-				member.get(i).setUsers("일반유저");
-				id = Math.round(Math.random() * 1000);
-				gradeBank.setId(id);
-				gradeBank.setGenmoney(genMoney);
-				gradeBank.setPremoney(0);
-				jpaGradeBank.save(gradeBank);
-				jpaMember.save(member.get(i));
-				
-			}else if(member.get(i).getUsers().equals("프리미엄 유저 승인 대기 중")) {
-				member.get(i).setUsers("프리미엄");
-				id = Math.round(Math.random() * 1000);
-				gradeBank.setId(id);
-				gradeBank.setGenmoney(0);
-				gradeBank.setPremoney(preMoney);
-				jpaGradeBank.save(gradeBank);
-				jpaMember.save(member.get(i));
-			}
-			
-		}
-		System.out.println("memberrrrrrr:" + member);
-		mav.setViewName("admin/admin");
-		return mav;
-		
-	}
+	   public ModelAndView levelupControl(HttpServletRequest request) {
+	      ModelAndView mav = new ModelAndView();
+	      List<Member> member = jpaMember.findAll();
+	      System.out.println("member name : " + member.get(0).getUsers());
+	      for(int i = 0; i<member.size(); i++) {
+	         if(member.get(i).getUsers()==null) {
+	            System.out.println(" 븘臾닿굅 굹");
+	         }else if(member.get(i).getUsers().equals(" 씪諛   쑀    듅 씤   湲  以 ")) {
+	            member.get(i).setUsers(" 씪諛섏쑀  ");
+	            jpaMember.save(member.get(i));
+	         }else if(member.get(i).getUsers().equals(" 봽由щ 몄뾼  쑀    듅 씤   湲  以 ")) {
+	            member.get(i).setUsers(" 봽由щ 몄뾼");
+	            jpaMember.save(member.get(i));
+	      }
+	   }
+	      System.out.println("memberrrrrrr:" + member);
+	      mav.setViewName("admin/admin");
+	      return mav;
+	      
+	   }
 	@RequestMapping(value = "/allmember")
 	public ModelAndView allmember() {
 		ModelAndView mav = new ModelAndView();
 		List<Member> allmemberlist = jpaMember.findAll();
-		System.out.println("allmemberlist는" + allmemberlist);
+		System.out.println("allmemberlist�뒗" + allmemberlist);
 		mav.addObject("allmemberlist", allmemberlist);
 		mav.setViewName("admin/allmember");
 		return mav;
@@ -444,6 +431,18 @@ public class mainPage {
 	public ModelAndView customerQna() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("admin/notice/customerQna");
+		return mav;
+	}
+	@RequestMapping(value = "/baseballgame")
+	public ModelAndView baseballgame() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("game/baseballgame");
+		return mav;
+	}
+	@RequestMapping(value = "/wordreplay")
+	public ModelAndView wordreplay() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("game/wordreplay");
 		return mav;
 	}
 }

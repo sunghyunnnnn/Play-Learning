@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Do+Hyeon&display=swap');
+
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:700);
+html, body{background :WHITE; font-family : Roboto; height: 100%; width: 100%; margin: 0; padding-top: 50px;}
+
+#holder{
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+ 
+  height: 200px;
+  padding: 10px;
+  width: 500px;
+  margin: 0 auto;
+  position: relative;
+  top: 150px;
+  transform: translateY(-65%);
+  box-shadow: 0px 3px 8px  #f56a6a;
+  border-radius: 2px;
+}
+.button {
+   
+
+  background:  #f56a6a;
+  margin : 20px auto;
+  width : 200px;
+  height : 50px;
+  overflow: hidden;
+  text-align : center;
+  transition : .2s;
+  cursor : pointer;
+  border-radius: 3px;
+  box-shadow: 0px 1px 2px rgba(0,0,0,.2);
+}
+.btnTwo {
+  position : relative;
+  width : 200px;
+  height : 100px;
+  margin-top: -100px;
+  padding-top: 2px;
+  background : #ff0066;
+  left : -250px;
+  transition : .3s;
+}
+.btnText {
+  color : white;
+  transition : .3s;
+  border: none;
+  background-color:#f56a6a;
+  font-family: "Do Hyeon", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 20px;
+  position: relative;
+  bottom: 20px;
+}
+.btnText2 {
+  margin-top : 63px;
+  margin-right : -130px;
+  color : #FFF;
+}
+.button:hover .btnTwo{ /* .button 위로 마우스를 올렸을 때 .btnTwo 변경 */
+  left: -130px;
+}
+.button:hover .btnText{ /* .button 위로 마우스를 올렸을 때 .btnText 변경 */
+  margin-left : 65px;
+}
+.button:active { /* 클릭하고 있을 때 */
+  box-shadow: 0px 5px 6px rgba(0,0,0,0.3);
+}
+
+#game_title {
+	font-size: 30px;
+	text-align: center;
+	margin: auto;
+	width: 50%;
+	border: 3px solid  #f56a6a;
+	padding: 10px;
+	margin: auto;
+	text-align: center;
+    font-family: "Black Han Sans", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+#game_rule {
+	width: 50%;
+	border: 3px solid  #f56a6a;
+	padding: 10px;
+	margin: auto;
+	width: 50%;
+    font-family: "Do Hyeon", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+
+}
+
+#game_rule .rule{
+	font-size: 25px;
+	
+}
+
+#game_board {
+	text-align: center;
+	width: 50%;
+	border: 3px solid  #f56a6a;
+	padding: 10px;
+	margin: auto;
+	width: 50%;
+}
+
+#game_board input {
+	margin-top: 20px;
+	padding: 15px;
+	width: 60px; 
+	text-align: center;
+    border-radius: 10px;
+}
+
+#game_board button {
+	margin-top: 30px;
+}
+
+#game_board small {
+	color: silver;
+}
+
+#game_correct {
+	font-size: 20px;
+	text-align: center;
+	margin: auto;
+	width: 50%;
+	border: 3px solid  #f56a6a;
+	padding: 10px;
+	margin: auto;
+	text-align: center;
+    font-family: "Do Hyeon", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+
+}
