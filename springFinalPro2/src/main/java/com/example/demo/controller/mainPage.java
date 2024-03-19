@@ -332,18 +332,18 @@ public class mainPage {
 	@RequestMapping(value = "/boardview")
 	   public ModelAndView boardview(HttpServletRequest request) {
 	      String numbers = request.getParameter("numbers");
-	      List<CommVo> commvo = commrepo.findAll();
 	      int num = Integer.parseInt(numbers);
-	      System.out.println("numbers입니다"+numbers);
-	      System.out.println(numbers);
+	      List<CommVo> commvo = commrepo.selectbynum(num);
+	     
 	      ModelAndView mav = new ModelAndView();
-	      mav.addObject("commvo", commvo);
+	      mav.addObject("commvolist", commvo);
+	     
 	      Board course = jpaBoard.getById(num);
-	      System.out.println(course);
+	    
 	      mav.addObject("list", course);
-	      System.out.println("dkanrjsk");
+	     
 	      mav.setViewName("admin/board/boardview");
-	      System.out.println("apfhdapfhd");
+	    
 	      return mav;
 	   }
 	@RequestMapping(value = "/noticeview")

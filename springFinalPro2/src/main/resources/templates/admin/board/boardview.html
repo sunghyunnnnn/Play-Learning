@@ -57,13 +57,14 @@
     	<h2>댓글</h2>
     	
     	<form id="commentForm" action='comm' method="post">
-    		<input type="hidden" name="id" th:value="${session.loginId}">
-    		<input type="text" name="num">
+    		<input type="hidden" name="id">
+    		<input type="text" name="writer" th:value="${session.loginId}" readonly>
+    		<input type="hidden" name="num" th:value="${list.numbers}" readonly>
     		<textarea name="comm" placeholder="댓글을 입력하세요."></textarea><br><br><br>
     		<button type="submit" class="commentsubmit">댓글 작성</button>
     	</form>
-    	<div th:each = "list : ${commvo}">
-    	<span th:text="${list.id}">
+    	<div th:each = "list : ${commvolist}">
+    	<span th:text="${list.writer}">
     			
     	</span>
     	<span th:text="${list.comm}">

@@ -3,14 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="style/style.css">
+<link rel="stylesheet" href="style/login.css">
 </head>
 <body>
 
-<div>
-<span class="teamTitle" onclick="location.href='index'" style="position: fixed; left:1700px;">문제 뿌셔뿌셔!!</span>
-			<div id="sidebar" style="position: relative; bottom: 0px;">
-						<div class="inner" >
+<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
 
 							<!-- Search -->
 								<section id="search" class="alt">
@@ -21,7 +20,6 @@
 									</form>
 								</section>
 
-
 							<!-- Menu -->
 								<nav id="menu">
 									<header class="major">
@@ -30,36 +28,51 @@
 									<ul>
 										<li>
 											<span class="opener">내정보</span>
-											<ul>
-												<li><a href="#">정보 수정</a></li>
-												<li><a href="#">등업 신청</a></li>
-												<li><a href="#">내가 푼 문제</a></li>
-												<li><a href="#">회원 탈퇴</a></li>
+										<ul>
+											<li>
+												<a th:if="${session.indexCk == true}" th:href = "@{./memberchangeControl(id = ${session.login_number.id})}">정보 수정</a>
+												<a class="loginError" th:if="${session.indexCk == null}">정보 수정</a>
+											</li>
+											<li><a class="payError">결제 하기</a></li>
+											<li><a th:if="${session.indexCk == true}" th:href = "@{./wrongsolve(id = ${session.login_number.id})}">오답 풀이</a></li>
+												<a class="wrongError" th:if="${session.indexCk == null}">오답풀이</a>
 											
-											</ul>
+											 <li>
+                                       <a th:if="${session.indexCk == true}" th:href = "@{./deletememberControl(id = ${session.login_number.id})}">회원 탈퇴</a>
+                                       <a class="deleteError" th:if="${session.indexCk == null}">회원 탈퇴</a>
+                                    </li>
+									
+											
+										</ul>
 										</li>
 										<li>
 											<span class="opener">커뮤니티</span>
 											<ul>
-												<li><a href="#">게시판</a></li>
-												<li><a href="#">공지사항</a></li>
+												<li><a th:if="${session.indexCk == true}" th:href = "@{./board(id = ${session.login_number.id})}">게시판</a></li>
+													<a class="boardError" th:if="${session.indexCk == null}">게시판</a>
+												<li><a href="usernotice">공지사항</a></li>
                                                
 											
 											</ul>
 										</li>
 										<li>
-											<span class="opener">쉬우면 통계</span>
+											<span class="opener">우리 한 번 놀아보자</span>
 											<ul>
-												<li><a href="#">성적 오름 현황</a></li>
-												<li><a href="#">출석 현황</a></li>
+												<li><a th:if="${session.indexCk == true}" th:href = "@{./wordreplay(id = ${session.login_number.id})}">다같이 붙어보자 끝말잇기</a></li>
+													<a class="wordError" th:if="${session.indexCk == null}">다같이 붙어보자 끝말잇기</a>
+												<li><a th:if="${session.indexCk == true}" th:href = "@{./baseballgame(id = ${session.login_number.id})}">머리가 말랑해지는 숫자 야구</a></li>
+													<a class="ballError" th:if="${session.indexCk == null}">머리가 말랑해지는 숫자 야구</a>
+												<li><a href="#">사과는 애플 영단어 맞추기</a></li>
 											</ul>
 										</li>
 										<li>
 											<span class="opener">고객 지원</span>
 											<ul>
-												<li><a href="#">고객 문의</a></li>
+												<li><a th:if="${session.indexCk == true}" th:href = "@{./customerQna(id = ${session.login_number.id})}">고객 문의</a></li>
+													<a class="QnaError" th:if="${session.indexCk == null}">고객 문의</a>
 											</ul>
 										</li>
+									
 								</nav>
 
 							<!-- Section -->
@@ -68,25 +81,23 @@
 										<h2>해주세요</h2>
 									</header>
 									<div class="mini-posts">
-										<article>
-											<a href="#" class="image"><img src="img/indexImg/pic07.jpg" alt="" /></a>
+										<article >
+											<a href="#" class="image"><img src="img/indexImg/godimg.jpg" alt="" /></a>
 											<strong>문제를 풀어주세요</strong><br>
 											<p>국어/영어/수학</p>
 										</article>
 										<article>
-											<a href="#" class="image"><img src="img/indexImg/pic08.jpg" alt="" /></a>
+											<a href="#" class="image"><img src="img/indexImg/boardimg.jpg" alt="" /></a>
 											<strong>소통왕이 되어주세요</strong><br>
 											<p>게시판으로 순간이동</p>
 										</article>
 										<article>
-											<a href="#" class="image"><img src="img/indexImg/pic09.jpg" alt="" /></a>
+											<a href="#" class="image"><img src="img/indexImg/questionimg.jpg" alt="" /></a>
 											<strong>문제가 생겼어요</strong><br>
 											<p>문의 하러 가기</p>
 										</article>
 									</div>
-									<ul class="actions">
-										<li><a href="/adminlogin" class="button">admin</a></li>
-									</ul>
+									
 								</section>
 
 							<!-- Section -->
@@ -104,7 +115,8 @@
 										</li>
 									</ul>
 								</section>
-									<!-- Footer -->
+
+							<!-- Footer -->
 								<footer id="footer">
 									<p class="copyright">&copy; (주) 뿌셔뿌셔 Corp. All rights reserved. <br>Design: <a href="https://html5up.net">성현 & HTML5UP</a>.</p>
 								</footer>
@@ -143,14 +155,13 @@
 	const funcChange = () => {
 		if(pw.value===pw2.value) {
 			alert("탈퇴 성공")
-			
 		}else {
-			
 			alert("비밀번호가 다릅니다.")
 			pw.value = "";
 			pw2.value = "";
 		}
-				
+		
+		
 	}
 	delete_btn.addEventListener("click", funcChange);
 
@@ -162,5 +173,6 @@
 			<script src="js/breakpoints.min.js"></script>
 			<script src="js/util.js"></script>
 			<script src="js/main.js"></script>
+			
 </body>
 </html>
