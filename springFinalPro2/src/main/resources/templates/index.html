@@ -351,7 +351,8 @@
 													<a class="wordError" th:if="${session.indexCk == null}">다같이 붙어보자 끝말잇기</a>
 												<li><a th:if="${session.indexCk == true}" th:href = "@{./baseballgame(id = ${session.login_number.id})}">머리가 말랑해지는 숫자 야구</a></li>
 													<a class="ballError" th:if="${session.indexCk == null}">머리가 말랑해지는 숫자 야구</a>
-												<li><a href="#">사과는 애플 영단어 맞추기</a></li>
+												<li><a th:if="${session.indexCk == true}" th:href = "@{./englishgame(id = ${session.login_number.id})}">영어 행맨 게임을 즐겨보아요</a></li>
+													<a class="hangmanError" th:if="${session.indexCk == null}">영어 행맨 게임을 즐겨보아요</a>
 											</ul>
 										</li>
 										<li>
@@ -429,6 +430,7 @@
 				indexCk = [[${session.indexCk}]];
 				console.log(indexCk);
 				
+				const hangman = document.querySelector(".hangmanError");
 				const word = document.querySelector(".wordError");
 				const ball = document.querySelector(".ballError");
 				const wrong = document.querySelector(".wrongError");
@@ -659,6 +661,12 @@
 						alert('서비스를 이용하고 싶으시면 로그인 해주세요.');
 					}
 					ball.addEventListener('click', clickballError);
+				}
+				if(!indexCk) {
+					const hangmanError = () => {
+						alert('서비스를 이용하고 싶으시면 로그인 해주세요.');
+					}
+					hangman.addEventListener('click', hangmanError);
 				}
 				
 				

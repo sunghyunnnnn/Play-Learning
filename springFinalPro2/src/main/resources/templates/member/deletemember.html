@@ -140,18 +140,24 @@
 	const pw2 = document.querySelector(".pw2");
 	const delete_btn = document.querySelector(".delete_btn");
 	console.log(delete_btn)
+	
 	const funcChange = () => {
+		console.log("dfdf", pw.value.length)
+		console.log("111111", pw2.value.length)
 		if(pw.value===pw2.value) {
 			alert("탈퇴 성공")
-			
-		}else {
-			
-			alert("비밀번호가 다릅니다.")
-			pw.value = "";
-			pw2.value = "";
-		}
+			}else if(pw.value!==pw2.value) {
+				alert("비밀번호가 다릅니다.")
 				
-	}
+				
+				
+				
+				
+				
+			}
+		}
+		
+	
 	delete_btn.addEventListener("click", funcChange);
 
 </script>

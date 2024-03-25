@@ -29,7 +29,7 @@ public class MemberController {
 
 	@RequestMapping(value = "/deletememberControl")
 	public ModelAndView deletemember(Member mem, HttpSession session, HttpServletRequest request) {
-
+		
 		boolean pwMatch = false;
 		Member dbMember = null;
 		ModelAndView mav = new ModelAndView();
@@ -54,7 +54,7 @@ public class MemberController {
 		}
 
 		if (pwMatch == true) {
-
+			
 			mav.addObject("user", mem.getId());
 			mav.addObject("pwMatch", pwMatch);
 			jpaMember.deleteById(id);
@@ -62,7 +62,7 @@ public class MemberController {
 			mav.setViewName("index");
 
 		} else {
-			System.out.println("아이디틀림");
+			
 			mav.addObject("pwMatch", pwMatch);
 			System.out.println(pwMatch);
 			mav.setViewName("member/deletemember");
