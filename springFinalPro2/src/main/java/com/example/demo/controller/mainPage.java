@@ -380,25 +380,27 @@ public class mainPage {
 		
 		return mav;
 	}
-
 	@RequestMapping(value = "/levelup")
-	public ModelAndView levelup() {
-		ModelAndView mav = new ModelAndView();
-		List<Member> memberlist = jpaMember.findAll();
-		for(int i = 0; i<memberlist.size(); i++) {
-			if(memberlist.get(i).getUsers()==null) {
-				
-			}else if(memberlist.get(i).getUsers().equals("일반 유저 승인 대기 중")) {
-				
-			}else if(memberlist.get(i).getUsers().equals("프리미엄 유저 승인 대기 중")) {
-		}
-		}
-		mav.addObject("memberlist", memberlist);
-		System.out.println("member 는 " + memberlist);
-		mav.setViewName("admin/levelup");
 
-		return mav;
-	}
+	   public ModelAndView levelup() {
+	      ModelAndView mav = new ModelAndView();
+	      List<Member> memberlist = jpaMember.findAll();
+	      for(int i = 0; i<memberlist.size(); i++) {
+	         if(memberlist.get(i).getUsers()==null) {
+	            
+	         }else if(memberlist.get(i).getUsers().equals("일반 유저 승인 대기 중")) {
+	            
+	         }else if(memberlist.get(i).getUsers().equals("프리미엄 유저 승인 대기 중")) {
+	      }
+	      }
+	      mav.addObject("memberlist", memberlist);
+	      System.out.println("member 는 " + memberlist);
+	      mav.setViewName("admin/levelup");
+
+
+
+	      return mav;
+	   }
 	
 
 	@RequestMapping(value = "/levelupControl")
@@ -437,6 +439,7 @@ public class mainPage {
 	      return mav;
 	      
 	   }
+
 	@RequestMapping(value = "/allmember")
 	public ModelAndView allmember() {
 		ModelAndView mav = new ModelAndView();
