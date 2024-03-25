@@ -15,14 +15,16 @@
 	font-size: 80px;
 }
 .BookForm{
-	width: 700px;
-	height: 800px;
+	width: 1200px;
+	
 	border: 1px solid #f56a6a;
 	margin-left: 600px;
 	margin-top: 20px;
 	padding: 10px;
 	border-radius: 10px;
 	overflow-y:auto;
+	position: relative;
+	right: 200px;
 }
 
 .bookFormBtn{
@@ -63,7 +65,7 @@
 	
 }
 .problemWrap{
-	height: 1200px;
+	height:1000px;
 }
 .problemSection{
 	
