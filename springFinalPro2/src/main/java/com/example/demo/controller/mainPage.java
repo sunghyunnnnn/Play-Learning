@@ -476,5 +476,11 @@ public class mainPage {
 		mav.setViewName("game/wordreplay");
 		return mav;
 	}
+	@RequestMapping(value = "/englishgame")
+	public ModelAndView englishgame() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("game/englishgame");
+		return mav;
+	}
 }
 
