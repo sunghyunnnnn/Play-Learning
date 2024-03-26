@@ -3,12 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <title>오답풀이 국어!</title>
-<link rel="stylesheet" href="style/style.css">
+<link rel="stylesheet" href="style/light_korea.css">
 </head>
 <body>
+
+		
+		<!-- Wrapper -->
+					
+						<div th:if ="${session.login_number != null}">
+							<span th:text = "${session.login_number.id} + ' 님 환영합니다.'"></span>
+							<span class="myPage">마이페이지</span>
+							<a th:href="@{logoutControl}"
+							th:text=" '로그아웃' "></a>
+							<a th:if="${session.login_member != null}"></a>
+							
+						</div>
+					
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+							<div class="backgroundimg"></div>
+							<!-- Header -->
+								<header id="header">
+									<a href="index" class="logo"><strong>뿌셔뿌셔</strong> by 김미정 성현 현기원</a>
+								</header>
+
 <div class="div01">
 <form>
-	<label for ="solve" class="label">오답 풀이</label>
+	<h2 for ="solve" class="label">오답 풀이</h2>
 	<select name="solves" id="solve" class="select">
 		<option value="light_kor">가볍게 워밍업! 국어</option>
 		<option value="light_math">가볍게 워밍업! 수학</option>
@@ -32,6 +54,7 @@
 <img class="kor_05"></img>
 </div>
 </div>
+
 <script>
 	const div = document.querySelector(".div2");
 	const select = document.getElementById("solve");
@@ -41,6 +64,15 @@
 	const kor_03 = document.querySelector(".kor_03");
 	const kor_04 = document.querySelector(".kor_04");
 	const kor_05 = document.querySelector(".kor_05");
+	
+	const mypage = document.querySelector(".myPage");
+	
+	const clickFunc = () => {
+		let id = [[${session.loginId}]];
+		location.href = `/myPage?id=${id}`
+	
+	
+}
 	const submits = () => {
 		
 		if(select.value==="light_kor") {
@@ -100,10 +132,16 @@
 			kor_05.src = "./img/wrongimg/hard_math_005.jpg"
 		}
 	}
+
+
+	mypage.addEventListener('click', clickFunc);
 	submit.addEventListener("click", submits);
+	
 	
 	
 
 </script>
+
+
 </body>
 </html>

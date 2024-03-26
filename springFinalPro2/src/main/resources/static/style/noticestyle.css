@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Jua&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Dongle&family=Jua&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -5,6 +9,9 @@
 
 html {
     font-size: 10px;
+    font-family: "Jua", sans-serif;
+  	font-style: normal;
+ 
 }
 
 ul, li {
@@ -26,7 +33,9 @@ a {
 }
 
 .board_title strong {
-    font-size: 3rem;
+    font-size: 5rem;
+     font-family: "Black Han Sans", sans-serif;
+  	font-weight: 10;
 }
 
 .board_title p {
@@ -50,6 +59,9 @@ a {
     border-radius: 2px;
     font-size: 1.4rem;
     background-color: #fff;
+    border-radius:  10px;
+   
+  
 }
 
 .bt_wrap button:first-child {
@@ -59,6 +71,7 @@ a {
 .bt_wrap button.on {
     background:  #f56a6a;
     color: #fff;
+    border-radius:  10px;
 }
 
 
@@ -107,6 +120,7 @@ a {
 
 .board_list .writer {
     width: 10%;
+    
 }
 
 .board_list .date {
@@ -300,6 +314,9 @@ a {
     max-width: 564px;
 }
 #board-search .search-window .search-wrap input {
+	font-family: "Jua", sans-serif;
+
+  font-style: normal;
     height: 40px;
     width: 100%;
     font-size: 14px;
@@ -321,6 +338,9 @@ a {
     font-size: 16px;
 }
   .btn-dark {
+  font-family: "Jua", sans-serif;
+
+  font-style: normal;
     background: #f56a6a;
     color: #fff;
   }
@@ -345,19 +365,117 @@ a {
 #commentText {
     	width: 990px;
     	height: 100px;
-    	margin-left: 460px;
+    	margin-left: 800px;
     	border: 1px solid  #f56a6a;
-    	font-size: 1.4rem;
+    	font-size: 2.5rem;
     	}
     	
-h2 {
-margin-left: 460px;
+h4{
+
+font-size: 2.0rem;
+position: relative; left: 520px; bottom: 10px;
+
 }
-.commentsubmit{
+
+ul,
+li {
+	list-style: none;
+}
+
+.comment {
+	border-radius:  20px;
+	border: 2px solid #f56a6a;
+	font-size: 15px;
+	display: flex;
+	
+	flex-wrap: nowrap;
+	padding: 30px;
+	width: 850px;
+	margin:  15px;
+	position: relative; left: 500px;
+}
+.comment > li {
+	margin-top: 20px;
+}
+
+.comment > li:nth-child(1) {
+	margin: 0px;
+}
+.comment-row {
+	display: flex;
+	justify-content: space-between;
+	flex-direction: row;
+}
+.comment-row {
+	margin-top: 20px;
+	width: 100%;
+}
+.comment-row > li:nth-child(2) {
+	flex-shrick: 0;
+	flex-grow: 1;
+	padding-left: 25px;
+	z-index: 1;
+	width: 100%;
+}
+.comment-row > li:nth-child(2) {
+	width: 85px;
+}
+.comment-form > form {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+.comment-form > form > h4 {
+	width: 100%;
+	margin: 14px 0 14px 0;
+}
+.comment-content {
+	cursor: pointer;
+	word-break: break-all;
+	padding-right: 25px;
+}
+.ps_box {
+	border-radius:  20px;
+	
+	display: block;
 	position: relative;
-	left: 930px;
-	border: 1px solid  #f56a6a;
-    border-radius: 2px;
-    font-size: 1.4rem;
-    background-color: #fff;
+	width: 900px;
+	height: 51px;
+	border: solid 2px #dadada;
+	padding: 10px 14px 10px 14px;
+	background: #fff;
+	box-sizing: border-box;
+	position: relative; left:520px;
+}
+.px_box > input {
+	outline: none;
+}
+
+.int {
+	display: block;
+	position: relative;
+	width: 100%;
+	height: 29px;
+	padding-right: 25px;
+	line-height: 29px;
+	border: none;
+	background: #fff;
+	font-size: 15px;
+	box-sizing: border-box;
+	z-index: 10;
+}
+
+.commentsubmit {
+	border-radius:  10px;
+	position: relative; right:580px;
+	width: 5%;
+	padding: 18px 0 16px;
+	text-align: center;
+	box-sizing: border-box;
+	text-decoration: none;
+	border: none;
+	background: #f56a6a;
+	color: #fff;
+	font-size: 14px;
 }
