@@ -13,7 +13,13 @@ html {
   	font-style: normal;
  
 }
-
+span {
+	 font-size: 5rem;
+     font-family: "Black Han Sans", sans-serif;
+  	font-weight: 10;
+	
+	
+}
 ul, li {
     list-style: none;
 }
@@ -372,8 +378,10 @@ a {
     	
 h4{
 
-font-size: 2.0rem;
-position: relative; left: 520px; bottom: 10px;
+font-size: 3.0rem;
+position: relative; left: 560px; bottom: 10px;
+font-family: "Black Han Sans", sans-serif;
+  font-weight: 10;
 
 }
 
@@ -437,16 +445,15 @@ li {
 }
 .ps_box {
 	border-radius:  20px;
-	
 	display: block;
 	position: relative;
-	width: 900px;
+	width: 800px;
 	height: 51px;
 	border: solid 2px #dadada;
 	padding: 10px 14px 10px 14px;
 	background: #fff;
 	box-sizing: border-box;
-	position: relative; left:520px;
+	position: relative; left:600px;
 }
 .px_box > input {
 	outline: none;
@@ -468,8 +475,8 @@ li {
 
 .commentsubmit {
 	border-radius:  10px;
-	position: relative; right:581px;
-	width: 5%;
+	position: relative; right:610px;
+	width: 4.5%;
 	padding: 18px 0 16px;
 	text-align: center;
 	box-sizing: border-box;
@@ -477,5 +484,5 @@ li {
 	border: none;
 	background: #f56a6a;
 	color: #fff;
-	font-size: 14px;
+	font-size: 15px;
 }
