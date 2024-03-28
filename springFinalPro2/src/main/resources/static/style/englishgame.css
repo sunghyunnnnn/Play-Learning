@@ -2,6 +2,7 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600,400italic,600italic|Roboto+Slab:400,700");
 @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Do+Hyeon&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gasoek+One&display=swap');
 
 h1,
 h2,
@@ -16,8 +17,9 @@ div {
 }
 
 body {
-    background: lavender;
-    font-family: 'Bagel Fat One', system-ui;
+    background: gray;;
+    font-family: "Gasoek One", sans-serif;
+    font-size: 30px;
 }
 
 li,
@@ -100,8 +102,8 @@ canvas {
     margin: 0 5px;
 }
 #mylives {
-    color: #f56a6a;
-    font-weight: bold;
+    color: white;
+   
     font-size: 25px;
     margin-bottom: 15px;
 }
@@ -110,3 +112,122 @@ canvas {
     font-size: 18px;
     margin-bottom: 20px;
 }
+
+/* hint 버튼 */
+
+
+:root {
+  --hueStep: 90;
+  --delayStep: 0.111s;
+}
+
+/* 전역 스타일 */
+html,
+body {
+  height: 100%;
+}
+
+
+
+/* 버튼 스타일 */
+.btn {
+  background: #f56a6a;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+  color: white;
+  font: 600 1.05rem/1 "Nunito", sans-serif;
+  letter-spacing: 0.05em;
+  overflow: hidden;
+  padding: 1.15em 3.5em;
+  min-height: 3.3em;
+  position: relative;
+  
+  text-transform: lowercase;
+}
+
+.btn--yellow {
+  --hue: 46;
+}
+
+.btn--green {
+  --hue: 163;
+}
+
+.btn--purple {
+  --hue: 244;
+}
+
+.btn--red {
+  --hue: 0;
+}
+
+.btn--blue {
+  --hue: 210;
+}
+
+/* 버튼 상태 스타일 */
+.btn:active,
+.btn:focus {
+  outline: 3px solid hsl(calc(var(--hue) + var(--hueStep)), 98%, 80%);
+}
+
+.btn + .btn {
+  margin-top: 2.5em;
+}
+
+/* 버튼 내 텍스트 스타일 */
+.btn__txt {
+  position: relative;
+  z-index: 2;
+}
+
+/* 버튼 배경 스타일 */
+.btn__bg {
+  background: hsl(var(--hueBg), 98%, 80%);
+  border-radius: 50%;
+  display: block;
+  height: 0;
+  left: 50%;
+  margin: -50% 0 0 -50%;
+  padding-top: 100%;
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  transform: scale(0);
+  transform-origin: 50% 50%;
+transition: transform 0.35s cubic-bezier(0.11, 0, 0.5, 0);
+
+
+  z-index: 1;
+}
+
+/* 버튼 호버 및 포커스 시 배경 애니메이션 스타일 */
+.btn:hover .btn__bg,
+.btn:focus .btn__bg,
+.btn:active .btn__bg {
+  transform: scale(1.5);
+  transition: transform 0.35s cubic-bezier(0.11, 0, 0.5, 0);
+}
+
+/* 버튼 배경 애니메이션 딜레이 설정 */
+.btn__bg:nth-of-type(1) {
+  --hueBg: calc(var(--hue) - var(--hueStep));
+  transition-delay: calc(var(--delayStep) / 2 * (4 - 1));
+}
+
+.btn__bg:nth-of-type(2) {
+  --hueBg: calc(var(--hue) - var(--hueStep) * 2);
+  transition-delay: calc(var(--delayStep) / 2 * (4 - 2));
+}
+
+.btn__bg:nth-of-type(3) {
+  --hueBg: calc(var(--hue) - var(--hueStep) * 3);
+  transition-delay: calc(var(--delayStep) / 2 * (4 - 3));
+}
+
+.btn__bg:nth-of-type(4) {
+  --hueBg: calc(var(--hue) - var(--hueStep) * 4);
+  transition-delay: calc(var(--delayStep) / 2 * (4 - 4));
+}
+

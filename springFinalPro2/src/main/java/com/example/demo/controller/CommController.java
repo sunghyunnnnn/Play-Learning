@@ -33,7 +33,7 @@ public class CommController {
 		String writer = request.getParameter("writer");
 		int num = Integer.parseInt(num2);
 		
-		
+		System.out.println("comm" + comm );
 		commvo.setId(id);
 		commvo.setComm(comm);
 		commvo.setNum(num);

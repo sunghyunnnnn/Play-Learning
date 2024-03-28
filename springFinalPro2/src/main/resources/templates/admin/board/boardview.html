@@ -64,7 +64,7 @@
     		<input type="hidden" name="writer" th:value="${session.loginId}" readonly>
     		<input type="hidden" name="num" th:value="${list.numbers}" readonly>
     		<span class="ps_box">
-    		<input type="text" class="int" name="comm" placeholder="댓글을 입력하세요."></textarea>
+    		<input type="text" class="int" name="comm" placeholder="댓글을 입력하세요." required="required"></textarea>
 		</span>
     		<button type="submit" class="commentsubmit">등록</button>
     	</form>
@@ -77,13 +77,9 @@
     	
     
     	</ul>
-    
-    
-    
-    
-    
-
-    
-   
+    </div>
+  
 </body>
 </html>
+
+
