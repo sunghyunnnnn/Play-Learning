@@ -276,6 +276,33 @@ public class mainPage {
 
 		return mav;
 	}
+	@RequestMapping(value = "/boardedit")
+	public ModelAndView boardedit(HttpServletRequest request) {
+		String numbers = request.getParameter("numbers");
+	      int num = Integer.parseInt(numbers);
+	      System.out.println("num" + num);
+		ModelAndView mav = new ModelAndView();
+		Board course = jpaBoard.getById(num);
+		System.out.println("course: 11111"+course);
+		
+		mav.setViewName("admin/board/boardedit");
+		mav.addObject("list", course);
+		
+		return mav;
+	}
+	
+	@RequestMapping(value = "/boardeditregister")
+	public ModelAndView boardeditregister() {
+		
+		ModelAndView mav = new ModelAndView();
+		List<Board> boardlist = jpaBoard.findAll();
+		
+		mav.addObject("boardlist",boardlist);
+		mav.setViewName("admin/board/boardedit");
+
+		return mav;
+	}
+	
 	@RequestMapping(value = "/adminnotice")
 	public ModelAndView notice() {
 		

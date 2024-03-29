@@ -28,7 +28,13 @@ a {
     text-decoration: none;
     color: inherit;
 }
-
+.editbtn{
+	display:inline-block;
+	width: 50px;
+	height: 50px;
+	
+	border: 1px solid black;
+}
 .board_wrap {
     width: 1000px;
     margin: 100px auto;
