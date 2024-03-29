@@ -3,6 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Do+Hyeon&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Gasoek+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 h1,
 h2,
@@ -33,7 +34,7 @@ section {
 
 .title {
     font-size: 32px;
-    font-weight: 600;
+    
     margin-bottom: 30pxs;
 
 }
@@ -51,7 +52,7 @@ section {
 }
 
 .subjects {
-    font-size: 26px;
+    font-size: 26 px;
     color: #f56a6a;
     font-weight: 700;
 }
@@ -74,6 +75,8 @@ section {
     margin: 0 5px 5px;
     font-weight: bold;
     cursor: pointer;
+    font-family: "Roboto", sans-serif;
+  
 
 }
 
@@ -89,7 +92,7 @@ canvas {
 }
 
 #categoryName {
-    font-weight: 600;
+  
     font-size: 20px;
 }
 
@@ -103,7 +106,8 @@ canvas {
 }
 #mylives {
     color: white;
-   
+   	 font-family: "Roboto", sans-serif;
+   	 font-weight: 900;
     font-size: 25px;
     margin-bottom: 15px;
 }
@@ -111,6 +115,9 @@ canvas {
     color: #f56a6a;
     font-size: 18px;
     margin-bottom: 20px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+  
 }
 
 /* hint 버튼 */
